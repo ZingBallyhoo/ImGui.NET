@@ -6269,6 +6269,11 @@ namespace ImGuiNET
             float ret = ImGuiNative.igGetFrameHeightWithSpacing();
             return ret;
         }
+        public static uint GetHoveredID()
+        {
+            uint ret = ImGuiNative.igGetHoveredID();
+            return ret;
+        }
         public static uint GetID(string str_id)
         {
             byte* native_str_id;
@@ -6306,6 +6311,11 @@ namespace ImGuiNET
         {
             ImGuiIO* ret = ImGuiNative.igGetIO();
             return new ImGuiIOPtr(ret);
+        }
+        public static uint GetItemID()
+        {
+            uint ret = ImGuiNative.igGetItemID();
+            return ret;
         }
         public static Vector2 GetItemRectMax()
         {
@@ -10631,6 +10641,10 @@ namespace ImGuiNET
                 Util.Free(native_type);
             }
             return ret != 0;
+        }
+        public static void SetHoveredID(uint id)
+        {
+            ImGuiNative.igSetHoveredID(id);
         }
         public static void SetItemAllowOverlap()
         {

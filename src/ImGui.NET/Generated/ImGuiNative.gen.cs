@@ -233,6 +233,8 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern float igGetFrameHeightWithSpacing();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint igGetHoveredID();
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern uint igGetID_Str(byte* str_id);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern uint igGetID_StrStr(byte* str_id_begin, byte* str_id_end);
@@ -240,6 +242,8 @@ namespace ImGuiNET
         public static extern uint igGetID_Ptr(void* ptr_id);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern ImGuiIO* igGetIO();
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint igGetItemID();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igGetItemRectMax(Vector2* pOut);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -532,6 +536,8 @@ namespace ImGuiNET
         public static extern void igSetCursorScreenPos(Vector2 pos);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte igSetDragDropPayload(byte* type, void* data, uint sz, ImGuiCond cond);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igSetHoveredID(uint id);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetItemAllowOverlap();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
