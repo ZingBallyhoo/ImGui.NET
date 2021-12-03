@@ -8,6 +8,7 @@ namespace ImGuiNET
     public unsafe partial struct ImGuiStyle
     {
         public float Alpha;
+        public float DisabledAlpha;
         public Vector2 WindowPadding;
         public float WindowRounding;
         public float WindowBorderSize;
@@ -99,8 +100,6 @@ namespace ImGuiNET
         public Vector4 Colors_50;
         public Vector4 Colors_51;
         public Vector4 Colors_52;
-        public Vector4 Colors_53;
-        public Vector4 Colors_54;
     }
     public unsafe partial struct ImGuiStylePtr
     {
@@ -111,6 +110,7 @@ namespace ImGuiNET
         public static implicit operator ImGuiStyle* (ImGuiStylePtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiStylePtr(IntPtr nativePtr) => new ImGuiStylePtr(nativePtr);
         public ref float Alpha => ref Unsafe.AsRef<float>(&NativePtr->Alpha);
+        public ref float DisabledAlpha => ref Unsafe.AsRef<float>(&NativePtr->DisabledAlpha);
         public ref Vector2 WindowPadding => ref Unsafe.AsRef<Vector2>(&NativePtr->WindowPadding);
         public ref float WindowRounding => ref Unsafe.AsRef<float>(&NativePtr->WindowRounding);
         public ref float WindowBorderSize => ref Unsafe.AsRef<float>(&NativePtr->WindowBorderSize);
@@ -149,7 +149,7 @@ namespace ImGuiNET
         public ref bool AntiAliasedFill => ref Unsafe.AsRef<bool>(&NativePtr->AntiAliasedFill);
         public ref float CurveTessellationTol => ref Unsafe.AsRef<float>(&NativePtr->CurveTessellationTol);
         public ref float CircleTessellationMaxError => ref Unsafe.AsRef<float>(&NativePtr->CircleTessellationMaxError);
-        public RangeAccessor<Vector4> Colors => new RangeAccessor<Vector4>(&NativePtr->Colors_0, 55);
+        public RangeAccessor<Vector4> Colors => new RangeAccessor<Vector4>(&NativePtr->Colors_0, 53);
         public void Destroy()
         {
             ImGuiNative.ImGuiStyle_destroy((ImGuiStyle*)(NativePtr));
