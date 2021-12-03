@@ -15,21 +15,6 @@ namespace CodeGenerator
     {
         static void Main(string[] args)
         {
-            string outputPath;
-            if (args.Length > 0)
-            {
-                outputPath = args[0];
-            }
-            else
-            {
-                outputPath = AppContext.BaseDirectory;
-            }
-
-            if (!Directory.Exists(outputPath))
-            {
-                Directory.CreateDirectory(outputPath);
-            }
-
             string libraryName;
             if (args.Length > 1)
             {
@@ -37,7 +22,18 @@ namespace CodeGenerator
             }
             else
             {
-                libraryName = "cimgui";
+                libraryName = "cimplot";
+            }
+
+            string outputPath;
+            if (args.Length > 0)
+            {
+                outputPath = args[0];
+            }
+            else
+            {
+                outputPath = Path.Combine(AppContext.BaseDirectory, libraryName);
+                Directory.CreateDirectory(outputPath);
             }
 
             string projectNamespace = libraryName switch
