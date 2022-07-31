@@ -1272,26 +1272,6 @@ namespace ImGuiNET
             float ret = ImGuiNative.igCalcItemWidth();
             return ret;
         }
-        public static void CaptureKeyboardFromApp()
-        {
-            byte want_capture_keyboard_value = 1;
-            ImGuiNative.igCaptureKeyboardFromApp(want_capture_keyboard_value);
-        }
-        public static void CaptureKeyboardFromApp(bool want_capture_keyboard_value)
-        {
-            byte native_want_capture_keyboard_value = want_capture_keyboard_value ? (byte)1 : (byte)0;
-            ImGuiNative.igCaptureKeyboardFromApp(native_want_capture_keyboard_value);
-        }
-        public static void CaptureMouseFromApp()
-        {
-            byte want_capture_mouse_value = 1;
-            ImGuiNative.igCaptureMouseFromApp(want_capture_mouse_value);
-        }
-        public static void CaptureMouseFromApp(bool want_capture_mouse_value)
-        {
-            byte native_want_capture_mouse_value = want_capture_mouse_value ? (byte)1 : (byte)0;
-            ImGuiNative.igCaptureMouseFromApp(native_want_capture_mouse_value);
-        }
         public static bool Checkbox(string label, ref bool v)
         {
             byte* native_label;
@@ -2228,6 +2208,32 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
+        public static void DebugTextEncoding(string text)
+        {
+            byte* native_text;
+            int text_byteCount = 0;
+            if (text != null)
+            {
+                text_byteCount = Encoding.UTF8.GetByteCount(text);
+                if (text_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_text = Util.Allocate(text_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_text_stackBytes = stackalloc byte[text_byteCount + 1];
+                    native_text = native_text_stackBytes;
+                }
+                int native_text_offset = Util.GetUtf8(text, native_text, text_byteCount);
+                native_text[native_text_offset] = 0;
+            }
+            else { native_text = null; }
+            ImGuiNative.igDebugTextEncoding(native_text);
+            if (text_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_text);
+            }
+        }
         public static void DestroyContext()
         {
             IntPtr ctx = IntPtr.Zero;
@@ -2236,6 +2242,297 @@ namespace ImGuiNET
         public static void DestroyContext(IntPtr ctx)
         {
             ImGuiNative.igDestroyContext(ctx);
+        }
+        public static void DestroyPlatformWindows()
+        {
+            ImGuiNative.igDestroyPlatformWindows();
+        }
+        public static uint DockBuilderAddNode()
+        {
+            uint node_id = 0;
+            ImGuiDockNodeFlags flags = (ImGuiDockNodeFlags)0;
+            uint ret = ImGuiNative.igDockBuilderAddNode(node_id, flags);
+            return ret;
+        }
+        public static uint DockBuilderAddNode(uint node_id)
+        {
+            ImGuiDockNodeFlags flags = (ImGuiDockNodeFlags)0;
+            uint ret = ImGuiNative.igDockBuilderAddNode(node_id, flags);
+            return ret;
+        }
+        public static uint DockBuilderAddNode(uint node_id, ImGuiDockNodeFlags flags)
+        {
+            uint ret = ImGuiNative.igDockBuilderAddNode(node_id, flags);
+            return ret;
+        }
+        public static void DockBuilderCopyDockSpace(uint src_dockspace_id, uint dst_dockspace_id, ref ImVector in_window_remap_pairs)
+        {
+            fixed (ImVector* native_in_window_remap_pairs = &in_window_remap_pairs)
+            {
+                ImGuiNative.igDockBuilderCopyDockSpace(src_dockspace_id, dst_dockspace_id, native_in_window_remap_pairs);
+            }
+        }
+        public static void DockBuilderCopyNode(uint src_node_id, uint dst_node_id, out ImVector out_node_remap_pairs)
+        {
+            fixed (ImVector* native_out_node_remap_pairs = &out_node_remap_pairs)
+            {
+                ImGuiNative.igDockBuilderCopyNode(src_node_id, dst_node_id, native_out_node_remap_pairs);
+            }
+        }
+        public static void DockBuilderCopyWindowSettings(string src_name, string dst_name)
+        {
+            byte* native_src_name;
+            int src_name_byteCount = 0;
+            if (src_name != null)
+            {
+                src_name_byteCount = Encoding.UTF8.GetByteCount(src_name);
+                if (src_name_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_src_name = Util.Allocate(src_name_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_src_name_stackBytes = stackalloc byte[src_name_byteCount + 1];
+                    native_src_name = native_src_name_stackBytes;
+                }
+                int native_src_name_offset = Util.GetUtf8(src_name, native_src_name, src_name_byteCount);
+                native_src_name[native_src_name_offset] = 0;
+            }
+            else { native_src_name = null; }
+            byte* native_dst_name;
+            int dst_name_byteCount = 0;
+            if (dst_name != null)
+            {
+                dst_name_byteCount = Encoding.UTF8.GetByteCount(dst_name);
+                if (dst_name_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_dst_name = Util.Allocate(dst_name_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_dst_name_stackBytes = stackalloc byte[dst_name_byteCount + 1];
+                    native_dst_name = native_dst_name_stackBytes;
+                }
+                int native_dst_name_offset = Util.GetUtf8(dst_name, native_dst_name, dst_name_byteCount);
+                native_dst_name[native_dst_name_offset] = 0;
+            }
+            else { native_dst_name = null; }
+            ImGuiNative.igDockBuilderCopyWindowSettings(native_src_name, native_dst_name);
+            if (src_name_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_src_name);
+            }
+            if (dst_name_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_dst_name);
+            }
+        }
+        public static void DockBuilderDockWindow(string window_name, uint node_id)
+        {
+            byte* native_window_name;
+            int window_name_byteCount = 0;
+            if (window_name != null)
+            {
+                window_name_byteCount = Encoding.UTF8.GetByteCount(window_name);
+                if (window_name_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_window_name = Util.Allocate(window_name_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_window_name_stackBytes = stackalloc byte[window_name_byteCount + 1];
+                    native_window_name = native_window_name_stackBytes;
+                }
+                int native_window_name_offset = Util.GetUtf8(window_name, native_window_name, window_name_byteCount);
+                native_window_name[native_window_name_offset] = 0;
+            }
+            else { native_window_name = null; }
+            ImGuiNative.igDockBuilderDockWindow(native_window_name, node_id);
+            if (window_name_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_window_name);
+            }
+        }
+        public static void DockBuilderFinish(uint node_id)
+        {
+            ImGuiNative.igDockBuilderFinish(node_id);
+        }
+        public static IntPtr* DockBuilderGetCentralNode(uint node_id)
+        {
+            IntPtr* ret = ImGuiNative.igDockBuilderGetCentralNode(node_id);
+            return ret;
+        }
+        public static IntPtr* DockBuilderGetNode(uint node_id)
+        {
+            IntPtr* ret = ImGuiNative.igDockBuilderGetNode(node_id);
+            return ret;
+        }
+        public static void DockBuilderRemoveNode(uint node_id)
+        {
+            ImGuiNative.igDockBuilderRemoveNode(node_id);
+        }
+        public static void DockBuilderRemoveNodeChildNodes(uint node_id)
+        {
+            ImGuiNative.igDockBuilderRemoveNodeChildNodes(node_id);
+        }
+        public static void DockBuilderRemoveNodeDockedWindows(uint node_id)
+        {
+            byte clear_settings_refs = 1;
+            ImGuiNative.igDockBuilderRemoveNodeDockedWindows(node_id, clear_settings_refs);
+        }
+        public static void DockBuilderRemoveNodeDockedWindows(uint node_id, bool clear_settings_refs)
+        {
+            byte native_clear_settings_refs = clear_settings_refs ? (byte)1 : (byte)0;
+            ImGuiNative.igDockBuilderRemoveNodeDockedWindows(node_id, native_clear_settings_refs);
+        }
+        public static void DockBuilderSetNodePos(uint node_id, Vector2 pos)
+        {
+            ImGuiNative.igDockBuilderSetNodePos(node_id, pos);
+        }
+        public static void DockBuilderSetNodeSize(uint node_id, Vector2 size)
+        {
+            ImGuiNative.igDockBuilderSetNodeSize(node_id, size);
+        }
+        public static uint DockBuilderSplitNode(uint node_id, ImGuiDir split_dir, float size_ratio_for_node_at_dir, out uint out_id_at_dir, out uint out_id_at_opposite_dir)
+        {
+            fixed (uint* native_out_id_at_dir = &out_id_at_dir)
+            {
+                fixed (uint* native_out_id_at_opposite_dir = &out_id_at_opposite_dir)
+                {
+                    uint ret = ImGuiNative.igDockBuilderSplitNode(node_id, split_dir, size_ratio_for_node_at_dir, native_out_id_at_dir, native_out_id_at_opposite_dir);
+                    return ret;
+                }
+            }
+        }
+        public static void DockContextClearNodes(IntPtr ctx, uint root_id, bool clear_settings_refs)
+        {
+            byte native_clear_settings_refs = clear_settings_refs ? (byte)1 : (byte)0;
+            ImGuiNative.igDockContextClearNodes(ctx, root_id, native_clear_settings_refs);
+        }
+        public static uint DockContextGenNodeID(IntPtr ctx)
+        {
+            uint ret = ImGuiNative.igDockContextGenNodeID(ctx);
+            return ret;
+        }
+        public static void DockContextInitialize(IntPtr ctx)
+        {
+            ImGuiNative.igDockContextInitialize(ctx);
+        }
+        public static void DockContextNewFrameUpdateDocking(IntPtr ctx)
+        {
+            ImGuiNative.igDockContextNewFrameUpdateDocking(ctx);
+        }
+        public static void DockContextNewFrameUpdateUndocking(IntPtr ctx)
+        {
+            ImGuiNative.igDockContextNewFrameUpdateUndocking(ctx);
+        }
+        public static void DockContextQueueUndockNode(IntPtr ctx, ref IntPtr node)
+        {
+            fixed (IntPtr* native_node = &node)
+            {
+                ImGuiNative.igDockContextQueueUndockNode(ctx, native_node);
+            }
+        }
+        public static void DockContextRebuildNodes(IntPtr ctx)
+        {
+            ImGuiNative.igDockContextRebuildNodes(ctx);
+        }
+        public static void DockContextShutdown(IntPtr ctx)
+        {
+            ImGuiNative.igDockContextShutdown(ctx);
+        }
+        public static bool DockNodeBeginAmendTabBar(ref IntPtr node)
+        {
+            fixed (IntPtr* native_node = &node)
+            {
+                byte ret = ImGuiNative.igDockNodeBeginAmendTabBar(native_node);
+                return ret != 0;
+            }
+        }
+        public static void DockNodeEndAmendTabBar()
+        {
+            ImGuiNative.igDockNodeEndAmendTabBar();
+        }
+        public static int DockNodeGetDepth(ref IntPtr node)
+        {
+            fixed (IntPtr* native_node = &node)
+            {
+                int ret = ImGuiNative.igDockNodeGetDepth(native_node);
+                return ret;
+            }
+        }
+        public static IntPtr* DockNodeGetRootNode(ref IntPtr node)
+        {
+            fixed (IntPtr* native_node = &node)
+            {
+                IntPtr* ret = ImGuiNative.igDockNodeGetRootNode(native_node);
+                return ret;
+            }
+        }
+        public static uint DockNodeGetWindowMenuButtonId(ref IntPtr node)
+        {
+            fixed (IntPtr* native_node = &node)
+            {
+                uint ret = ImGuiNative.igDockNodeGetWindowMenuButtonId(native_node);
+                return ret;
+            }
+        }
+        public static uint DockSpace(uint id)
+        {
+            Vector2 size = new Vector2();
+            ImGuiDockNodeFlags flags = (ImGuiDockNodeFlags)0;
+            ImGuiWindowClass* window_class = null;
+            uint ret = ImGuiNative.igDockSpace(id, size, flags, window_class);
+            return ret;
+        }
+        public static uint DockSpace(uint id, Vector2 size)
+        {
+            ImGuiDockNodeFlags flags = (ImGuiDockNodeFlags)0;
+            ImGuiWindowClass* window_class = null;
+            uint ret = ImGuiNative.igDockSpace(id, size, flags, window_class);
+            return ret;
+        }
+        public static uint DockSpace(uint id, Vector2 size, ImGuiDockNodeFlags flags)
+        {
+            ImGuiWindowClass* window_class = null;
+            uint ret = ImGuiNative.igDockSpace(id, size, flags, window_class);
+            return ret;
+        }
+        public static uint DockSpace(uint id, Vector2 size, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr window_class)
+        {
+            ImGuiWindowClass* native_window_class = window_class.NativePtr;
+            uint ret = ImGuiNative.igDockSpace(id, size, flags, native_window_class);
+            return ret;
+        }
+        public static uint DockSpaceOverViewport()
+        {
+            ImGuiViewport* viewport = null;
+            ImGuiDockNodeFlags flags = (ImGuiDockNodeFlags)0;
+            ImGuiWindowClass* window_class = null;
+            uint ret = ImGuiNative.igDockSpaceOverViewport(viewport, flags, window_class);
+            return ret;
+        }
+        public static uint DockSpaceOverViewport(ImGuiViewportPtr viewport)
+        {
+            ImGuiViewport* native_viewport = viewport.NativePtr;
+            ImGuiDockNodeFlags flags = (ImGuiDockNodeFlags)0;
+            ImGuiWindowClass* window_class = null;
+            uint ret = ImGuiNative.igDockSpaceOverViewport(native_viewport, flags, window_class);
+            return ret;
+        }
+        public static uint DockSpaceOverViewport(ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags)
+        {
+            ImGuiViewport* native_viewport = viewport.NativePtr;
+            ImGuiWindowClass* window_class = null;
+            uint ret = ImGuiNative.igDockSpaceOverViewport(native_viewport, flags, window_class);
+            return ret;
+        }
+        public static uint DockSpaceOverViewport(ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr window_class)
+        {
+            ImGuiViewport* native_viewport = viewport.NativePtr;
+            ImGuiWindowClass* native_window_class = window_class.NativePtr;
+            uint ret = ImGuiNative.igDockSpaceOverViewport(native_viewport, flags, native_window_class);
+            return ret;
         }
         public static bool DragFloat(string label, ref float v)
         {
@@ -6097,6 +6394,17 @@ namespace ImGuiNET
         {
             ImGuiNative.igEndTooltip();
         }
+        public static ImGuiViewportPtr FindViewportByID(uint id)
+        {
+            ImGuiViewport* ret = ImGuiNative.igFindViewportByID(id);
+            return new ImGuiViewportPtr(ret);
+        }
+        public static ImGuiViewportPtr FindViewportByPlatformHandle(IntPtr platform_handle)
+        {
+            void* native_platform_handle = (void*)platform_handle.ToPointer();
+            ImGuiViewport* ret = ImGuiNative.igFindViewportByPlatformHandle(native_platform_handle);
+            return new ImGuiViewportPtr(ret);
+        }
         public static void GetAllocatorFunctions(ref IntPtr p_alloc_func, ref IntPtr p_free_func, ref void* p_user_data)
         {
             fixed (IntPtr* native_p_alloc_func = &p_alloc_func)
@@ -6113,6 +6421,12 @@ namespace ImGuiNET
         public static ImDrawListPtr GetBackgroundDrawList()
         {
             ImDrawList* ret = ImGuiNative.igGetBackgroundDrawList_Nil();
+            return new ImDrawListPtr(ret);
+        }
+        public static ImDrawListPtr GetBackgroundDrawList(ImGuiViewportPtr viewport)
+        {
+            ImGuiViewport* native_viewport = viewport.NativePtr;
+            ImDrawList* ret = ImGuiNative.igGetBackgroundDrawList_ViewportPtr(native_viewport);
             return new ImDrawListPtr(ret);
         }
         public static string GetClipboardText()
@@ -6254,6 +6568,12 @@ namespace ImGuiNET
             ImDrawList* ret = ImGuiNative.igGetForegroundDrawList_Nil();
             return new ImDrawListPtr(ret);
         }
+        public static ImDrawListPtr GetForegroundDrawList(ImGuiViewportPtr viewport)
+        {
+            ImGuiViewport* native_viewport = viewport.NativePtr;
+            ImDrawList* ret = ImGuiNative.igGetForegroundDrawList_ViewportPtr(native_viewport);
+            return new ImDrawListPtr(ret);
+        }
         public static int GetFrameCount()
         {
             int ret = ImGuiNative.igGetFrameCount();
@@ -6335,20 +6655,30 @@ namespace ImGuiNET
             ImGuiNative.igGetItemRectSize(&__retval);
             return __retval;
         }
-        public static int GetKeyIndex(ImGuiKey imgui_key)
+        public static int GetKeyIndex(ImGuiKey key)
         {
-            int ret = ImGuiNative.igGetKeyIndex(imgui_key);
+            int ret = ImGuiNative.igGetKeyIndex(key);
             return ret;
         }
-        public static int GetKeyPressedAmount(int key_index, float repeat_delay, float rate)
+        public static string GetKeyName(ImGuiKey key)
         {
-            int ret = ImGuiNative.igGetKeyPressedAmount(key_index, repeat_delay, rate);
+            byte* ret = ImGuiNative.igGetKeyName(key);
+            return Util.StringFromPtr(ret);
+        }
+        public static int GetKeyPressedAmount(ImGuiKey key, float repeat_delay, float rate)
+        {
+            int ret = ImGuiNative.igGetKeyPressedAmount(key, repeat_delay, rate);
             return ret;
         }
         public static ImGuiViewportPtr GetMainViewport()
         {
             ImGuiViewport* ret = ImGuiNative.igGetMainViewport();
             return new ImGuiViewportPtr(ret);
+        }
+        public static int GetMouseClickedCount(ImGuiMouseButton button)
+        {
+            int ret = ImGuiNative.igGetMouseClickedCount(button);
+            return ret;
         }
         public static ImGuiMouseCursor GetMouseCursor()
         {
@@ -6387,6 +6717,11 @@ namespace ImGuiNET
             Vector2 __retval;
             ImGuiNative.igGetMousePosOnOpeningCurrentPopup(&__retval);
             return __retval;
+        }
+        public static ImGuiPlatformIOPtr GetPlatformIO()
+        {
+            ImGuiPlatformIO* ret = ImGuiNative.igGetPlatformIO();
+            return new ImGuiPlatformIOPtr(ret);
         }
         public static float GetScrollMaxX()
         {
@@ -6465,6 +6800,16 @@ namespace ImGuiNET
             ImGuiNative.igGetWindowContentRegionMin(&__retval);
             return __retval;
         }
+        public static uint GetWindowDockID()
+        {
+            uint ret = ImGuiNative.igGetWindowDockID();
+            return ret;
+        }
+        public static float GetWindowDpiScale()
+        {
+            float ret = ImGuiNative.igGetWindowDpiScale();
+            return ret;
+        }
         public static ImDrawListPtr GetWindowDrawList()
         {
             ImDrawList* ret = ImGuiNative.igGetWindowDrawList();
@@ -6486,6 +6831,11 @@ namespace ImGuiNET
             Vector2 __retval;
             ImGuiNative.igGetWindowSize(&__retval);
             return __retval;
+        }
+        public static ImGuiViewportPtr GetWindowViewport()
+        {
+            ImGuiViewport* ret = ImGuiNative.igGetWindowViewport();
+            return new ImGuiViewportPtr(ret);
         }
         public static float GetWindowWidth()
         {
@@ -8396,26 +8746,26 @@ namespace ImGuiNET
             byte ret = ImGuiNative.igIsItemVisible();
             return ret != 0;
         }
-        public static bool IsKeyDown(int user_key_index)
+        public static bool IsKeyDown(ImGuiKey key)
         {
-            byte ret = ImGuiNative.igIsKeyDown(user_key_index);
+            byte ret = ImGuiNative.igIsKeyDown(key);
             return ret != 0;
         }
-        public static bool IsKeyPressed(int user_key_index)
+        public static bool IsKeyPressed(ImGuiKey key)
         {
             byte repeat = 1;
-            byte ret = ImGuiNative.igIsKeyPressed(user_key_index, repeat);
+            byte ret = ImGuiNative.igIsKeyPressed(key, repeat);
             return ret != 0;
         }
-        public static bool IsKeyPressed(int user_key_index, bool repeat)
+        public static bool IsKeyPressed(ImGuiKey key, bool repeat)
         {
             byte native_repeat = repeat ? (byte)1 : (byte)0;
-            byte ret = ImGuiNative.igIsKeyPressed(user_key_index, native_repeat);
+            byte ret = ImGuiNative.igIsKeyPressed(key, native_repeat);
             return ret != 0;
         }
-        public static bool IsKeyReleased(int user_key_index)
+        public static bool IsKeyReleased(ImGuiKey key)
         {
-            byte ret = ImGuiNative.igIsKeyReleased(user_key_index);
+            byte ret = ImGuiNative.igIsKeyReleased(key);
             return ret != 0;
         }
         public static bool IsMouseClicked(ImGuiMouseButton button)
@@ -8555,6 +8905,11 @@ namespace ImGuiNET
         public static bool IsWindowCollapsed()
         {
             byte ret = ImGuiNative.igIsWindowCollapsed();
+            return ret != 0;
+        }
+        public static bool IsWindowDocked()
+        {
+            byte ret = ImGuiNative.igIsWindowDocked();
             return ret != 0;
         }
         public static bool IsWindowFocused()
@@ -10239,6 +10594,24 @@ namespace ImGuiNET
         {
             ImGuiNative.igRender();
         }
+        public static void RenderPlatformWindowsDefault()
+        {
+            void* platform_render_arg = null;
+            void* renderer_render_arg = null;
+            ImGuiNative.igRenderPlatformWindowsDefault(platform_render_arg, renderer_render_arg);
+        }
+        public static void RenderPlatformWindowsDefault(IntPtr platform_render_arg)
+        {
+            void* native_platform_render_arg = (void*)platform_render_arg.ToPointer();
+            void* renderer_render_arg = null;
+            ImGuiNative.igRenderPlatformWindowsDefault(native_platform_render_arg, renderer_render_arg);
+        }
+        public static void RenderPlatformWindowsDefault(IntPtr platform_render_arg, IntPtr renderer_render_arg)
+        {
+            void* native_platform_render_arg = (void*)platform_render_arg.ToPointer();
+            void* native_renderer_render_arg = (void*)renderer_render_arg.ToPointer();
+            ImGuiNative.igRenderPlatformWindowsDefault(native_platform_render_arg, native_renderer_render_arg);
+        }
         public static void ResetMouseDragDelta()
         {
             ImGuiMouseButton button = (ImGuiMouseButton)0;
@@ -10667,6 +11040,16 @@ namespace ImGuiNET
         {
             ImGuiNative.igSetMouseCursor(cursor_type);
         }
+        public static void SetNextFrameWantCaptureKeyboard(bool want_capture_keyboard)
+        {
+            byte native_want_capture_keyboard = want_capture_keyboard ? (byte)1 : (byte)0;
+            ImGuiNative.igSetNextFrameWantCaptureKeyboard(native_want_capture_keyboard);
+        }
+        public static void SetNextFrameWantCaptureMouse(bool want_capture_mouse)
+        {
+            byte native_want_capture_mouse = want_capture_mouse ? (byte)1 : (byte)0;
+            ImGuiNative.igSetNextFrameWantCaptureMouse(native_want_capture_mouse);
+        }
         public static void SetNextItemOpen(bool is_open)
         {
             byte native_is_open = is_open ? (byte)1 : (byte)0;
@@ -10686,6 +11069,11 @@ namespace ImGuiNET
         {
             ImGuiNative.igSetNextWindowBgAlpha(alpha);
         }
+        public static void SetNextWindowClass(ImGuiWindowClassPtr window_class)
+        {
+            ImGuiWindowClass* native_window_class = window_class.NativePtr;
+            ImGuiNative.igSetNextWindowClass(native_window_class);
+        }
         public static void SetNextWindowCollapsed(bool collapsed)
         {
             byte native_collapsed = collapsed ? (byte)1 : (byte)0;
@@ -10700,6 +11088,15 @@ namespace ImGuiNET
         public static void SetNextWindowContentSize(Vector2 size)
         {
             ImGuiNative.igSetNextWindowContentSize(size);
+        }
+        public static void SetNextWindowDockID(uint dock_id)
+        {
+            ImGuiCond cond = (ImGuiCond)0;
+            ImGuiNative.igSetNextWindowDockID(dock_id, cond);
+        }
+        public static void SetNextWindowDockID(uint dock_id, ImGuiCond cond)
+        {
+            ImGuiNative.igSetNextWindowDockID(dock_id, cond);
         }
         public static void SetNextWindowFocus()
         {
@@ -10744,6 +11141,10 @@ namespace ImGuiNET
         {
             void* native_custom_callback_data = (void*)custom_callback_data.ToPointer();
             ImGuiNative.igSetNextWindowSizeConstraints(size_min, size_max, custom_callback, native_custom_callback_data);
+        }
+        public static void SetNextWindowViewport(uint viewport_id)
+        {
+            ImGuiNative.igSetNextWindowViewport(viewport_id);
         }
         public static void SetScrollFromPosX(float local_x)
         {
@@ -11080,6 +11481,18 @@ namespace ImGuiNET
             byte native_p_open_val = p_open ? (byte)1 : (byte)0;
             byte* native_p_open = &native_p_open_val;
             ImGuiNative.igShowAboutWindow(native_p_open);
+            p_open = native_p_open_val != 0;
+        }
+        public static void ShowDebugLogWindow()
+        {
+            byte* p_open = null;
+            ImGuiNative.igShowDebugLogWindow(p_open);
+        }
+        public static void ShowDebugLogWindow(ref bool p_open)
+        {
+            byte native_p_open_val = p_open ? (byte)1 : (byte)0;
+            byte* native_p_open = &native_p_open_val;
+            ImGuiNative.igShowDebugLogWindow(native_p_open);
             p_open = native_p_open_val != 0;
         }
         public static void ShowDemoWindow()
@@ -13702,6 +14115,10 @@ namespace ImGuiNET
         public static void Unindent(float indent_w)
         {
             ImGuiNative.igUnindent(indent_w);
+        }
+        public static void UpdatePlatformWindows()
+        {
+            ImGuiNative.igUpdatePlatformWindows();
         }
         public static void Value(string prefix, bool b)
         {
