@@ -115,6 +115,60 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igDestroyPlatformWindows();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint igDockBuilderAddNode(uint node_id, ImGuiDockNodeFlags flags);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockBuilderCopyDockSpace(uint src_dockspace_id, uint dst_dockspace_id, ImVector* in_window_remap_pairs);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockBuilderCopyNode(uint src_node_id, uint dst_node_id, ImVector* out_node_remap_pairs);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockBuilderCopyWindowSettings(byte* src_name, byte* dst_name);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockBuilderDockWindow(byte* window_name, uint node_id);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockBuilderFinish(uint node_id);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr* igDockBuilderGetCentralNode(uint node_id);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr* igDockBuilderGetNode(uint node_id);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockBuilderRemoveNode(uint node_id);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockBuilderRemoveNodeChildNodes(uint node_id);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockBuilderRemoveNodeDockedWindows(uint node_id, byte clear_settings_refs);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockBuilderSetNodePos(uint node_id, Vector2 pos);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockBuilderSetNodeSize(uint node_id, Vector2 size);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint igDockBuilderSplitNode(uint node_id, ImGuiDir split_dir, float size_ratio_for_node_at_dir, uint* out_id_at_dir, uint* out_id_at_opposite_dir);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockContextClearNodes(IntPtr ctx, uint root_id, byte clear_settings_refs);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint igDockContextGenNodeID(IntPtr ctx);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockContextInitialize(IntPtr ctx);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockContextNewFrameUpdateDocking(IntPtr ctx);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockContextNewFrameUpdateUndocking(IntPtr ctx);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockContextQueueUndockNode(IntPtr ctx, IntPtr* node);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockContextRebuildNodes(IntPtr ctx);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockContextShutdown(IntPtr ctx);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte igDockNodeBeginAmendTabBar(IntPtr* node);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igDockNodeEndAmendTabBar();
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int igDockNodeGetDepth(IntPtr* node);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr* igDockNodeGetRootNode(IntPtr* node);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint igDockNodeGetWindowMenuButtonId(IntPtr* node);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern uint igDockSpace(uint id, Vector2 size, ImGuiDockNodeFlags flags, ImGuiWindowClass* window_class);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern uint igDockSpaceOverViewport(ImGuiViewport* viewport, ImGuiDockNodeFlags flags, ImGuiWindowClass* window_class);
@@ -244,6 +298,8 @@ namespace ImGuiNET
         public static extern float igGetFrameHeight();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern float igGetFrameHeightWithSpacing();
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint igGetHoveredID();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern uint igGetID_Str(byte* str_id);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -565,6 +621,8 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte igSetDragDropPayload(byte* type, void* data, uint sz, ImGuiCond cond);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igSetHoveredID(uint id);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetItemDefaultFocus();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetItemTooltip(byte* fmt);
@@ -790,6 +848,8 @@ namespace ImGuiNET
         public static extern IntPtr ImDrawCmd_GetTexID(ImDrawCmd* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern ImDrawCmd* ImDrawCmd_ImDrawCmd();
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ImDrawData_AddDrawList(ImDrawData* self, ImDrawList* draw_list);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImDrawData_Clear(ImDrawData* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -1109,7 +1169,7 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImGuiIO_AddMouseWheelEvent(ImGuiIO* self, float wheel_x, float wheel_y);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void ImGuiIO_ClearInputCharacters(ImGuiIO* self);
+        public static extern void ImGuiIO_ClearEventsQueue(ImGuiIO* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImGuiIO_ClearInputKeys(ImGuiIO* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]

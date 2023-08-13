@@ -953,9 +953,9 @@ namespace ImGuiNET
         {
             ImGuiNative.ImGuiIO_AddMouseWheelEvent((ImGuiIO*)(NativePtr), wheel_x, wheel_y);
         }
-        public void ClearInputCharacters()
+        public void ClearEventsQueue()
         {
-            ImGuiNative.ImGuiIO_ClearInputCharacters((ImGuiIO*)(NativePtr));
+            ImGuiNative.ImGuiIO_ClearEventsQueue((ImGuiIO*)(NativePtr));
         }
         public void ClearInputKeys()
         {
