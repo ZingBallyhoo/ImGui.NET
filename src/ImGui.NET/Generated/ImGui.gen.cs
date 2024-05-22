@@ -13037,11 +13037,6 @@ namespace ImGuiNET
             ImGuiNative.igGetItemRectSize(&__retval);
             return __retval;
         }
-        public static ImGuiKey GetKeyIndex(ImGuiKey key)
-        {
-            ImGuiKey ret = ImGuiNative.igGetKeyIndex(key);
-            return ret;
-        }
         public static string GetKeyName(ImGuiKey key)
         {
             byte* ret = ImGuiNative.igGetKeyName(key);
