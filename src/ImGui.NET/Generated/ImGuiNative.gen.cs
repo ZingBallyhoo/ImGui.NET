@@ -53,7 +53,7 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte igBeginTabItem(byte* label, byte* p_open, ImGuiTabItemFlags flags);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte igBeginTable(byte* str_id, int column, ImGuiTableFlags flags, Vector2 outer_size, float inner_width);
+        public static extern byte igBeginTable(byte* str_id, int columns, ImGuiTableFlags flags, Vector2 outer_size, float inner_width);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte igBeginTooltip();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -171,9 +171,9 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern uint igDockNodeGetWindowMenuButtonId(IntPtr* node);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint igDockSpace(uint id, Vector2 size, ImGuiDockNodeFlags flags, ImGuiWindowClass* window_class);
+        public static extern uint igDockSpace(uint dockspace_id, Vector2 size, ImGuiDockNodeFlags flags, ImGuiWindowClass* window_class);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint igDockSpaceOverViewport(ImGuiViewport* viewport, ImGuiDockNodeFlags flags, ImGuiWindowClass* window_class);
+        public static extern uint igDockSpaceOverViewport(uint dockspace_id, ImGuiViewport* viewport, ImGuiDockNodeFlags flags, ImGuiWindowClass* window_class);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte igDragFloat(byte* label, float* v, float v_speed, float v_min, float v_max, byte* format, ImGuiSliderFlags flags);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -241,9 +241,7 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igGetAllocatorFunctions(IntPtr* p_alloc_func, IntPtr* p_free_func, void** p_user_data);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern ImDrawList* igGetBackgroundDrawList_Nil();
-        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern ImDrawList* igGetBackgroundDrawList_ViewportPtr(ImGuiViewport* viewport);
+        public static extern ImDrawList* igGetBackgroundDrawList(ImGuiViewport* viewport);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* igGetClipboardText();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -288,8 +286,6 @@ namespace ImGuiNET
         public static extern float igGetFontSize();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igGetFontTexUvWhitePixel(Vector2* pOut);
-        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
-        public static extern ImDrawList* igGetForegroundDrawList_Nil();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern ImDrawList* igGetForegroundDrawList_ViewportPtr(ImGuiViewport* viewport);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -639,6 +635,8 @@ namespace ImGuiNET
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetNextItemOpen(byte is_open, ImGuiCond cond);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void igSetNextItemShortcut(ImGuiKey key_chord, ImGuiInputFlags flags);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetNextItemWidth(float item_width);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetNextWindowBgAlpha(float alpha);
@@ -698,6 +696,8 @@ namespace ImGuiNET
         public static extern void igSetWindowSize_Vec2(Vector2 size, ImGuiCond cond);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igSetWindowSize_Str(byte* name, Vector2 size, ImGuiCond cond);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte igShortcut_Nil(ImGuiKey key_chord, ImGuiInputFlags flags);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void igShowAboutWindow(byte* p_open);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -760,6 +760,8 @@ namespace ImGuiNET
         public static extern int igTableGetColumnIndex();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* igTableGetColumnName_Int(int column_n);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int igTableGetHoveredColumn();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern int igTableGetRowIndex();
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
@@ -1184,6 +1186,8 @@ namespace ImGuiNET
         public static extern void ImGuiIO_ClearEventsQueue(ImGuiIO* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImGuiIO_ClearInputKeys(ImGuiIO* self);
+        [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ImGuiIO_ClearInputMouse(ImGuiIO* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImGuiIO_destroy(ImGuiIO* self);
         [DllImport("cimgui", CallingConvention = CallingConvention.Cdecl)]
