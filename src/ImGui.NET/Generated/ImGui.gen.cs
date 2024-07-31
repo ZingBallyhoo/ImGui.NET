@@ -1106,6 +1106,24 @@ namespace ImGuiNET
             byte ret = ImGuiNative.igBeginMenuBar();
             return ret != 0;
         }
+        public static ImGuiMultiSelectIOPtr BeginMultiSelect(ImGuiMultiSelectFlags flags)
+        {
+            int selection_size = -1;
+            int items_count = -1;
+            ImGuiMultiSelectIO* ret = ImGuiNative.igBeginMultiSelect(flags, selection_size, items_count);
+            return new ImGuiMultiSelectIOPtr(ret);
+        }
+        public static ImGuiMultiSelectIOPtr BeginMultiSelect(ImGuiMultiSelectFlags flags, int selection_size)
+        {
+            int items_count = -1;
+            ImGuiMultiSelectIO* ret = ImGuiNative.igBeginMultiSelect(flags, selection_size, items_count);
+            return new ImGuiMultiSelectIOPtr(ret);
+        }
+        public static ImGuiMultiSelectIOPtr BeginMultiSelect(ImGuiMultiSelectFlags flags, int selection_size, int items_count)
+        {
+            ImGuiMultiSelectIO* ret = ImGuiNative.igBeginMultiSelect(flags, selection_size, items_count);
+            return new ImGuiMultiSelectIOPtr(ret);
+        }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static bool BeginPopup(ReadOnlySpan<char> str_id)
         {
@@ -4517,6 +4535,60 @@ namespace ImGuiNET
         {
             ImGuiNative.igDebugFlashStyleColor(idx);
         }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void DebugLog(ReadOnlySpan<char> fmt)
+        {
+            byte* native_fmt;
+            int fmt_byteCount = 0;
+            if (fmt != null)
+            {
+                fmt_byteCount = Encoding.UTF8.GetByteCount(fmt);
+                if (fmt_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_fmt = Util.Allocate(fmt_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_fmt_stackBytes = stackalloc byte[fmt_byteCount + 1];
+                    native_fmt = native_fmt_stackBytes;
+                }
+                int native_fmt_offset = Util.GetUtf8(fmt, native_fmt, fmt_byteCount);
+                native_fmt[native_fmt_offset] = 0;
+            }
+            else { native_fmt = null; }
+            ImGuiNative.igDebugLog(native_fmt);
+            if (fmt_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_fmt);
+            }
+        }
+#endif
+        public static void DebugLog(string fmt)
+        {
+            byte* native_fmt;
+            int fmt_byteCount = 0;
+            if (fmt != null)
+            {
+                fmt_byteCount = Encoding.UTF8.GetByteCount(fmt);
+                if (fmt_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_fmt = Util.Allocate(fmt_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_fmt_stackBytes = stackalloc byte[fmt_byteCount + 1];
+                    native_fmt = native_fmt_stackBytes;
+                }
+                int native_fmt_offset = Util.GetUtf8(fmt, native_fmt, fmt_byteCount);
+                native_fmt[native_fmt_offset] = 0;
+            }
+            else { native_fmt = null; }
+            ImGuiNative.igDebugLog(native_fmt);
+            if (fmt_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_fmt);
+            }
+        }
         public static void DebugStartItemPicker()
         {
             ImGuiNative.igDebugStartItemPicker();
@@ -4587,6 +4659,314 @@ namespace ImGuiNET
         public static void DestroyPlatformWindows()
         {
             ImGuiNative.igDestroyPlatformWindows();
+        }
+        public static uint DockBuilderAddNode()
+        {
+            uint node_id = 0;
+            ImGuiDockNodeFlags flags = (ImGuiDockNodeFlags)0;
+            uint ret = ImGuiNative.igDockBuilderAddNode(node_id, flags);
+            return ret;
+        }
+        public static uint DockBuilderAddNode(uint node_id)
+        {
+            ImGuiDockNodeFlags flags = (ImGuiDockNodeFlags)0;
+            uint ret = ImGuiNative.igDockBuilderAddNode(node_id, flags);
+            return ret;
+        }
+        public static uint DockBuilderAddNode(uint node_id, ImGuiDockNodeFlags flags)
+        {
+            uint ret = ImGuiNative.igDockBuilderAddNode(node_id, flags);
+            return ret;
+        }
+        public static void DockBuilderCopyDockSpace(uint src_dockspace_id, uint dst_dockspace_id, ref ImVector in_window_remap_pairs)
+        {
+            fixed (ImVector* native_in_window_remap_pairs = &in_window_remap_pairs)
+            {
+                ImGuiNative.igDockBuilderCopyDockSpace(src_dockspace_id, dst_dockspace_id, native_in_window_remap_pairs);
+            }
+        }
+        public static void DockBuilderCopyNode(uint src_node_id, uint dst_node_id, out ImVector out_node_remap_pairs)
+        {
+            fixed (ImVector* native_out_node_remap_pairs = &out_node_remap_pairs)
+            {
+                ImGuiNative.igDockBuilderCopyNode(src_node_id, dst_node_id, native_out_node_remap_pairs);
+            }
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void DockBuilderCopyWindowSettings(ReadOnlySpan<char> src_name, ReadOnlySpan<char> dst_name)
+        {
+            byte* native_src_name;
+            int src_name_byteCount = 0;
+            if (src_name != null)
+            {
+                src_name_byteCount = Encoding.UTF8.GetByteCount(src_name);
+                if (src_name_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_src_name = Util.Allocate(src_name_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_src_name_stackBytes = stackalloc byte[src_name_byteCount + 1];
+                    native_src_name = native_src_name_stackBytes;
+                }
+                int native_src_name_offset = Util.GetUtf8(src_name, native_src_name, src_name_byteCount);
+                native_src_name[native_src_name_offset] = 0;
+            }
+            else { native_src_name = null; }
+            byte* native_dst_name;
+            int dst_name_byteCount = 0;
+            if (dst_name != null)
+            {
+                dst_name_byteCount = Encoding.UTF8.GetByteCount(dst_name);
+                if (dst_name_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_dst_name = Util.Allocate(dst_name_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_dst_name_stackBytes = stackalloc byte[dst_name_byteCount + 1];
+                    native_dst_name = native_dst_name_stackBytes;
+                }
+                int native_dst_name_offset = Util.GetUtf8(dst_name, native_dst_name, dst_name_byteCount);
+                native_dst_name[native_dst_name_offset] = 0;
+            }
+            else { native_dst_name = null; }
+            ImGuiNative.igDockBuilderCopyWindowSettings(native_src_name, native_dst_name);
+            if (src_name_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_src_name);
+            }
+            if (dst_name_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_dst_name);
+            }
+        }
+#endif
+        public static void DockBuilderCopyWindowSettings(string src_name, string dst_name)
+        {
+            byte* native_src_name;
+            int src_name_byteCount = 0;
+            if (src_name != null)
+            {
+                src_name_byteCount = Encoding.UTF8.GetByteCount(src_name);
+                if (src_name_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_src_name = Util.Allocate(src_name_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_src_name_stackBytes = stackalloc byte[src_name_byteCount + 1];
+                    native_src_name = native_src_name_stackBytes;
+                }
+                int native_src_name_offset = Util.GetUtf8(src_name, native_src_name, src_name_byteCount);
+                native_src_name[native_src_name_offset] = 0;
+            }
+            else { native_src_name = null; }
+            byte* native_dst_name;
+            int dst_name_byteCount = 0;
+            if (dst_name != null)
+            {
+                dst_name_byteCount = Encoding.UTF8.GetByteCount(dst_name);
+                if (dst_name_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_dst_name = Util.Allocate(dst_name_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_dst_name_stackBytes = stackalloc byte[dst_name_byteCount + 1];
+                    native_dst_name = native_dst_name_stackBytes;
+                }
+                int native_dst_name_offset = Util.GetUtf8(dst_name, native_dst_name, dst_name_byteCount);
+                native_dst_name[native_dst_name_offset] = 0;
+            }
+            else { native_dst_name = null; }
+            ImGuiNative.igDockBuilderCopyWindowSettings(native_src_name, native_dst_name);
+            if (src_name_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_src_name);
+            }
+            if (dst_name_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_dst_name);
+            }
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void DockBuilderDockWindow(ReadOnlySpan<char> window_name, uint node_id)
+        {
+            byte* native_window_name;
+            int window_name_byteCount = 0;
+            if (window_name != null)
+            {
+                window_name_byteCount = Encoding.UTF8.GetByteCount(window_name);
+                if (window_name_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_window_name = Util.Allocate(window_name_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_window_name_stackBytes = stackalloc byte[window_name_byteCount + 1];
+                    native_window_name = native_window_name_stackBytes;
+                }
+                int native_window_name_offset = Util.GetUtf8(window_name, native_window_name, window_name_byteCount);
+                native_window_name[native_window_name_offset] = 0;
+            }
+            else { native_window_name = null; }
+            ImGuiNative.igDockBuilderDockWindow(native_window_name, node_id);
+            if (window_name_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_window_name);
+            }
+        }
+#endif
+        public static void DockBuilderDockWindow(string window_name, uint node_id)
+        {
+            byte* native_window_name;
+            int window_name_byteCount = 0;
+            if (window_name != null)
+            {
+                window_name_byteCount = Encoding.UTF8.GetByteCount(window_name);
+                if (window_name_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_window_name = Util.Allocate(window_name_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_window_name_stackBytes = stackalloc byte[window_name_byteCount + 1];
+                    native_window_name = native_window_name_stackBytes;
+                }
+                int native_window_name_offset = Util.GetUtf8(window_name, native_window_name, window_name_byteCount);
+                native_window_name[native_window_name_offset] = 0;
+            }
+            else { native_window_name = null; }
+            ImGuiNative.igDockBuilderDockWindow(native_window_name, node_id);
+            if (window_name_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_window_name);
+            }
+        }
+        public static void DockBuilderFinish(uint node_id)
+        {
+            ImGuiNative.igDockBuilderFinish(node_id);
+        }
+        public static IntPtr* DockBuilderGetCentralNode(uint node_id)
+        {
+            IntPtr* ret = ImGuiNative.igDockBuilderGetCentralNode(node_id);
+            return ret;
+        }
+        public static IntPtr* DockBuilderGetNode(uint node_id)
+        {
+            IntPtr* ret = ImGuiNative.igDockBuilderGetNode(node_id);
+            return ret;
+        }
+        public static void DockBuilderRemoveNode(uint node_id)
+        {
+            ImGuiNative.igDockBuilderRemoveNode(node_id);
+        }
+        public static void DockBuilderRemoveNodeChildNodes(uint node_id)
+        {
+            ImGuiNative.igDockBuilderRemoveNodeChildNodes(node_id);
+        }
+        public static void DockBuilderRemoveNodeDockedWindows(uint node_id)
+        {
+            byte clear_settings_refs = 1;
+            ImGuiNative.igDockBuilderRemoveNodeDockedWindows(node_id, clear_settings_refs);
+        }
+        public static void DockBuilderRemoveNodeDockedWindows(uint node_id, bool clear_settings_refs)
+        {
+            byte native_clear_settings_refs = clear_settings_refs ? (byte)1 : (byte)0;
+            ImGuiNative.igDockBuilderRemoveNodeDockedWindows(node_id, native_clear_settings_refs);
+        }
+        public static void DockBuilderSetNodePos(uint node_id, Vector2 pos)
+        {
+            ImGuiNative.igDockBuilderSetNodePos(node_id, pos);
+        }
+        public static void DockBuilderSetNodeSize(uint node_id, Vector2 size)
+        {
+            ImGuiNative.igDockBuilderSetNodeSize(node_id, size);
+        }
+        public static uint DockBuilderSplitNode(uint node_id, ImGuiDir split_dir, float size_ratio_for_node_at_dir, out uint out_id_at_dir, out uint out_id_at_opposite_dir)
+        {
+            fixed (uint* native_out_id_at_dir = &out_id_at_dir)
+            {
+                fixed (uint* native_out_id_at_opposite_dir = &out_id_at_opposite_dir)
+                {
+                    uint ret = ImGuiNative.igDockBuilderSplitNode(node_id, split_dir, size_ratio_for_node_at_dir, native_out_id_at_dir, native_out_id_at_opposite_dir);
+                    return ret;
+                }
+            }
+        }
+        public static void DockContextClearNodes(IntPtr ctx, uint root_id, bool clear_settings_refs)
+        {
+            byte native_clear_settings_refs = clear_settings_refs ? (byte)1 : (byte)0;
+            ImGuiNative.igDockContextClearNodes(ctx, root_id, native_clear_settings_refs);
+        }
+        public static uint DockContextGenNodeID(IntPtr ctx)
+        {
+            uint ret = ImGuiNative.igDockContextGenNodeID(ctx);
+            return ret;
+        }
+        public static void DockContextInitialize(IntPtr ctx)
+        {
+            ImGuiNative.igDockContextInitialize(ctx);
+        }
+        public static void DockContextNewFrameUpdateDocking(IntPtr ctx)
+        {
+            ImGuiNative.igDockContextNewFrameUpdateDocking(ctx);
+        }
+        public static void DockContextNewFrameUpdateUndocking(IntPtr ctx)
+        {
+            ImGuiNative.igDockContextNewFrameUpdateUndocking(ctx);
+        }
+        public static void DockContextQueueUndockNode(IntPtr ctx, ref IntPtr node)
+        {
+            fixed (IntPtr* native_node = &node)
+            {
+                ImGuiNative.igDockContextQueueUndockNode(ctx, native_node);
+            }
+        }
+        public static void DockContextRebuildNodes(IntPtr ctx)
+        {
+            ImGuiNative.igDockContextRebuildNodes(ctx);
+        }
+        public static void DockContextShutdown(IntPtr ctx)
+        {
+            ImGuiNative.igDockContextShutdown(ctx);
+        }
+        public static bool DockNodeBeginAmendTabBar(ref IntPtr node)
+        {
+            fixed (IntPtr* native_node = &node)
+            {
+                byte ret = ImGuiNative.igDockNodeBeginAmendTabBar(native_node);
+                return ret != 0;
+            }
+        }
+        public static void DockNodeEndAmendTabBar()
+        {
+            ImGuiNative.igDockNodeEndAmendTabBar();
+        }
+        public static int DockNodeGetDepth(ref IntPtr node)
+        {
+            fixed (IntPtr* native_node = &node)
+            {
+                int ret = ImGuiNative.igDockNodeGetDepth(native_node);
+                return ret;
+            }
+        }
+        public static IntPtr* DockNodeGetRootNode(ref IntPtr node)
+        {
+            fixed (IntPtr* native_node = &node)
+            {
+                IntPtr* ret = ImGuiNative.igDockNodeGetRootNode(native_node);
+                return ret;
+            }
+        }
+        public static uint DockNodeGetWindowMenuButtonId(ref IntPtr node)
+        {
+            fixed (IntPtr* native_node = &node)
+            {
+                uint ret = ImGuiNative.igDockNodeGetWindowMenuButtonId(native_node);
+                return ret;
+            }
         }
         public static uint DockSpace(uint dockspace_id)
         {
@@ -12422,6 +12802,11 @@ namespace ImGuiNET
         {
             ImGuiNative.igEndMenuBar();
         }
+        public static ImGuiMultiSelectIOPtr EndMultiSelect()
+        {
+            ImGuiMultiSelectIO* ret = ImGuiNative.igEndMultiSelect();
+            return new ImGuiMultiSelectIOPtr(ret);
+        }
         public static void EndPopup()
         {
             ImGuiNative.igEndPopup();
@@ -12548,12 +12933,6 @@ namespace ImGuiNET
             ImGuiNative.igGetContentRegionAvail(&__retval);
             return __retval;
         }
-        public static Vector2 GetContentRegionMax()
-        {
-            Vector2 __retval;
-            ImGuiNative.igGetContentRegionMax(&__retval);
-            return __retval;
-        }
         public static IntPtr GetCurrentContext()
         {
             IntPtr ret = ImGuiNative.igGetCurrentContext();
@@ -12645,6 +13024,11 @@ namespace ImGuiNET
             float ret = ImGuiNative.igGetFrameHeightWithSpacing();
             return ret;
         }
+        public static uint GetHoveredID()
+        {
+            uint ret = ImGuiNative.igGetHoveredID();
+            return ret;
+        }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static uint GetID(ReadOnlySpan<char> str_id)
         {
@@ -12705,6 +13089,11 @@ namespace ImGuiNET
         {
             void* native_ptr_id = (void*)ptr_id.ToPointer();
             uint ret = ImGuiNative.igGetID_Ptr(native_ptr_id);
+            return ret;
+        }
+        public static uint GetID(int int_id)
+        {
+            uint ret = ImGuiNative.igGetID_Int(int_id);
             return ret;
         }
         public static ImGuiIOPtr GetIO()
@@ -12862,18 +13251,6 @@ namespace ImGuiNET
         {
             byte* ret = ImGuiNative.igGetVersion();
             return Util.StringFromPtr(ret);
-        }
-        public static Vector2 GetWindowContentRegionMax()
-        {
-            Vector2 __retval;
-            ImGuiNative.igGetWindowContentRegionMax(&__retval);
-            return __retval;
-        }
-        public static Vector2 GetWindowContentRegionMin()
-        {
-            Vector2 __retval;
-            ImGuiNative.igGetWindowContentRegionMin(&__retval);
-            return __retval;
         }
         public static uint GetWindowDockID()
         {
@@ -16891,6 +17268,11 @@ namespace ImGuiNET
             byte ret = ImGuiNative.igIsItemToggledOpen();
             return ret != 0;
         }
+        public static bool IsItemToggledSelection()
+        {
+            byte ret = ImGuiNative.igIsItemToggledSelection();
+            return ret != 0;
+        }
         public static bool IsItemVisible()
         {
             byte ret = ImGuiNative.igIsItemVisible();
@@ -19984,10 +20366,6 @@ namespace ImGuiNET
                 }
             }
         }
-        public static void PopButtonRepeat()
-        {
-            ImGuiNative.igPopButtonRepeat();
-        }
         public static void PopClipRect()
         {
             ImGuiNative.igPopClipRect();
@@ -19999,6 +20377,10 @@ namespace ImGuiNET
         public static void PopID()
         {
             ImGuiNative.igPopID();
+        }
+        public static void PopItemFlag()
+        {
+            ImGuiNative.igPopItemFlag();
         }
         public static void PopItemWidth()
         {
@@ -20021,10 +20403,6 @@ namespace ImGuiNET
         public static void PopStyleVar(int count)
         {
             ImGuiNative.igPopStyleVar(count);
-        }
-        public static void PopTabStop()
-        {
-            ImGuiNative.igPopTabStop();
         }
         public static void PopTextWrapPos()
         {
@@ -20094,11 +20472,6 @@ namespace ImGuiNET
             {
                 Util.Free(native_overlay);
             }
-        }
-        public static void PushButtonRepeat(bool repeat)
-        {
-            byte native_repeat = repeat ? (byte)1 : (byte)0;
-            ImGuiNative.igPushButtonRepeat(native_repeat);
         }
         public static void PushClipRect(Vector2 clip_rect_min, Vector2 clip_rect_max, bool intersect_with_current_clip_rect)
         {
@@ -20173,6 +20546,11 @@ namespace ImGuiNET
         {
             ImGuiNative.igPushID_Int(int_id);
         }
+        public static void PushItemFlag(ImGuiItemFlags option, bool enabled)
+        {
+            byte native_enabled = enabled ? (byte)1 : (byte)0;
+            ImGuiNative.igPushItemFlag(option, native_enabled);
+        }
         public static void PushItemWidth(float item_width)
         {
             ImGuiNative.igPushItemWidth(item_width);
@@ -20192,11 +20570,6 @@ namespace ImGuiNET
         public static void PushStyleVar(ImGuiStyleVar idx, Vector2 val)
         {
             ImGuiNative.igPushStyleVar_Vec2(idx, val);
-        }
-        public static void PushTabStop(bool tab_stop)
-        {
-            byte native_tab_stop = tab_stop ? (byte)1 : (byte)0;
-            ImGuiNative.igPushTabStop(native_tab_stop);
         }
         public static void PushTextWrapPos()
         {
@@ -21147,9 +21520,17 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
+        public static void SetHoveredID(uint id)
+        {
+            ImGuiNative.igSetHoveredID(id);
+        }
         public static void SetItemDefaultFocus()
         {
             ImGuiNative.igSetItemDefaultFocus();
+        }
+        public static void SetItemKeyOwner(ImGuiKey key)
+        {
+            ImGuiNative.igSetItemKeyOwner_Nil(key);
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static void SetItemTooltip(ReadOnlySpan<char> fmt)
@@ -21243,6 +21624,10 @@ namespace ImGuiNET
             byte native_is_open = is_open ? (byte)1 : (byte)0;
             ImGuiNative.igSetNextItemOpen(native_is_open, cond);
         }
+        public static void SetNextItemSelectionUserData(long selection_user_data)
+        {
+            ImGuiNative.igSetNextItemSelectionUserData(selection_user_data);
+        }
         public static void SetNextItemShortcut(ImGuiKey key_chord)
         {
             ImGuiInputFlags flags = (ImGuiInputFlags)0;
@@ -21251,6 +21636,10 @@ namespace ImGuiNET
         public static void SetNextItemShortcut(ImGuiKey key_chord, ImGuiInputFlags flags)
         {
             ImGuiNative.igSetNextItemShortcut(key_chord, flags);
+        }
+        public static void SetNextItemStorageID(uint storage_id)
+        {
+            ImGuiNative.igSetNextItemStorageID(storage_id);
         }
         public static void SetNextItemWidth(float item_width)
         {
@@ -26454,6 +26843,216 @@ namespace ImGuiNET
             if (fmt_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_fmt);
+            }
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static bool TextLink(ReadOnlySpan<char> label)
+        {
+            byte* native_label;
+            int label_byteCount = 0;
+            if (label != null)
+            {
+                label_byteCount = Encoding.UTF8.GetByteCount(label);
+                if (label_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_label = Util.Allocate(label_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_label_stackBytes = stackalloc byte[label_byteCount + 1];
+                    native_label = native_label_stackBytes;
+                }
+                int native_label_offset = Util.GetUtf8(label, native_label, label_byteCount);
+                native_label[native_label_offset] = 0;
+            }
+            else { native_label = null; }
+            byte ret = ImGuiNative.igTextLink(native_label);
+            if (label_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_label);
+            }
+            return ret != 0;
+        }
+#endif
+        public static bool TextLink(string label)
+        {
+            byte* native_label;
+            int label_byteCount = 0;
+            if (label != null)
+            {
+                label_byteCount = Encoding.UTF8.GetByteCount(label);
+                if (label_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_label = Util.Allocate(label_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_label_stackBytes = stackalloc byte[label_byteCount + 1];
+                    native_label = native_label_stackBytes;
+                }
+                int native_label_offset = Util.GetUtf8(label, native_label, label_byteCount);
+                native_label[native_label_offset] = 0;
+            }
+            else { native_label = null; }
+            byte ret = ImGuiNative.igTextLink(native_label);
+            if (label_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_label);
+            }
+            return ret != 0;
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void TextLinkOpenURL(ReadOnlySpan<char> label)
+        {
+            byte* native_label;
+            int label_byteCount = 0;
+            if (label != null)
+            {
+                label_byteCount = Encoding.UTF8.GetByteCount(label);
+                if (label_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_label = Util.Allocate(label_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_label_stackBytes = stackalloc byte[label_byteCount + 1];
+                    native_label = native_label_stackBytes;
+                }
+                int native_label_offset = Util.GetUtf8(label, native_label, label_byteCount);
+                native_label[native_label_offset] = 0;
+            }
+            else { native_label = null; }
+            byte* native_url = null;
+            ImGuiNative.igTextLinkOpenURL(native_label, native_url);
+            if (label_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_label);
+            }
+        }
+#endif
+        public static void TextLinkOpenURL(string label)
+        {
+            byte* native_label;
+            int label_byteCount = 0;
+            if (label != null)
+            {
+                label_byteCount = Encoding.UTF8.GetByteCount(label);
+                if (label_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_label = Util.Allocate(label_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_label_stackBytes = stackalloc byte[label_byteCount + 1];
+                    native_label = native_label_stackBytes;
+                }
+                int native_label_offset = Util.GetUtf8(label, native_label, label_byteCount);
+                native_label[native_label_offset] = 0;
+            }
+            else { native_label = null; }
+            byte* native_url = null;
+            ImGuiNative.igTextLinkOpenURL(native_label, native_url);
+            if (label_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_label);
+            }
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void TextLinkOpenURL(ReadOnlySpan<char> label, ReadOnlySpan<char> url)
+        {
+            byte* native_label;
+            int label_byteCount = 0;
+            if (label != null)
+            {
+                label_byteCount = Encoding.UTF8.GetByteCount(label);
+                if (label_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_label = Util.Allocate(label_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_label_stackBytes = stackalloc byte[label_byteCount + 1];
+                    native_label = native_label_stackBytes;
+                }
+                int native_label_offset = Util.GetUtf8(label, native_label, label_byteCount);
+                native_label[native_label_offset] = 0;
+            }
+            else { native_label = null; }
+            byte* native_url;
+            int url_byteCount = 0;
+            if (url != null)
+            {
+                url_byteCount = Encoding.UTF8.GetByteCount(url);
+                if (url_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_url = Util.Allocate(url_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_url_stackBytes = stackalloc byte[url_byteCount + 1];
+                    native_url = native_url_stackBytes;
+                }
+                int native_url_offset = Util.GetUtf8(url, native_url, url_byteCount);
+                native_url[native_url_offset] = 0;
+            }
+            else { native_url = null; }
+            ImGuiNative.igTextLinkOpenURL(native_label, native_url);
+            if (label_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_label);
+            }
+            if (url_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_url);
+            }
+        }
+#endif
+        public static void TextLinkOpenURL(string label, string url)
+        {
+            byte* native_label;
+            int label_byteCount = 0;
+            if (label != null)
+            {
+                label_byteCount = Encoding.UTF8.GetByteCount(label);
+                if (label_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_label = Util.Allocate(label_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_label_stackBytes = stackalloc byte[label_byteCount + 1];
+                    native_label = native_label_stackBytes;
+                }
+                int native_label_offset = Util.GetUtf8(label, native_label, label_byteCount);
+                native_label[native_label_offset] = 0;
+            }
+            else { native_label = null; }
+            byte* native_url;
+            int url_byteCount = 0;
+            if (url != null)
+            {
+                url_byteCount = Encoding.UTF8.GetByteCount(url);
+                if (url_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_url = Util.Allocate(url_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_url_stackBytes = stackalloc byte[url_byteCount + 1];
+                    native_url = native_url_stackBytes;
+                }
+                int native_url_offset = Util.GetUtf8(url, native_url, url_byteCount);
+                native_url[native_url_offset] = 0;
+            }
+            else { native_url = null; }
+            ImGuiNative.igTextLinkOpenURL(native_label, native_url);
+            if (label_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_label);
+            }
+            if (url_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_url);
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
