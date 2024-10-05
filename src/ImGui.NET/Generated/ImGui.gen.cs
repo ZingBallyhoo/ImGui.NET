@@ -3910,14 +3910,14 @@ namespace ImGuiNET
         {
             int count = 1;
             byte* native_id = null;
-            byte border = 1;
-            ImGuiNative.igColumns(count, native_id, border);
+            byte borders = 1;
+            ImGuiNative.igColumns(count, native_id, borders);
         }
         public static void Columns(int count)
         {
             byte* native_id = null;
-            byte border = 1;
-            ImGuiNative.igColumns(count, native_id, border);
+            byte borders = 1;
+            ImGuiNative.igColumns(count, native_id, borders);
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static void Columns(int count, ReadOnlySpan<char> id)
@@ -3940,8 +3940,8 @@ namespace ImGuiNET
                 native_id[native_id_offset] = 0;
             }
             else { native_id = null; }
-            byte border = 1;
-            ImGuiNative.igColumns(count, native_id, border);
+            byte borders = 1;
+            ImGuiNative.igColumns(count, native_id, borders);
             if (id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_id);
@@ -3968,15 +3968,15 @@ namespace ImGuiNET
                 native_id[native_id_offset] = 0;
             }
             else { native_id = null; }
-            byte border = 1;
-            ImGuiNative.igColumns(count, native_id, border);
+            byte borders = 1;
+            ImGuiNative.igColumns(count, native_id, borders);
             if (id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_id);
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void Columns(int count, ReadOnlySpan<char> id, bool border)
+        public static void Columns(int count, ReadOnlySpan<char> id, bool borders)
         {
             byte* native_id;
             int id_byteCount = 0;
@@ -3996,15 +3996,15 @@ namespace ImGuiNET
                 native_id[native_id_offset] = 0;
             }
             else { native_id = null; }
-            byte native_border = border ? (byte)1 : (byte)0;
-            ImGuiNative.igColumns(count, native_id, native_border);
+            byte native_borders = borders ? (byte)1 : (byte)0;
+            ImGuiNative.igColumns(count, native_id, native_borders);
             if (id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_id);
             }
         }
 #endif
-        public static void Columns(int count, string id, bool border)
+        public static void Columns(int count, string id, bool borders)
         {
             byte* native_id;
             int id_byteCount = 0;
@@ -4024,8 +4024,8 @@ namespace ImGuiNET
                 native_id[native_id_offset] = 0;
             }
             else { native_id = null; }
-            byte native_border = border ? (byte)1 : (byte)0;
-            ImGuiNative.igColumns(count, native_id, native_border);
+            byte native_borders = borders ? (byte)1 : (byte)0;
+            ImGuiNative.igColumns(count, native_id, native_borders);
             if (id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_id);
@@ -20570,6 +20570,14 @@ namespace ImGuiNET
         public static void PushStyleVar(ImGuiStyleVar idx, Vector2 val)
         {
             ImGuiNative.igPushStyleVar_Vec2(idx, val);
+        }
+        public static void PushStyleVarX(ImGuiStyleVar idx, float val_x)
+        {
+            ImGuiNative.igPushStyleVarX(idx, val_x);
+        }
+        public static void PushStyleVarY(ImGuiStyleVar idx, float val_y)
+        {
+            ImGuiNative.igPushStyleVarY(idx, val_y);
         }
         public static void PushTextWrapPos()
         {
