@@ -37,6 +37,7 @@ namespace CodeGenerator
             { "ImDrawCallback", "IntPtr" },
             { "size_t", "uint" },
             { "ImGuiContext*", "IntPtr" },
+            { "ImGuiWindow*", "IntPtr" },
             { "ImPlotContext*", "IntPtr" },
             { "EditorContext*", "IntPtr" },
             { "ImGuiMemAllocFunc", "IntPtr" },
@@ -58,6 +59,7 @@ namespace CodeGenerator
             { "ImPlotTransform", "IntPtr" },
             { "ImGuiKeyChord", "ImGuiKey" },
             { "ImGuiSelectionUserData", "long" },
+            { "struct ImGuiTextBuffer", "ImGuiTextBuffer" },
         };
         
         public static readonly List<string> WellKnownEnums = new List<string>()

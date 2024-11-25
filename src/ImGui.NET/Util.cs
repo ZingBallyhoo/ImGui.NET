@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ImGuiNET
 {
-    internal static unsafe class Util
+    public static unsafe class Util
     {
-        internal const int StackAllocationSizeLimit = 2048;
+        public const int StackAllocationSizeLimit = 2048;
 
         public static string StringFromPtr(byte* ptr)
         {
@@ -31,9 +31,9 @@ namespace ImGuiNET
             return true;
         }
 
-        internal static byte* Allocate(int byteCount) => (byte*)Marshal.AllocHGlobal(byteCount);
+        public static byte* Allocate(int byteCount) => (byte*)Marshal.AllocHGlobal(byteCount);
 
-        internal static void Free(byte* ptr) => Marshal.FreeHGlobal((IntPtr)ptr);
+        public static void Free(byte* ptr) => Marshal.FreeHGlobal((IntPtr)ptr);
 
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         internal static int CalcSizeInUtf8(ReadOnlySpan<char> s, int start, int length)
@@ -54,7 +54,7 @@ namespace ImGuiNET
         }
 
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        internal static int GetUtf8(ReadOnlySpan<char> s, byte* utf8Bytes, int utf8ByteCount)
+        public static int GetUtf8(ReadOnlySpan<char> s, byte* utf8Bytes, int utf8ByteCount)
         {
             if (s.IsEmpty)
             {
@@ -68,7 +68,7 @@ namespace ImGuiNET
         }
 #endif
 
-        internal static int GetUtf8(string s, byte* utf8Bytes, int utf8ByteCount)
+        public static int GetUtf8(string s, byte* utf8Bytes, int utf8ByteCount)
         {
             fixed (char* utf16Ptr = s)
             {
@@ -77,9 +77,9 @@ namespace ImGuiNET
         }
 
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        internal static int GetUtf8(ReadOnlySpan<char> s, int start, int length, byte* utf8Bytes, int utf8ByteCount)
+        public static int GetUtf8(ReadOnlySpan<char> s, int start, int length, byte* utf8Bytes, int utf8ByteCount)
 #else
-        internal static int GetUtf8(string s, int start, int length, byte* utf8Bytes, int utf8ByteCount)
+        public static int GetUtf8(string s, int start, int length, byte* utf8Bytes, int utf8ByteCount)
 #endif
         {
             if (start < 0 || length < 0 || start + length > s.Length)
