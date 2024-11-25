@@ -15,6 +15,7 @@ namespace ImGuiNET
         public IntPtr Platform_SetImeDataFn;
         public void* Platform_ImeUserData;
         public ushort Platform_LocaleDecimalPoint;
+        public void* Renderer_RenderState;
         public IntPtr Platform_CreateWindow;
         public IntPtr Platform_DestroyWindow;
         public IntPtr Platform_ShowWindow;
@@ -58,6 +59,7 @@ namespace ImGuiNET
         public ref IntPtr Platform_SetImeDataFn => ref Unsafe.AsRef<IntPtr>(&NativePtr->Platform_SetImeDataFn);
         public IntPtr Platform_ImeUserData { get => (IntPtr)NativePtr->Platform_ImeUserData; set => NativePtr->Platform_ImeUserData = (void*)value; }
         public ref ushort Platform_LocaleDecimalPoint => ref Unsafe.AsRef<ushort>(&NativePtr->Platform_LocaleDecimalPoint);
+        public IntPtr Renderer_RenderState { get => (IntPtr)NativePtr->Renderer_RenderState; set => NativePtr->Renderer_RenderState = (void*)value; }
         public ref IntPtr Platform_CreateWindow => ref Unsafe.AsRef<IntPtr>(&NativePtr->Platform_CreateWindow);
         public ref IntPtr Platform_DestroyWindow => ref Unsafe.AsRef<IntPtr>(&NativePtr->Platform_DestroyWindow);
         public ref IntPtr Platform_ShowWindow => ref Unsafe.AsRef<IntPtr>(&NativePtr->Platform_ShowWindow);

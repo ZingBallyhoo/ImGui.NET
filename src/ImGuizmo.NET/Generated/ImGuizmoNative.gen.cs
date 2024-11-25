@@ -20,21 +20,45 @@ namespace ImGuizmoNET
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImGuizmo_Enable(byte enable);
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint ImGuizmo_GetID_Str(byte* str_id);
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint ImGuizmo_GetID_StrStr(byte* str_id_begin, byte* str_id_end);
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint ImGuizmo_GetID_Ptr(void* ptr_id);
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern Style* ImGuizmo_GetStyle();
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ImGuizmo_IsOver_Nil();
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ImGuizmo_IsOver_OPERATION(OPERATION op);
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte ImGuizmo_IsOver_FloatPtr(float* position, float pixelRadius);
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ImGuizmo_IsUsing();
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ImGuizmo_IsUsingAny();
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte ImGuizmo_IsUsingViewManipulate();
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ImGuizmo_Manipulate(float* view, float* projection, OPERATION operation, MODE mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap);
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ImGuizmo_PopID();
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ImGuizmo_PushID_Str(byte* str_id);
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ImGuizmo_PushID_StrStr(byte* str_id_begin, byte* str_id_end);
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ImGuizmo_PushID_Ptr(void* ptr_id);
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ImGuizmo_PushID_Int(int int_id);
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImGuizmo_RecomposeMatrixFromComponents(float* translation, float* rotation, float* scale, float* matrix);
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ImGuizmo_SetAlternativeWindow(IntPtr window);
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImGuizmo_SetAxisLimit(float value);
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ImGuizmo_SetAxisMask(byte x, byte y, byte z);
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImGuizmo_SetDrawlist(ImDrawList* drawlist);
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]

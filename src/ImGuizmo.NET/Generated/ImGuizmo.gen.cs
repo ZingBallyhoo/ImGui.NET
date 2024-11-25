@@ -64,6 +64,68 @@ namespace ImGuizmoNET
             byte native_enable = enable ? (byte)1 : (byte)0;
             ImGuizmoNative.ImGuizmo_Enable(native_enable);
         }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static uint GetID(ReadOnlySpan<char> str_id)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            uint ret = ImGuizmoNative.ImGuizmo_GetID_Str(native_str_id);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+            return ret;
+        }
+#endif
+        public static uint GetID(string str_id)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            uint ret = ImGuizmoNative.ImGuizmo_GetID_Str(native_str_id);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+            return ret;
+        }
+        public static uint GetID(IntPtr ptr_id)
+        {
+            void* native_ptr_id = (void*)ptr_id.ToPointer();
+            uint ret = ImGuizmoNative.ImGuizmo_GetID_Ptr(native_ptr_id);
+            return ret;
+        }
         public static Style* GetStyle()
         {
             Style* ret = ImGuizmoNative.ImGuizmo_GetStyle();
@@ -79,6 +141,14 @@ namespace ImGuizmoNET
             byte ret = ImGuizmoNative.ImGuizmo_IsOver_OPERATION(op);
             return ret != 0;
         }
+        public static bool IsOver(ref float position, float pixelRadius)
+        {
+            fixed (float* native_position = &position)
+            {
+                byte ret = ImGuizmoNative.ImGuizmo_IsOver_FloatPtr(native_position, pixelRadius);
+                return ret != 0;
+            }
+        }
         public static bool IsUsing()
         {
             byte ret = ImGuizmoNative.ImGuizmo_IsUsing();
@@ -87,6 +157,11 @@ namespace ImGuizmoNET
         public static bool IsUsingAny()
         {
             byte ret = ImGuizmoNative.ImGuizmo_IsUsingAny();
+            return ret != 0;
+        }
+        public static bool IsUsingViewManipulate()
+        {
+            byte ret = ImGuizmoNative.ImGuizmo_IsUsingViewManipulate();
             return ret != 0;
         }
         public static bool Manipulate(ref float view, ref float projection, OPERATION operation, MODE mode, ref float matrix)
@@ -199,6 +274,73 @@ namespace ImGuizmoNET
                 }
             }
         }
+        public static void PopID()
+        {
+            ImGuizmoNative.ImGuizmo_PopID();
+        }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public static void PushID(ReadOnlySpan<char> str_id)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            ImGuizmoNative.ImGuizmo_PushID_Str(native_str_id);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+#endif
+        public static void PushID(string str_id)
+        {
+            byte* native_str_id;
+            int str_id_byteCount = 0;
+            if (str_id != null)
+            {
+                str_id_byteCount = Encoding.UTF8.GetByteCount(str_id);
+                if (str_id_byteCount > Util.StackAllocationSizeLimit)
+                {
+                    native_str_id = Util.Allocate(str_id_byteCount + 1);
+                }
+                else
+                {
+                    byte* native_str_id_stackBytes = stackalloc byte[str_id_byteCount + 1];
+                    native_str_id = native_str_id_stackBytes;
+                }
+                int native_str_id_offset = Util.GetUtf8(str_id, native_str_id, str_id_byteCount);
+                native_str_id[native_str_id_offset] = 0;
+            }
+            else { native_str_id = null; }
+            ImGuizmoNative.ImGuizmo_PushID_Str(native_str_id);
+            if (str_id_byteCount > Util.StackAllocationSizeLimit)
+            {
+                Util.Free(native_str_id);
+            }
+        }
+        public static void PushID(IntPtr ptr_id)
+        {
+            void* native_ptr_id = (void*)ptr_id.ToPointer();
+            ImGuizmoNative.ImGuizmo_PushID_Ptr(native_ptr_id);
+        }
+        public static void PushID(int int_id)
+        {
+            ImGuizmoNative.ImGuizmo_PushID_Int(int_id);
+        }
         public static void RecomposeMatrixFromComponents(ref float translation, ref float rotation, ref float scale, ref float matrix)
         {
             fixed (float* native_translation = &translation)
@@ -215,9 +357,20 @@ namespace ImGuizmoNET
                 }
             }
         }
+        public static void SetAlternativeWindow(IntPtr window)
+        {
+            ImGuizmoNative.ImGuizmo_SetAlternativeWindow(window);
+        }
         public static void SetAxisLimit(float value)
         {
             ImGuizmoNative.ImGuizmo_SetAxisLimit(value);
+        }
+        public static void SetAxisMask(bool x, bool y, bool z)
+        {
+            byte native_x = x ? (byte)1 : (byte)0;
+            byte native_y = y ? (byte)1 : (byte)0;
+            byte native_z = z ? (byte)1 : (byte)0;
+            ImGuizmoNative.ImGuizmo_SetAxisMask(native_x, native_y, native_z);
         }
         public static void SetDrawlist()
         {

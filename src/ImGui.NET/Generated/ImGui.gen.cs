@@ -21607,6 +21607,11 @@ namespace ImGuiNET
         {
             ImGuiNative.igSetMouseCursor(cursor_type);
         }
+        public static void SetNavCursorVisible(bool visible)
+        {
+            byte native_visible = visible ? (byte)1 : (byte)0;
+            ImGuiNative.igSetNavCursorVisible(native_visible);
+        }
         public static void SetNextFrameWantCaptureKeyboard(bool want_capture_keyboard)
         {
             byte native_want_capture_keyboard = want_capture_keyboard ? (byte)1 : (byte)0;
@@ -28958,6 +28963,11 @@ namespace ImGuiNET
                 Util.Free(native_format);
             }
             return ret != 0;
+        }
+        public static IntPtr* GetBuilderForFreeType()
+        {
+            IntPtr* ret = ImGuiNative.ImGuiFreeType_GetBuilderForFreeType();
+            return ret;
         }
     }
 }

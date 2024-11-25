@@ -20,6 +20,13 @@ namespace ImGuiNET
         public byte FontAllowUserScaling;
         public ImFont* FontDefault;
         public Vector2 DisplayFramebufferScale;
+        public byte ConfigNavSwapGamepadButtons;
+        public byte ConfigNavMoveSetMousePos;
+        public byte ConfigNavCaptureKeyboard;
+        public byte ConfigNavEscapeClearFocusItem;
+        public byte ConfigNavEscapeClearFocusWindow;
+        public byte ConfigNavCursorVisibleAuto;
+        public byte ConfigNavCursorVisibleAlways;
         public byte ConfigDockingNoSplit;
         public byte ConfigDockingWithShift;
         public byte ConfigDockingAlwaysTabBar;
@@ -30,13 +37,13 @@ namespace ImGuiNET
         public byte ConfigViewportsNoDefaultParent;
         public byte MouseDrawCursor;
         public byte ConfigMacOSXBehaviors;
-        public byte ConfigNavSwapGamepadButtons;
         public byte ConfigInputTrickleEventQueue;
         public byte ConfigInputTextCursorBlink;
         public byte ConfigInputTextEnterKeepActive;
         public byte ConfigDragClickToInputText;
         public byte ConfigWindowsResizeFromEdges;
         public byte ConfigWindowsMoveFromTitleBarOnly;
+        public byte ConfigWindowsCopyContentsWithCtrlC;
         public byte ConfigScrollbarScrollByPage;
         public float ConfigMemoryCompactTimer;
         public float MouseDoubleClickTime;
@@ -266,8 +273,6 @@ namespace ImGuiNET
         public float PenPressure;
         public byte AppFocusLost;
         public byte AppAcceptingEvents;
-        public sbyte BackendUsingLegacyKeyArrays;
-        public byte BackendUsingLegacyNavInputArray;
         public ushort InputQueueSurrogate;
         public ImVector InputQueueCharacters;
     }
@@ -292,6 +297,13 @@ namespace ImGuiNET
         public ref bool FontAllowUserScaling => ref Unsafe.AsRef<bool>(&NativePtr->FontAllowUserScaling);
         public ImFontPtr FontDefault => new ImFontPtr(NativePtr->FontDefault);
         public ref Vector2 DisplayFramebufferScale => ref Unsafe.AsRef<Vector2>(&NativePtr->DisplayFramebufferScale);
+        public ref bool ConfigNavSwapGamepadButtons => ref Unsafe.AsRef<bool>(&NativePtr->ConfigNavSwapGamepadButtons);
+        public ref bool ConfigNavMoveSetMousePos => ref Unsafe.AsRef<bool>(&NativePtr->ConfigNavMoveSetMousePos);
+        public ref bool ConfigNavCaptureKeyboard => ref Unsafe.AsRef<bool>(&NativePtr->ConfigNavCaptureKeyboard);
+        public ref bool ConfigNavEscapeClearFocusItem => ref Unsafe.AsRef<bool>(&NativePtr->ConfigNavEscapeClearFocusItem);
+        public ref bool ConfigNavEscapeClearFocusWindow => ref Unsafe.AsRef<bool>(&NativePtr->ConfigNavEscapeClearFocusWindow);
+        public ref bool ConfigNavCursorVisibleAuto => ref Unsafe.AsRef<bool>(&NativePtr->ConfigNavCursorVisibleAuto);
+        public ref bool ConfigNavCursorVisibleAlways => ref Unsafe.AsRef<bool>(&NativePtr->ConfigNavCursorVisibleAlways);
         public ref bool ConfigDockingNoSplit => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDockingNoSplit);
         public ref bool ConfigDockingWithShift => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDockingWithShift);
         public ref bool ConfigDockingAlwaysTabBar => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDockingAlwaysTabBar);
@@ -302,13 +314,13 @@ namespace ImGuiNET
         public ref bool ConfigViewportsNoDefaultParent => ref Unsafe.AsRef<bool>(&NativePtr->ConfigViewportsNoDefaultParent);
         public ref bool MouseDrawCursor => ref Unsafe.AsRef<bool>(&NativePtr->MouseDrawCursor);
         public ref bool ConfigMacOSXBehaviors => ref Unsafe.AsRef<bool>(&NativePtr->ConfigMacOSXBehaviors);
-        public ref bool ConfigNavSwapGamepadButtons => ref Unsafe.AsRef<bool>(&NativePtr->ConfigNavSwapGamepadButtons);
         public ref bool ConfigInputTrickleEventQueue => ref Unsafe.AsRef<bool>(&NativePtr->ConfigInputTrickleEventQueue);
         public ref bool ConfigInputTextCursorBlink => ref Unsafe.AsRef<bool>(&NativePtr->ConfigInputTextCursorBlink);
         public ref bool ConfigInputTextEnterKeepActive => ref Unsafe.AsRef<bool>(&NativePtr->ConfigInputTextEnterKeepActive);
         public ref bool ConfigDragClickToInputText => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDragClickToInputText);
         public ref bool ConfigWindowsResizeFromEdges => ref Unsafe.AsRef<bool>(&NativePtr->ConfigWindowsResizeFromEdges);
         public ref bool ConfigWindowsMoveFromTitleBarOnly => ref Unsafe.AsRef<bool>(&NativePtr->ConfigWindowsMoveFromTitleBarOnly);
+        public ref bool ConfigWindowsCopyContentsWithCtrlC => ref Unsafe.AsRef<bool>(&NativePtr->ConfigWindowsCopyContentsWithCtrlC);
         public ref bool ConfigScrollbarScrollByPage => ref Unsafe.AsRef<bool>(&NativePtr->ConfigScrollbarScrollByPage);
         public ref float ConfigMemoryCompactTimer => ref Unsafe.AsRef<float>(&NativePtr->ConfigMemoryCompactTimer);
         public ref float MouseDoubleClickTime => ref Unsafe.AsRef<float>(&NativePtr->MouseDoubleClickTime);
@@ -377,8 +389,6 @@ namespace ImGuiNET
         public ref float PenPressure => ref Unsafe.AsRef<float>(&NativePtr->PenPressure);
         public ref bool AppFocusLost => ref Unsafe.AsRef<bool>(&NativePtr->AppFocusLost);
         public ref bool AppAcceptingEvents => ref Unsafe.AsRef<bool>(&NativePtr->AppAcceptingEvents);
-        public ref sbyte BackendUsingLegacyKeyArrays => ref Unsafe.AsRef<sbyte>(&NativePtr->BackendUsingLegacyKeyArrays);
-        public ref bool BackendUsingLegacyNavInputArray => ref Unsafe.AsRef<bool>(&NativePtr->BackendUsingLegacyNavInputArray);
         public ref ushort InputQueueSurrogate => ref Unsafe.AsRef<ushort>(&NativePtr->InputQueueSurrogate);
         public ImVector<ushort> InputQueueCharacters => new ImVector<ushort>(NativePtr->InputQueueCharacters);
         public void AddFocusEvent(bool focused)
