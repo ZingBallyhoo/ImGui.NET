@@ -164,6 +164,11 @@ namespace ImGuizmoNET
             byte ret = ImGuizmoNative.ImGuizmo_IsUsingViewManipulate();
             return ret != 0;
         }
+        public static bool IsViewManipulateHovered()
+        {
+            byte ret = ImGuizmoNative.ImGuizmo_IsViewManipulateHovered();
+            return ret != 0;
+        }
         public static bool Manipulate(ref float view, ref float projection, OPERATION operation, MODE mode, ref float matrix)
         {
             float* deltaMatrix = null;

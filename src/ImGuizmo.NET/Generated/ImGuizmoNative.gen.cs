@@ -40,6 +40,8 @@ namespace ImGuizmoNET
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ImGuizmo_IsUsingViewManipulate();
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte ImGuizmo_IsViewManipulateHovered();
+        [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ImGuizmo_Manipulate(float* view, float* projection, OPERATION operation, MODE mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap);
         [DllImport("cimguizmo", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImGuizmo_PopID();
