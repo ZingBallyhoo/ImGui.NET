@@ -19,6 +19,7 @@ namespace ImGuiNET
         public float V0;
         public float U1;
         public float V1;
+        public int PackId;
     }
     public unsafe partial struct ImFontGlyphPtr
     {
@@ -40,5 +41,10 @@ namespace ImGuiNET
         public ref float V0 => ref Unsafe.AsRef<float>(&NativePtr->V0);
         public ref float U1 => ref Unsafe.AsRef<float>(&NativePtr->U1);
         public ref float V1 => ref Unsafe.AsRef<float>(&NativePtr->V1);
+        public ref int PackId => ref Unsafe.AsRef<int>(&NativePtr->PackId);
+        public void Destroy()
+        {
+            ImGuiNative.ImFontGlyph_destroy((ImFontGlyph*)(NativePtr));
+        }
     }
 }

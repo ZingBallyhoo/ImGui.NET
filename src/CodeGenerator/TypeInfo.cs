@@ -29,7 +29,7 @@ namespace CodeGenerator
             { "ImWchar16", "ushort" }, //char is not blittable
             { "ImVec4_Simple", "Vector4" },
             { "ImColor_Simple", "ImColor" },
-            { "ImTextureID", "IntPtr" },
+            { "ImTextureUserID", "ulong" },
             { "ImGuiID", "uint" },
             { "ImDrawIdx", "ushort" },
             { "ImDrawListSharedData", "IntPtr" },
@@ -60,6 +60,8 @@ namespace CodeGenerator
             { "ImGuiKeyChord", "ImGuiKey" },
             { "ImGuiSelectionUserData", "long" },
             { "struct ImGuiTextBuffer", "ImGuiTextBuffer" },
+            { "ImFontAtlasBuilder", "IntPtr" },
+            { "ImFontLoader", "IntPtr" },
         };
         
         public static readonly List<string> WellKnownEnums = new List<string>()

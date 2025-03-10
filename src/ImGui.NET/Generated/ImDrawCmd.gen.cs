@@ -8,7 +8,7 @@ namespace ImGuiNET
     public unsafe partial struct ImDrawCmd
     {
         public Vector4 ClipRect;
-        public IntPtr TextureId;
+        public ImTextureID TextureId;
         public uint VtxOffset;
         public uint IdxOffset;
         public uint ElemCount;
@@ -26,7 +26,7 @@ namespace ImGuiNET
         public static implicit operator ImDrawCmd* (ImDrawCmdPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImDrawCmdPtr(IntPtr nativePtr) => new ImDrawCmdPtr(nativePtr);
         public ref Vector4 ClipRect => ref Unsafe.AsRef<Vector4>(&NativePtr->ClipRect);
-        public ref IntPtr TextureId => ref Unsafe.AsRef<IntPtr>(&NativePtr->TextureId);
+        public ref ImTextureID TextureId => ref Unsafe.AsRef<ImTextureID>(&NativePtr->TextureId);
         public ref uint VtxOffset => ref Unsafe.AsRef<uint>(&NativePtr->VtxOffset);
         public ref uint IdxOffset => ref Unsafe.AsRef<uint>(&NativePtr->IdxOffset);
         public ref uint ElemCount => ref Unsafe.AsRef<uint>(&NativePtr->ElemCount);
@@ -38,9 +38,9 @@ namespace ImGuiNET
         {
             ImGuiNative.ImDrawCmd_destroy((ImDrawCmd*)(NativePtr));
         }
-        public IntPtr GetTexID()
+        public ulong GetTexUserID()
         {
-            IntPtr ret = ImGuiNative.ImDrawCmd_GetTexID((ImDrawCmd*)(NativePtr));
+            ulong ret = ImGuiNative.ImDrawCmd_GetTexUserID((ImDrawCmd*)(NativePtr));
             return ret;
         }
     }

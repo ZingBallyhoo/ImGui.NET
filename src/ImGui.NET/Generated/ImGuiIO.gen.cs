@@ -57,6 +57,7 @@ namespace ImGuiNET
         public byte ConfigErrorRecoveryEnableTooltip;
         public byte ConfigDebugIsDebuggerPresent;
         public byte ConfigDebugHighlightIdConflicts;
+        public byte ConfigDebugHighlightIdConflictsShowItemPicker;
         public byte ConfigDebugBeginReturnValueOnce;
         public byte ConfigDebugBeginReturnValueLoop;
         public byte ConfigDebugIgnoreFocusLoss;
@@ -335,6 +336,7 @@ namespace ImGuiNET
         public ref bool ConfigErrorRecoveryEnableTooltip => ref Unsafe.AsRef<bool>(&NativePtr->ConfigErrorRecoveryEnableTooltip);
         public ref bool ConfigDebugIsDebuggerPresent => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDebugIsDebuggerPresent);
         public ref bool ConfigDebugHighlightIdConflicts => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDebugHighlightIdConflicts);
+        public ref bool ConfigDebugHighlightIdConflictsShowItemPicker => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDebugHighlightIdConflictsShowItemPicker);
         public ref bool ConfigDebugBeginReturnValueOnce => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDebugBeginReturnValueOnce);
         public ref bool ConfigDebugBeginReturnValueLoop => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDebugBeginReturnValueLoop);
         public ref bool ConfigDebugIgnoreFocusLoss => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDebugIgnoreFocusLoss);

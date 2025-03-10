@@ -12,6 +12,7 @@ namespace ImGuiNET
         public Vector2 WindowPadding;
         public float WindowRounding;
         public float WindowBorderSize;
+        public float WindowBorderHoverPadding;
         public Vector2 WindowMinSize;
         public Vector2 WindowTitleAlign;
         public ImGuiDir WindowMenuButtonPosition;
@@ -33,9 +34,11 @@ namespace ImGuiNET
         public float GrabMinSize;
         public float GrabRounding;
         public float LogSliderDeadzone;
+        public float ImageBorderSize;
         public float TabRounding;
         public float TabBorderSize;
-        public float TabMinWidthForCloseButton;
+        public float TabCloseButtonMinWidthSelected;
+        public float TabCloseButtonMinWidthUnselected;
         public float TabBarBorderSize;
         public float TabBarOverlineSize;
         public float TableAngledHeadersAngle;
@@ -132,6 +135,7 @@ namespace ImGuiNET
         public ref Vector2 WindowPadding => ref Unsafe.AsRef<Vector2>(&NativePtr->WindowPadding);
         public ref float WindowRounding => ref Unsafe.AsRef<float>(&NativePtr->WindowRounding);
         public ref float WindowBorderSize => ref Unsafe.AsRef<float>(&NativePtr->WindowBorderSize);
+        public ref float WindowBorderHoverPadding => ref Unsafe.AsRef<float>(&NativePtr->WindowBorderHoverPadding);
         public ref Vector2 WindowMinSize => ref Unsafe.AsRef<Vector2>(&NativePtr->WindowMinSize);
         public ref Vector2 WindowTitleAlign => ref Unsafe.AsRef<Vector2>(&NativePtr->WindowTitleAlign);
         public ref ImGuiDir WindowMenuButtonPosition => ref Unsafe.AsRef<ImGuiDir>(&NativePtr->WindowMenuButtonPosition);
@@ -153,9 +157,11 @@ namespace ImGuiNET
         public ref float GrabMinSize => ref Unsafe.AsRef<float>(&NativePtr->GrabMinSize);
         public ref float GrabRounding => ref Unsafe.AsRef<float>(&NativePtr->GrabRounding);
         public ref float LogSliderDeadzone => ref Unsafe.AsRef<float>(&NativePtr->LogSliderDeadzone);
+        public ref float ImageBorderSize => ref Unsafe.AsRef<float>(&NativePtr->ImageBorderSize);
         public ref float TabRounding => ref Unsafe.AsRef<float>(&NativePtr->TabRounding);
         public ref float TabBorderSize => ref Unsafe.AsRef<float>(&NativePtr->TabBorderSize);
-        public ref float TabMinWidthForCloseButton => ref Unsafe.AsRef<float>(&NativePtr->TabMinWidthForCloseButton);
+        public ref float TabCloseButtonMinWidthSelected => ref Unsafe.AsRef<float>(&NativePtr->TabCloseButtonMinWidthSelected);
+        public ref float TabCloseButtonMinWidthUnselected => ref Unsafe.AsRef<float>(&NativePtr->TabCloseButtonMinWidthUnselected);
         public ref float TabBarBorderSize => ref Unsafe.AsRef<float>(&NativePtr->TabBarBorderSize);
         public ref float TabBarOverlineSize => ref Unsafe.AsRef<float>(&NativePtr->TabBarOverlineSize);
         public ref float TableAngledHeadersAngle => ref Unsafe.AsRef<float>(&NativePtr->TableAngledHeadersAngle);

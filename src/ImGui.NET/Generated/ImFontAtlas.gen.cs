@@ -8,22 +8,24 @@ namespace ImGuiNET
     public unsafe partial struct ImFontAtlas
     {
         public ImFontAtlasFlags Flags;
-        public IntPtr TexID;
-        public int TexDesiredWidth;
+        public ImTextureFormat TexDesiredFormat;
         public int TexGlyphPadding;
+        public int TexMinWidth;
+        public int TexMinHeight;
+        public int TexMaxWidth;
+        public int TexMaxHeight;
         public void* UserData;
+        public ImTextureID TexID;
+        public ImTextureData* TexData;
+        public ImVector TexList;
         public byte Locked;
-        public byte TexReady;
+        public byte RendererHasTextures;
+        public byte TexIsBuilt;
         public byte TexPixelsUseColors;
-        public byte* TexPixelsAlpha8;
-        public uint* TexPixelsRGBA32;
-        public int TexWidth;
-        public int TexHeight;
         public Vector2 TexUvScale;
         public Vector2 TexUvWhitePixel;
         public ImVector Fonts;
-        public ImVector CustomRects;
-        public ImVector ConfigData;
+        public ImVector Sources;
         public Vector4 TexUvLines_0;
         public Vector4 TexUvLines_1;
         public Vector4 TexUvLines_2;
@@ -57,10 +59,15 @@ namespace ImGuiNET
         public Vector4 TexUvLines_30;
         public Vector4 TexUvLines_31;
         public Vector4 TexUvLines_32;
-        public IntPtr* FontBuilderIO;
+        public int TexNextUniqueID;
+        public int FontNextUniqueID;
+        public ImVector DrawListSharedDatas;
+        public IntPtr* Builder;
+        public IntPtr* FontLoader;
+        public byte* FontLoaderName;
+        public void* FontLoaderData;
         public uint FontBuilderFlags;
-        public int PackIdMouseCursors;
-        public int PackIdLines;
+        public int RefCount;
     }
     public unsafe partial struct ImFontAtlasPtr
     {
@@ -71,40 +78,34 @@ namespace ImGuiNET
         public static implicit operator ImFontAtlas* (ImFontAtlasPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImFontAtlasPtr(IntPtr nativePtr) => new ImFontAtlasPtr(nativePtr);
         public ref ImFontAtlasFlags Flags => ref Unsafe.AsRef<ImFontAtlasFlags>(&NativePtr->Flags);
-        public ref IntPtr TexID => ref Unsafe.AsRef<IntPtr>(&NativePtr->TexID);
-        public ref int TexDesiredWidth => ref Unsafe.AsRef<int>(&NativePtr->TexDesiredWidth);
+        public ref ImTextureFormat TexDesiredFormat => ref Unsafe.AsRef<ImTextureFormat>(&NativePtr->TexDesiredFormat);
         public ref int TexGlyphPadding => ref Unsafe.AsRef<int>(&NativePtr->TexGlyphPadding);
+        public ref int TexMinWidth => ref Unsafe.AsRef<int>(&NativePtr->TexMinWidth);
+        public ref int TexMinHeight => ref Unsafe.AsRef<int>(&NativePtr->TexMinHeight);
+        public ref int TexMaxWidth => ref Unsafe.AsRef<int>(&NativePtr->TexMaxWidth);
+        public ref int TexMaxHeight => ref Unsafe.AsRef<int>(&NativePtr->TexMaxHeight);
         public IntPtr UserData { get => (IntPtr)NativePtr->UserData; set => NativePtr->UserData = (void*)value; }
+        public ref ImTextureID TexID => ref Unsafe.AsRef<ImTextureID>(&NativePtr->TexID);
+        public ImTextureDataPtr TexData => new ImTextureDataPtr(NativePtr->TexData);
+        public ImVector<ImTextureDataPtr> TexList => new ImVector<ImTextureDataPtr>(NativePtr->TexList);
         public ref bool Locked => ref Unsafe.AsRef<bool>(&NativePtr->Locked);
-        public ref bool TexReady => ref Unsafe.AsRef<bool>(&NativePtr->TexReady);
+        public ref bool RendererHasTextures => ref Unsafe.AsRef<bool>(&NativePtr->RendererHasTextures);
+        public ref bool TexIsBuilt => ref Unsafe.AsRef<bool>(&NativePtr->TexIsBuilt);
         public ref bool TexPixelsUseColors => ref Unsafe.AsRef<bool>(&NativePtr->TexPixelsUseColors);
-        public IntPtr TexPixelsAlpha8 { get => (IntPtr)NativePtr->TexPixelsAlpha8; set => NativePtr->TexPixelsAlpha8 = (byte*)value; }
-        public IntPtr TexPixelsRGBA32 { get => (IntPtr)NativePtr->TexPixelsRGBA32; set => NativePtr->TexPixelsRGBA32 = (uint*)value; }
-        public ref int TexWidth => ref Unsafe.AsRef<int>(&NativePtr->TexWidth);
-        public ref int TexHeight => ref Unsafe.AsRef<int>(&NativePtr->TexHeight);
         public ref Vector2 TexUvScale => ref Unsafe.AsRef<Vector2>(&NativePtr->TexUvScale);
         public ref Vector2 TexUvWhitePixel => ref Unsafe.AsRef<Vector2>(&NativePtr->TexUvWhitePixel);
         public ImVector<ImFontPtr> Fonts => new ImVector<ImFontPtr>(NativePtr->Fonts);
-        public ImPtrVector<ImFontAtlasCustomRectPtr> CustomRects => new ImPtrVector<ImFontAtlasCustomRectPtr>(NativePtr->CustomRects, Unsafe.SizeOf<ImFontAtlasCustomRect>());
-        public ImPtrVector<ImFontConfigPtr> ConfigData => new ImPtrVector<ImFontConfigPtr>(NativePtr->ConfigData, Unsafe.SizeOf<ImFontConfig>());
+        public ImPtrVector<ImFontConfigPtr> Sources => new ImPtrVector<ImFontConfigPtr>(NativePtr->Sources, Unsafe.SizeOf<ImFontConfig>());
         public RangeAccessor<Vector4> TexUvLines => new RangeAccessor<Vector4>(&NativePtr->TexUvLines_0, 33);
-        public IntPtr FontBuilderIO { get => (IntPtr)NativePtr->FontBuilderIO; set => NativePtr->FontBuilderIO = (IntPtr*)value; }
+        public ref int TexNextUniqueID => ref Unsafe.AsRef<int>(&NativePtr->TexNextUniqueID);
+        public ref int FontNextUniqueID => ref Unsafe.AsRef<int>(&NativePtr->FontNextUniqueID);
+        public ImVector<IntPtr> DrawListSharedDatas => new ImVector<IntPtr>(NativePtr->DrawListSharedDatas);
+        public IntPtr Builder { get => (IntPtr)NativePtr->Builder; set => NativePtr->Builder = (IntPtr*)value; }
+        public IntPtr FontLoader { get => (IntPtr)NativePtr->FontLoader; set => NativePtr->FontLoader = (IntPtr*)value; }
+        public NullTerminatedString FontLoaderName => new NullTerminatedString(NativePtr->FontLoaderName);
+        public IntPtr FontLoaderData { get => (IntPtr)NativePtr->FontLoaderData; set => NativePtr->FontLoaderData = (void*)value; }
         public ref uint FontBuilderFlags => ref Unsafe.AsRef<uint>(&NativePtr->FontBuilderFlags);
-        public ref int PackIdMouseCursors => ref Unsafe.AsRef<int>(&NativePtr->PackIdMouseCursors);
-        public ref int PackIdLines => ref Unsafe.AsRef<int>(&NativePtr->PackIdLines);
-        public int AddCustomRectFontGlyph(ImFontPtr font, ushort id, int width, int height, float advance_x)
-        {
-            ImFont* native_font = font.NativePtr;
-            Vector2 offset = new Vector2();
-            int ret = ImGuiNative.ImFontAtlas_AddCustomRectFontGlyph((ImFontAtlas*)(NativePtr), native_font, id, width, height, advance_x, offset);
-            return ret;
-        }
-        public int AddCustomRectFontGlyph(ImFontPtr font, ushort id, int width, int height, float advance_x, Vector2 offset)
-        {
-            ImFont* native_font = font.NativePtr;
-            int ret = ImGuiNative.ImFontAtlas_AddCustomRectFontGlyph((ImFontAtlas*)(NativePtr), native_font, id, width, height, advance_x, offset);
-            return ret;
-        }
+        public ref int RefCount => ref Unsafe.AsRef<int>(&NativePtr->RefCount);
         public int AddCustomRectRegular(int width, int height)
         {
             int ret = ImGuiNative.ImFontAtlas_AddCustomRectRegular((ImFontAtlas*)(NativePtr), width, height);
@@ -536,14 +537,9 @@ namespace ImGuiNET
             ImFont* ret = ImGuiNative.ImFontAtlas_AddFontFromMemoryTTF((ImFontAtlas*)(NativePtr), native_font_data, font_data_size, size_pixels, native_font_cfg, native_glyph_ranges);
             return new ImFontPtr(ret);
         }
-        public bool Build()
+        public void CalcCustomRectUV(ImTextureRectPtr rect, out Vector2 out_uv_min, out Vector2 out_uv_max)
         {
-            byte ret = ImGuiNative.ImFontAtlas_Build((ImFontAtlas*)(NativePtr));
-            return ret != 0;
-        }
-        public void CalcCustomRectUV(ImFontAtlasCustomRectPtr rect, out Vector2 out_uv_min, out Vector2 out_uv_max)
-        {
-            ImFontAtlasCustomRect* native_rect = rect.NativePtr;
+            ImTextureRect* native_rect = rect.NativePtr;
             fixed (Vector2* native_out_uv_min = &out_uv_min)
             {
                 fixed (Vector2* native_out_uv_max = &out_uv_max)
@@ -568,205 +564,28 @@ namespace ImGuiNET
         {
             ImGuiNative.ImFontAtlas_ClearTexData((ImFontAtlas*)(NativePtr));
         }
+        public void CompactCache()
+        {
+            ImGuiNative.ImFontAtlas_CompactCache((ImFontAtlas*)(NativePtr));
+        }
         public void Destroy()
         {
             ImGuiNative.ImFontAtlas_destroy((ImFontAtlas*)(NativePtr));
         }
-        public ImFontAtlasCustomRectPtr GetCustomRectByIndex(int index)
+        public ImTextureRectPtr GetCustomRectByIndex(int index)
         {
-            ImFontAtlasCustomRect* ret = ImGuiNative.ImFontAtlas_GetCustomRectByIndex((ImFontAtlas*)(NativePtr), index);
-            return new ImFontAtlasCustomRectPtr(ret);
-        }
-        public IntPtr GetGlyphRangesChineseFull()
-        {
-            ushort* ret = ImGuiNative.ImFontAtlas_GetGlyphRangesChineseFull((ImFontAtlas*)(NativePtr));
-            return (IntPtr)ret;
-        }
-        public IntPtr GetGlyphRangesChineseSimplifiedCommon()
-        {
-            ushort* ret = ImGuiNative.ImFontAtlas_GetGlyphRangesChineseSimplifiedCommon((ImFontAtlas*)(NativePtr));
-            return (IntPtr)ret;
-        }
-        public IntPtr GetGlyphRangesCyrillic()
-        {
-            ushort* ret = ImGuiNative.ImFontAtlas_GetGlyphRangesCyrillic((ImFontAtlas*)(NativePtr));
-            return (IntPtr)ret;
+            ImTextureRect* ret = ImGuiNative.ImFontAtlas_GetCustomRectByIndex((ImFontAtlas*)(NativePtr), index);
+            return new ImTextureRectPtr(ret);
         }
         public IntPtr GetGlyphRangesDefault()
         {
             ushort* ret = ImGuiNative.ImFontAtlas_GetGlyphRangesDefault((ImFontAtlas*)(NativePtr));
             return (IntPtr)ret;
         }
-        public IntPtr GetGlyphRangesGreek()
+        public void RemoveFont(ImFontPtr font)
         {
-            ushort* ret = ImGuiNative.ImFontAtlas_GetGlyphRangesGreek((ImFontAtlas*)(NativePtr));
-            return (IntPtr)ret;
-        }
-        public IntPtr GetGlyphRangesJapanese()
-        {
-            ushort* ret = ImGuiNative.ImFontAtlas_GetGlyphRangesJapanese((ImFontAtlas*)(NativePtr));
-            return (IntPtr)ret;
-        }
-        public IntPtr GetGlyphRangesKorean()
-        {
-            ushort* ret = ImGuiNative.ImFontAtlas_GetGlyphRangesKorean((ImFontAtlas*)(NativePtr));
-            return (IntPtr)ret;
-        }
-        public IntPtr GetGlyphRangesThai()
-        {
-            ushort* ret = ImGuiNative.ImFontAtlas_GetGlyphRangesThai((ImFontAtlas*)(NativePtr));
-            return (IntPtr)ret;
-        }
-        public IntPtr GetGlyphRangesVietnamese()
-        {
-            ushort* ret = ImGuiNative.ImFontAtlas_GetGlyphRangesVietnamese((ImFontAtlas*)(NativePtr));
-            return (IntPtr)ret;
-        }
-        public bool GetMouseCursorTexData(ImGuiMouseCursor cursor, out Vector2 out_offset, out Vector2 out_size, out Vector2 out_uv_border, out Vector2 out_uv_fill)
-        {
-            fixed (Vector2* native_out_offset = &out_offset)
-            {
-                fixed (Vector2* native_out_size = &out_size)
-                {
-                    fixed (Vector2* native_out_uv_border = &out_uv_border)
-                    {
-                        fixed (Vector2* native_out_uv_fill = &out_uv_fill)
-                        {
-                            byte ret = ImGuiNative.ImFontAtlas_GetMouseCursorTexData((ImFontAtlas*)(NativePtr), cursor, native_out_offset, native_out_size, native_out_uv_border, native_out_uv_fill);
-                            return ret != 0;
-                        }
-                    }
-                }
-            }
-        }
-        public void GetTexDataAsAlpha8(out byte* out_pixels, out int out_width, out int out_height)
-        {
-            int* out_bytes_per_pixel = null;
-            fixed (byte** native_out_pixels = &out_pixels)
-            {
-                fixed (int* native_out_width = &out_width)
-                {
-                    fixed (int* native_out_height = &out_height)
-                    {
-                        ImGuiNative.ImFontAtlas_GetTexDataAsAlpha8((ImFontAtlas*)(NativePtr), native_out_pixels, native_out_width, native_out_height, out_bytes_per_pixel);
-                    }
-                }
-            }
-        }
-        public void GetTexDataAsAlpha8(out byte* out_pixels, out int out_width, out int out_height, out int out_bytes_per_pixel)
-        {
-            fixed (byte** native_out_pixels = &out_pixels)
-            {
-                fixed (int* native_out_width = &out_width)
-                {
-                    fixed (int* native_out_height = &out_height)
-                    {
-                        fixed (int* native_out_bytes_per_pixel = &out_bytes_per_pixel)
-                        {
-                            ImGuiNative.ImFontAtlas_GetTexDataAsAlpha8((ImFontAtlas*)(NativePtr), native_out_pixels, native_out_width, native_out_height, native_out_bytes_per_pixel);
-                        }
-                    }
-                }
-            }
-        }
-        public void GetTexDataAsAlpha8(out IntPtr out_pixels, out int out_width, out int out_height)
-        {
-            int* out_bytes_per_pixel = null;
-            fixed (IntPtr* native_out_pixels = &out_pixels)
-            {
-                fixed (int* native_out_width = &out_width)
-                {
-                    fixed (int* native_out_height = &out_height)
-                    {
-                        ImGuiNative.ImFontAtlas_GetTexDataAsAlpha8((ImFontAtlas*)(NativePtr), native_out_pixels, native_out_width, native_out_height, out_bytes_per_pixel);
-                    }
-                }
-            }
-        }
-        public void GetTexDataAsAlpha8(out IntPtr out_pixels, out int out_width, out int out_height, out int out_bytes_per_pixel)
-        {
-            fixed (IntPtr* native_out_pixels = &out_pixels)
-            {
-                fixed (int* native_out_width = &out_width)
-                {
-                    fixed (int* native_out_height = &out_height)
-                    {
-                        fixed (int* native_out_bytes_per_pixel = &out_bytes_per_pixel)
-                        {
-                            ImGuiNative.ImFontAtlas_GetTexDataAsAlpha8((ImFontAtlas*)(NativePtr), native_out_pixels, native_out_width, native_out_height, native_out_bytes_per_pixel);
-                        }
-                    }
-                }
-            }
-        }
-        public void GetTexDataAsRGBA32(out byte* out_pixels, out int out_width, out int out_height)
-        {
-            int* out_bytes_per_pixel = null;
-            fixed (byte** native_out_pixels = &out_pixels)
-            {
-                fixed (int* native_out_width = &out_width)
-                {
-                    fixed (int* native_out_height = &out_height)
-                    {
-                        ImGuiNative.ImFontAtlas_GetTexDataAsRGBA32((ImFontAtlas*)(NativePtr), native_out_pixels, native_out_width, native_out_height, out_bytes_per_pixel);
-                    }
-                }
-            }
-        }
-        public void GetTexDataAsRGBA32(out byte* out_pixels, out int out_width, out int out_height, out int out_bytes_per_pixel)
-        {
-            fixed (byte** native_out_pixels = &out_pixels)
-            {
-                fixed (int* native_out_width = &out_width)
-                {
-                    fixed (int* native_out_height = &out_height)
-                    {
-                        fixed (int* native_out_bytes_per_pixel = &out_bytes_per_pixel)
-                        {
-                            ImGuiNative.ImFontAtlas_GetTexDataAsRGBA32((ImFontAtlas*)(NativePtr), native_out_pixels, native_out_width, native_out_height, native_out_bytes_per_pixel);
-                        }
-                    }
-                }
-            }
-        }
-        public void GetTexDataAsRGBA32(out IntPtr out_pixels, out int out_width, out int out_height)
-        {
-            int* out_bytes_per_pixel = null;
-            fixed (IntPtr* native_out_pixels = &out_pixels)
-            {
-                fixed (int* native_out_width = &out_width)
-                {
-                    fixed (int* native_out_height = &out_height)
-                    {
-                        ImGuiNative.ImFontAtlas_GetTexDataAsRGBA32((ImFontAtlas*)(NativePtr), native_out_pixels, native_out_width, native_out_height, out_bytes_per_pixel);
-                    }
-                }
-            }
-        }
-        public void GetTexDataAsRGBA32(out IntPtr out_pixels, out int out_width, out int out_height, out int out_bytes_per_pixel)
-        {
-            fixed (IntPtr* native_out_pixels = &out_pixels)
-            {
-                fixed (int* native_out_width = &out_width)
-                {
-                    fixed (int* native_out_height = &out_height)
-                    {
-                        fixed (int* native_out_bytes_per_pixel = &out_bytes_per_pixel)
-                        {
-                            ImGuiNative.ImFontAtlas_GetTexDataAsRGBA32((ImFontAtlas*)(NativePtr), native_out_pixels, native_out_width, native_out_height, native_out_bytes_per_pixel);
-                        }
-                    }
-                }
-            }
-        }
-        public bool IsBuilt()
-        {
-            byte ret = ImGuiNative.ImFontAtlas_IsBuilt((ImFontAtlas*)(NativePtr));
-            return ret != 0;
-        }
-        public void SetTexID(IntPtr id)
-        {
-            ImGuiNative.ImFontAtlas_SetTexID((ImFontAtlas*)(NativePtr), id);
+            ImFont* native_font = font.NativePtr;
+            ImGuiNative.ImFontAtlas_RemoveFont((ImFontAtlas*)(NativePtr), native_font);
         }
     }
 }

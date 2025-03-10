@@ -34647,7 +34647,7 @@ namespace ImPlotNET
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void PlotImage(ReadOnlySpan<char> label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max)
+        public static void PlotImage(ReadOnlySpan<char> label_id, ImTextureID user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34678,7 +34678,7 @@ namespace ImPlotNET
             }
         }
 #endif
-        public static void PlotImage(string label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max)
+        public static void PlotImage(string label_id, ImTextureID user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34709,7 +34709,7 @@ namespace ImPlotNET
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void PlotImage(ReadOnlySpan<char> label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0)
+        public static void PlotImage(ReadOnlySpan<char> label_id, ImTextureID user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34739,7 +34739,7 @@ namespace ImPlotNET
             }
         }
 #endif
-        public static void PlotImage(string label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0)
+        public static void PlotImage(string label_id, ImTextureID user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34769,7 +34769,7 @@ namespace ImPlotNET
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void PlotImage(ReadOnlySpan<char> label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1)
+        public static void PlotImage(ReadOnlySpan<char> label_id, ImTextureID user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34798,7 +34798,7 @@ namespace ImPlotNET
             }
         }
 #endif
-        public static void PlotImage(string label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1)
+        public static void PlotImage(string label_id, ImTextureID user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34827,7 +34827,7 @@ namespace ImPlotNET
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void PlotImage(ReadOnlySpan<char> label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col)
+        public static void PlotImage(ReadOnlySpan<char> label_id, ImTextureID user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34855,7 +34855,7 @@ namespace ImPlotNET
             }
         }
 #endif
-        public static void PlotImage(string label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col)
+        public static void PlotImage(string label_id, ImTextureID user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34883,7 +34883,7 @@ namespace ImPlotNET
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void PlotImage(ReadOnlySpan<char> label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col, ImPlotImageFlags flags)
+        public static void PlotImage(ReadOnlySpan<char> label_id, ImTextureID user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col, ImPlotImageFlags flags)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34910,7 +34910,7 @@ namespace ImPlotNET
             }
         }
 #endif
-        public static void PlotImage(string label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col, ImPlotImageFlags flags)
+        public static void PlotImage(string label_id, ImTextureID user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col, ImPlotImageFlags flags)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
