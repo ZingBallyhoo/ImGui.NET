@@ -44,6 +44,8 @@ namespace CodeGenerator
             { "ImGuiMemFreeFunc", "IntPtr" },
             { "ImFontBuilderIO", "IntPtr" },
             { "ImGuiDockNode", "IntPtr" },
+            { "ImFontAtlasBuilder*", "IntPtr" },
+            { "ImFontLoader*", "IntPtr" },
             { "float[2]", "Vector2*" },
             { "float[3]", "Vector3*" },
             { "float[4]", "Vector4*" },
@@ -60,6 +62,7 @@ namespace CodeGenerator
             { "ImGuiKeyChord", "ImGuiKey" },
             { "ImGuiSelectionUserData", "long" },
             { "struct ImGuiTextBuffer", "ImGuiTextBuffer" },
+            { "ImFontAtlasRectId", "int" },
         };
         
         public static readonly List<string> WellKnownEnums = new List<string>()
@@ -162,7 +165,9 @@ namespace CodeGenerator
         {
             "igInputText",
             "igInputTextMultiline",
-            "igInputTextWithHint"
+            "igInputTextWithHint",
+            "ImDrawList__SetDrawListSharedData",
+            "ImGuiFreeType_DebugEditFontLoaderFlags"
         };
     }
 }

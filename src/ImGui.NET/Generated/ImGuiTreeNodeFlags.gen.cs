@@ -20,7 +20,10 @@ namespace ImGuiNET
         SpanLabelWidth = 8192,
         SpanAllColumns = 16384,
         LabelSpanAllColumns = 32768,
-        NavLeftJumpsBackHere = 131072,
+        NavLeftJumpsToParent = 131072,
         CollapsingHeader = 26,
+        DrawLinesNone = 262144,
+        DrawLinesFull = 524288,
+        DrawLinesToNodes = 1048576,
     }
 }

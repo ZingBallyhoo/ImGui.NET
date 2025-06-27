@@ -185,7 +185,8 @@ namespace CodeGenerator
                                 {
                                     vectorElementType = wrappedElementType;
                                 }
-                                writer.WriteLine($"public ImVector<{vectorElementType}> {field.Name} => new ImVector<{vectorElementType}>(NativePtr->{field.Name});");
+                                var deref = field.Type.EndsWith("*") ? "*" : ""; // ImVector<ImTextureData*>* ImDrawData::Textures
+                                writer.WriteLine($"public ImVector<{vectorElementType}> {field.Name} => new ImVector<{vectorElementType}>({deref}NativePtr->{field.Name});");
                             }
                         }
                         else
@@ -214,6 +215,8 @@ namespace CodeGenerator
 
                     foreach (FunctionDefinition fd in defs.Functions)
                     {
+                        if (TypeInfo.SkippedFunctions.Contains(fd.Name)) { continue; }
+                    
                         foreach (OverloadDefinition overload in fd.Overloads)
                         {
                             if (overload.StructName != td.Name)

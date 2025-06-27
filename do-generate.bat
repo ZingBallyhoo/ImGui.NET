@@ -1,3 +1,4 @@
+dotnet build src/CodeGenerator -c Debug
 bin\Debug\CodeGenerator\net8.0\CodeGenerator.exe src\ImGui.NET\Generated cimgui
 bin\Debug\CodeGenerator\net8.0\CodeGenerator.exe src\ImPlot.NET\Generated cimplot
 bin\Debug\CodeGenerator\net8.0\CodeGenerator.exe src\ImGuizmo.NET\Generated cimguizmo

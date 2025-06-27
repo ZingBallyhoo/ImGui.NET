@@ -34647,7 +34647,7 @@ namespace ImPlotNET
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void PlotImage(ReadOnlySpan<char> label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max)
+        public static void PlotImage(ReadOnlySpan<char> label_id, ImTextureRef tex_ref, ImPlotPoint bounds_min, ImPlotPoint bounds_max)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34671,14 +34671,14 @@ namespace ImPlotNET
             Vector2 uv1 = new Vector2(1, 1);
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
             ImPlotImageFlags flags = (ImPlotImageFlags)0;
-            ImPlotNative.ImPlot_PlotImage(native_label_id, user_texture_id, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
+            ImPlotNative.ImPlot_PlotImage(native_label_id, tex_ref, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
             if (label_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label_id);
             }
         }
 #endif
-        public static void PlotImage(string label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max)
+        public static void PlotImage(string label_id, ImTextureRef tex_ref, ImPlotPoint bounds_min, ImPlotPoint bounds_max)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34702,14 +34702,14 @@ namespace ImPlotNET
             Vector2 uv1 = new Vector2(1, 1);
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
             ImPlotImageFlags flags = (ImPlotImageFlags)0;
-            ImPlotNative.ImPlot_PlotImage(native_label_id, user_texture_id, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
+            ImPlotNative.ImPlot_PlotImage(native_label_id, tex_ref, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
             if (label_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label_id);
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void PlotImage(ReadOnlySpan<char> label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0)
+        public static void PlotImage(ReadOnlySpan<char> label_id, ImTextureRef tex_ref, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34732,14 +34732,14 @@ namespace ImPlotNET
             Vector2 uv1 = new Vector2(1, 1);
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
             ImPlotImageFlags flags = (ImPlotImageFlags)0;
-            ImPlotNative.ImPlot_PlotImage(native_label_id, user_texture_id, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
+            ImPlotNative.ImPlot_PlotImage(native_label_id, tex_ref, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
             if (label_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label_id);
             }
         }
 #endif
-        public static void PlotImage(string label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0)
+        public static void PlotImage(string label_id, ImTextureRef tex_ref, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34762,14 +34762,14 @@ namespace ImPlotNET
             Vector2 uv1 = new Vector2(1, 1);
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
             ImPlotImageFlags flags = (ImPlotImageFlags)0;
-            ImPlotNative.ImPlot_PlotImage(native_label_id, user_texture_id, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
+            ImPlotNative.ImPlot_PlotImage(native_label_id, tex_ref, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
             if (label_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label_id);
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void PlotImage(ReadOnlySpan<char> label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1)
+        public static void PlotImage(ReadOnlySpan<char> label_id, ImTextureRef tex_ref, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34791,14 +34791,14 @@ namespace ImPlotNET
             else { native_label_id = null; }
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
             ImPlotImageFlags flags = (ImPlotImageFlags)0;
-            ImPlotNative.ImPlot_PlotImage(native_label_id, user_texture_id, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
+            ImPlotNative.ImPlot_PlotImage(native_label_id, tex_ref, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
             if (label_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label_id);
             }
         }
 #endif
-        public static void PlotImage(string label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1)
+        public static void PlotImage(string label_id, ImTextureRef tex_ref, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34820,14 +34820,14 @@ namespace ImPlotNET
             else { native_label_id = null; }
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
             ImPlotImageFlags flags = (ImPlotImageFlags)0;
-            ImPlotNative.ImPlot_PlotImage(native_label_id, user_texture_id, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
+            ImPlotNative.ImPlot_PlotImage(native_label_id, tex_ref, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
             if (label_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label_id);
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void PlotImage(ReadOnlySpan<char> label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col)
+        public static void PlotImage(ReadOnlySpan<char> label_id, ImTextureRef tex_ref, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34848,14 +34848,14 @@ namespace ImPlotNET
             }
             else { native_label_id = null; }
             ImPlotImageFlags flags = (ImPlotImageFlags)0;
-            ImPlotNative.ImPlot_PlotImage(native_label_id, user_texture_id, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
+            ImPlotNative.ImPlot_PlotImage(native_label_id, tex_ref, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
             if (label_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label_id);
             }
         }
 #endif
-        public static void PlotImage(string label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col)
+        public static void PlotImage(string label_id, ImTextureRef tex_ref, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34876,14 +34876,14 @@ namespace ImPlotNET
             }
             else { native_label_id = null; }
             ImPlotImageFlags flags = (ImPlotImageFlags)0;
-            ImPlotNative.ImPlot_PlotImage(native_label_id, user_texture_id, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
+            ImPlotNative.ImPlot_PlotImage(native_label_id, tex_ref, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
             if (label_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label_id);
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void PlotImage(ReadOnlySpan<char> label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col, ImPlotImageFlags flags)
+        public static void PlotImage(ReadOnlySpan<char> label_id, ImTextureRef tex_ref, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col, ImPlotImageFlags flags)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34903,14 +34903,14 @@ namespace ImPlotNET
                 native_label_id[native_label_id_offset] = 0;
             }
             else { native_label_id = null; }
-            ImPlotNative.ImPlot_PlotImage(native_label_id, user_texture_id, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
+            ImPlotNative.ImPlot_PlotImage(native_label_id, tex_ref, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
             if (label_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label_id);
             }
         }
 #endif
-        public static void PlotImage(string label_id, IntPtr user_texture_id, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col, ImPlotImageFlags flags)
+        public static void PlotImage(string label_id, ImTextureRef tex_ref, ImPlotPoint bounds_min, ImPlotPoint bounds_max, Vector2 uv0, Vector2 uv1, Vector4 tint_col, ImPlotImageFlags flags)
         {
             byte* native_label_id;
             int label_id_byteCount = 0;
@@ -34930,7 +34930,7 @@ namespace ImPlotNET
                 native_label_id[native_label_id_offset] = 0;
             }
             else { native_label_id = null; }
-            ImPlotNative.ImPlot_PlotImage(native_label_id, user_texture_id, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
+            ImPlotNative.ImPlot_PlotImage(native_label_id, tex_ref, bounds_min, bounds_max, uv0, uv1, tint_col, flags);
             if (label_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label_id);

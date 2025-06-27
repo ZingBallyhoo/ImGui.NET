@@ -12986,6 +12986,11 @@ namespace ImGuiNET
             ImFont* ret = ImGuiNative.igGetFont();
             return new ImFontPtr(ret);
         }
+        public static ImFontBakedPtr GetFontBaked()
+        {
+            ImFontBaked* ret = ImGuiNative.igGetFontBaked();
+            return new ImFontBakedPtr(ret);
+        }
         public static float GetFontSize()
         {
             float ret = ImGuiNative.igGetFontSize();
@@ -13098,7 +13103,7 @@ namespace ImGuiNET
         }
         public static ImGuiIOPtr GetIO()
         {
-            ImGuiIO* ret = ImGuiNative.igGetIO();
+            ImGuiIO* ret = ImGuiNative.igGetIO_Nil();
             return new ImGuiIOPtr(ret);
         }
         public static uint GetItemID()
@@ -13184,7 +13189,7 @@ namespace ImGuiNET
         }
         public static ImGuiPlatformIOPtr GetPlatformIO()
         {
-            ImGuiPlatformIO* ret = ImGuiNative.igGetPlatformIO();
+            ImGuiPlatformIO* ret = ImGuiNative.igGetPlatformIO_Nil();
             return new ImGuiPlatformIOPtr(ret);
         }
         public static float GetScrollMaxX()
@@ -13294,38 +13299,23 @@ namespace ImGuiNET
             float ret = ImGuiNative.igGetWindowWidth();
             return ret;
         }
-        public static void Image(IntPtr user_texture_id, Vector2 image_size)
+        public static void Image(ImTextureRef tex_ref, Vector2 image_size)
         {
             Vector2 uv0 = new Vector2();
             Vector2 uv1 = new Vector2(1, 1);
-            Vector4 tint_col = new Vector4(1, 1, 1, 1);
-            Vector4 border_col = new Vector4();
-            ImGuiNative.igImage(user_texture_id, image_size, uv0, uv1, tint_col, border_col);
+            ImGuiNative.igImage(tex_ref, image_size, uv0, uv1);
         }
-        public static void Image(IntPtr user_texture_id, Vector2 image_size, Vector2 uv0)
+        public static void Image(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0)
         {
             Vector2 uv1 = new Vector2(1, 1);
-            Vector4 tint_col = new Vector4(1, 1, 1, 1);
-            Vector4 border_col = new Vector4();
-            ImGuiNative.igImage(user_texture_id, image_size, uv0, uv1, tint_col, border_col);
+            ImGuiNative.igImage(tex_ref, image_size, uv0, uv1);
         }
-        public static void Image(IntPtr user_texture_id, Vector2 image_size, Vector2 uv0, Vector2 uv1)
+        public static void Image(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
         {
-            Vector4 tint_col = new Vector4(1, 1, 1, 1);
-            Vector4 border_col = new Vector4();
-            ImGuiNative.igImage(user_texture_id, image_size, uv0, uv1, tint_col, border_col);
-        }
-        public static void Image(IntPtr user_texture_id, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 tint_col)
-        {
-            Vector4 border_col = new Vector4();
-            ImGuiNative.igImage(user_texture_id, image_size, uv0, uv1, tint_col, border_col);
-        }
-        public static void Image(IntPtr user_texture_id, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 tint_col, Vector4 border_col)
-        {
-            ImGuiNative.igImage(user_texture_id, image_size, uv0, uv1, tint_col, border_col);
+            ImGuiNative.igImage(tex_ref, image_size, uv0, uv1);
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static bool ImageButton(ReadOnlySpan<char> str_id, IntPtr user_texture_id, Vector2 image_size)
+        public static bool ImageButton(ReadOnlySpan<char> str_id, ImTextureRef tex_ref, Vector2 image_size)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13349,7 +13339,7 @@ namespace ImGuiNET
             Vector2 uv1 = new Vector2(1, 1);
             Vector4 bg_col = new Vector4();
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
-            byte ret = ImGuiNative.igImageButton(native_str_id, user_texture_id, image_size, uv0, uv1, bg_col, tint_col);
+            byte ret = ImGuiNative.igImageButton(native_str_id, tex_ref, image_size, uv0, uv1, bg_col, tint_col);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_str_id);
@@ -13357,7 +13347,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #endif
-        public static bool ImageButton(string str_id, IntPtr user_texture_id, Vector2 image_size)
+        public static bool ImageButton(string str_id, ImTextureRef tex_ref, Vector2 image_size)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13381,7 +13371,7 @@ namespace ImGuiNET
             Vector2 uv1 = new Vector2(1, 1);
             Vector4 bg_col = new Vector4();
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
-            byte ret = ImGuiNative.igImageButton(native_str_id, user_texture_id, image_size, uv0, uv1, bg_col, tint_col);
+            byte ret = ImGuiNative.igImageButton(native_str_id, tex_ref, image_size, uv0, uv1, bg_col, tint_col);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_str_id);
@@ -13389,7 +13379,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static bool ImageButton(ReadOnlySpan<char> str_id, IntPtr user_texture_id, Vector2 image_size, Vector2 uv0)
+        public static bool ImageButton(ReadOnlySpan<char> str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13412,7 +13402,7 @@ namespace ImGuiNET
             Vector2 uv1 = new Vector2(1, 1);
             Vector4 bg_col = new Vector4();
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
-            byte ret = ImGuiNative.igImageButton(native_str_id, user_texture_id, image_size, uv0, uv1, bg_col, tint_col);
+            byte ret = ImGuiNative.igImageButton(native_str_id, tex_ref, image_size, uv0, uv1, bg_col, tint_col);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_str_id);
@@ -13420,7 +13410,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #endif
-        public static bool ImageButton(string str_id, IntPtr user_texture_id, Vector2 image_size, Vector2 uv0)
+        public static bool ImageButton(string str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13443,7 +13433,7 @@ namespace ImGuiNET
             Vector2 uv1 = new Vector2(1, 1);
             Vector4 bg_col = new Vector4();
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
-            byte ret = ImGuiNative.igImageButton(native_str_id, user_texture_id, image_size, uv0, uv1, bg_col, tint_col);
+            byte ret = ImGuiNative.igImageButton(native_str_id, tex_ref, image_size, uv0, uv1, bg_col, tint_col);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_str_id);
@@ -13451,7 +13441,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static bool ImageButton(ReadOnlySpan<char> str_id, IntPtr user_texture_id, Vector2 image_size, Vector2 uv0, Vector2 uv1)
+        public static bool ImageButton(ReadOnlySpan<char> str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13473,7 +13463,7 @@ namespace ImGuiNET
             else { native_str_id = null; }
             Vector4 bg_col = new Vector4();
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
-            byte ret = ImGuiNative.igImageButton(native_str_id, user_texture_id, image_size, uv0, uv1, bg_col, tint_col);
+            byte ret = ImGuiNative.igImageButton(native_str_id, tex_ref, image_size, uv0, uv1, bg_col, tint_col);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_str_id);
@@ -13481,7 +13471,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #endif
-        public static bool ImageButton(string str_id, IntPtr user_texture_id, Vector2 image_size, Vector2 uv0, Vector2 uv1)
+        public static bool ImageButton(string str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13503,7 +13493,7 @@ namespace ImGuiNET
             else { native_str_id = null; }
             Vector4 bg_col = new Vector4();
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
-            byte ret = ImGuiNative.igImageButton(native_str_id, user_texture_id, image_size, uv0, uv1, bg_col, tint_col);
+            byte ret = ImGuiNative.igImageButton(native_str_id, tex_ref, image_size, uv0, uv1, bg_col, tint_col);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_str_id);
@@ -13511,7 +13501,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static bool ImageButton(ReadOnlySpan<char> str_id, IntPtr user_texture_id, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col)
+        public static bool ImageButton(ReadOnlySpan<char> str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13532,7 +13522,7 @@ namespace ImGuiNET
             }
             else { native_str_id = null; }
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
-            byte ret = ImGuiNative.igImageButton(native_str_id, user_texture_id, image_size, uv0, uv1, bg_col, tint_col);
+            byte ret = ImGuiNative.igImageButton(native_str_id, tex_ref, image_size, uv0, uv1, bg_col, tint_col);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_str_id);
@@ -13540,7 +13530,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #endif
-        public static bool ImageButton(string str_id, IntPtr user_texture_id, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col)
+        public static bool ImageButton(string str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13561,7 +13551,7 @@ namespace ImGuiNET
             }
             else { native_str_id = null; }
             Vector4 tint_col = new Vector4(1, 1, 1, 1);
-            byte ret = ImGuiNative.igImageButton(native_str_id, user_texture_id, image_size, uv0, uv1, bg_col, tint_col);
+            byte ret = ImGuiNative.igImageButton(native_str_id, tex_ref, image_size, uv0, uv1, bg_col, tint_col);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_str_id);
@@ -13569,7 +13559,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static bool ImageButton(ReadOnlySpan<char> str_id, IntPtr user_texture_id, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col)
+        public static bool ImageButton(ReadOnlySpan<char> str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13589,7 +13579,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            byte ret = ImGuiNative.igImageButton(native_str_id, user_texture_id, image_size, uv0, uv1, bg_col, tint_col);
+            byte ret = ImGuiNative.igImageButton(native_str_id, tex_ref, image_size, uv0, uv1, bg_col, tint_col);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_str_id);
@@ -13597,7 +13587,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #endif
-        public static bool ImageButton(string str_id, IntPtr user_texture_id, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col)
+        public static bool ImageButton(string str_id, ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -13617,12 +13607,42 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            byte ret = ImGuiNative.igImageButton(native_str_id, user_texture_id, image_size, uv0, uv1, bg_col, tint_col);
+            byte ret = ImGuiNative.igImageButton(native_str_id, tex_ref, image_size, uv0, uv1, bg_col, tint_col);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_str_id);
             }
             return ret != 0;
+        }
+        public static void ImageWithBg(ImTextureRef tex_ref, Vector2 image_size)
+        {
+            Vector2 uv0 = new Vector2();
+            Vector2 uv1 = new Vector2(1, 1);
+            Vector4 bg_col = new Vector4();
+            Vector4 tint_col = new Vector4(1, 1, 1, 1);
+            ImGuiNative.igImageWithBg(tex_ref, image_size, uv0, uv1, bg_col, tint_col);
+        }
+        public static void ImageWithBg(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0)
+        {
+            Vector2 uv1 = new Vector2(1, 1);
+            Vector4 bg_col = new Vector4();
+            Vector4 tint_col = new Vector4(1, 1, 1, 1);
+            ImGuiNative.igImageWithBg(tex_ref, image_size, uv0, uv1, bg_col, tint_col);
+        }
+        public static void ImageWithBg(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1)
+        {
+            Vector4 bg_col = new Vector4();
+            Vector4 tint_col = new Vector4(1, 1, 1, 1);
+            ImGuiNative.igImageWithBg(tex_ref, image_size, uv0, uv1, bg_col, tint_col);
+        }
+        public static void ImageWithBg(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col)
+        {
+            Vector4 tint_col = new Vector4(1, 1, 1, 1);
+            ImGuiNative.igImageWithBg(tex_ref, image_size, uv0, uv1, bg_col, tint_col);
+        }
+        public static void ImageWithBg(ImTextureRef tex_ref, Vector2 image_size, Vector2 uv0, Vector2 uv1, Vector4 bg_col, Vector4 tint_col)
+        {
+            ImGuiNative.igImageWithBg(tex_ref, image_size, uv0, uv1, bg_col, tint_col);
         }
         public static void Indent()
         {
@@ -20483,10 +20503,10 @@ namespace ImGuiNET
             byte native_intersect_with_current_clip_rect = intersect_with_current_clip_rect ? (byte)1 : (byte)0;
             ImGuiNative.igPushClipRect(clip_rect_min, clip_rect_max, native_intersect_with_current_clip_rect);
         }
-        public static void PushFont(ImFontPtr font)
+        public static void PushFont(ImFontPtr font, float font_size_base_unscaled)
         {
             ImFont* native_font = font.NativePtr;
-            ImGuiNative.igPushFont(native_font);
+            ImGuiNative.igPushFont(native_font, font_size_base_unscaled);
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static void PushID(ReadOnlySpan<char> str_id)
@@ -22087,10 +22107,6 @@ namespace ImGuiNET
             {
                 Util.Free(native_name);
             }
-        }
-        public static void SetWindowFontScale(float scale)
-        {
-            ImGuiNative.igSetWindowFontScale(scale);
         }
         public static void SetWindowPos(Vector2 pos)
         {
@@ -26920,7 +26936,7 @@ namespace ImGuiNET
             return ret != 0;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void TextLinkOpenURL(ReadOnlySpan<char> label)
+        public static bool TextLinkOpenURL(ReadOnlySpan<char> label)
         {
             byte* native_label;
             int label_byteCount = 0;
@@ -26941,14 +26957,15 @@ namespace ImGuiNET
             }
             else { native_label = null; }
             byte* native_url = null;
-            ImGuiNative.igTextLinkOpenURL(native_label, native_url);
+            byte ret = ImGuiNative.igTextLinkOpenURL(native_label, native_url);
             if (label_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label);
             }
+            return ret != 0;
         }
 #endif
-        public static void TextLinkOpenURL(string label)
+        public static bool TextLinkOpenURL(string label)
         {
             byte* native_label;
             int label_byteCount = 0;
@@ -26969,14 +26986,15 @@ namespace ImGuiNET
             }
             else { native_label = null; }
             byte* native_url = null;
-            ImGuiNative.igTextLinkOpenURL(native_label, native_url);
+            byte ret = ImGuiNative.igTextLinkOpenURL(native_label, native_url);
             if (label_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label);
             }
+            return ret != 0;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public static void TextLinkOpenURL(ReadOnlySpan<char> label, ReadOnlySpan<char> url)
+        public static bool TextLinkOpenURL(ReadOnlySpan<char> label, ReadOnlySpan<char> url)
         {
             byte* native_label;
             int label_byteCount = 0;
@@ -27014,7 +27032,7 @@ namespace ImGuiNET
                 native_url[native_url_offset] = 0;
             }
             else { native_url = null; }
-            ImGuiNative.igTextLinkOpenURL(native_label, native_url);
+            byte ret = ImGuiNative.igTextLinkOpenURL(native_label, native_url);
             if (label_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label);
@@ -27023,9 +27041,10 @@ namespace ImGuiNET
             {
                 Util.Free(native_url);
             }
+            return ret != 0;
         }
 #endif
-        public static void TextLinkOpenURL(string label, string url)
+        public static bool TextLinkOpenURL(string label, string url)
         {
             byte* native_label;
             int label_byteCount = 0;
@@ -27063,7 +27082,7 @@ namespace ImGuiNET
                 native_url[native_url_offset] = 0;
             }
             else { native_url = null; }
-            ImGuiNative.igTextLinkOpenURL(native_label, native_url);
+            byte ret = ImGuiNative.igTextLinkOpenURL(native_label, native_url);
             if (label_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_label);
@@ -27072,6 +27091,7 @@ namespace ImGuiNET
             {
                 Util.Free(native_url);
             }
+            return ret != 0;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static void TextUnformatted(ReadOnlySpan<char> text)
@@ -28969,9 +28989,9 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
-        public static IntPtr* GetBuilderForFreeType()
+        public static IntPtr GetFontLoader()
         {
-            IntPtr* ret = ImGuiNative.ImGuiFreeType_GetBuilderForFreeType();
+            IntPtr ret = ImGuiNative.ImGuiFreeType_GetFontLoader();
             return ret;
         }
     }

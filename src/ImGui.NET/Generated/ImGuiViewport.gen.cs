@@ -11,6 +11,7 @@ namespace ImGuiNET
         public ImGuiViewportFlags Flags;
         public Vector2 Pos;
         public Vector2 Size;
+        public Vector2 FramebufferScale;
         public Vector2 WorkPos;
         public Vector2 WorkSize;
         public float DpiScale;
@@ -37,6 +38,7 @@ namespace ImGuiNET
         public ref ImGuiViewportFlags Flags => ref Unsafe.AsRef<ImGuiViewportFlags>(&NativePtr->Flags);
         public ref Vector2 Pos => ref Unsafe.AsRef<Vector2>(&NativePtr->Pos);
         public ref Vector2 Size => ref Unsafe.AsRef<Vector2>(&NativePtr->Size);
+        public ref Vector2 FramebufferScale => ref Unsafe.AsRef<Vector2>(&NativePtr->FramebufferScale);
         public ref Vector2 WorkPos => ref Unsafe.AsRef<Vector2>(&NativePtr->WorkPos);
         public ref Vector2 WorkSize => ref Unsafe.AsRef<Vector2>(&NativePtr->WorkSize);
         public ref float DpiScale => ref Unsafe.AsRef<float>(&NativePtr->DpiScale);
