@@ -167,7 +167,8 @@ namespace CodeGenerator
             "igInputTextMultiline",
             "igInputTextWithHint",
             "ImDrawList__SetDrawListSharedData",
-            "ImGuiFreeType_DebugEditFontLoaderFlags"
+            "ImGuiFreeType_DebugEditFontLoaderFlags",
+            "ImFontAtlas_SetFontLoader",
         };
     }
 }

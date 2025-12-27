@@ -94,6 +94,14 @@ namespace ImGuiNET
         public ImPtrVector<ImGuiPlatformMonitorPtr> Monitors => new ImPtrVector<ImGuiPlatformMonitorPtr>(NativePtr->Monitors, Unsafe.SizeOf<ImGuiPlatformMonitor>());
         public ImVector<ImTextureDataPtr> Textures => new ImVector<ImTextureDataPtr>(NativePtr->Textures);
         public ImVector<ImGuiViewportPtr> Viewports => new ImVector<ImGuiViewportPtr>(NativePtr->Viewports);
+        public void ClearPlatformHandlers()
+        {
+            ImGuiNative.ImGuiPlatformIO_ClearPlatformHandlers((ImGuiPlatformIO*)(NativePtr));
+        }
+        public void ClearRendererHandlers()
+        {
+            ImGuiNative.ImGuiPlatformIO_ClearRendererHandlers((ImGuiPlatformIO*)(NativePtr));
+        }
         public void Destroy()
         {
             ImGuiNative.ImGuiPlatformIO_destroy((ImGuiPlatformIO*)(NativePtr));

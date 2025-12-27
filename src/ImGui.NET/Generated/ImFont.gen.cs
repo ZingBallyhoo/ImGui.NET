@@ -8,7 +8,7 @@ namespace ImGuiNET
     public unsafe partial struct ImFont
     {
         public ImFontBaked* LastBaked;
-        public ImFontAtlas* ContainerAtlas;
+        public ImFontAtlas* OwnerAtlas;
         public ImFontFlags Flags;
         public float CurrentRasterizerDensity;
         public uint FontId;
@@ -29,7 +29,7 @@ namespace ImGuiNET
         public static implicit operator ImFont* (ImFontPtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImFontPtr(IntPtr nativePtr) => new ImFontPtr(nativePtr);
         public ImFontBakedPtr LastBaked => new ImFontBakedPtr(NativePtr->LastBaked);
-        public ImFontAtlasPtr ContainerAtlas => new ImFontAtlasPtr(NativePtr->ContainerAtlas);
+        public ImFontAtlasPtr OwnerAtlas => new ImFontAtlasPtr(NativePtr->OwnerAtlas);
         public ref ImFontFlags Flags => ref Unsafe.AsRef<ImFontFlags>(&NativePtr->Flags);
         public ref float CurrentRasterizerDensity => ref Unsafe.AsRef<float>(&NativePtr->CurrentRasterizerDensity);
         public ref uint FontId => ref Unsafe.AsRef<uint>(&NativePtr->FontId);
@@ -47,7 +47,6 @@ namespace ImGuiNET
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public Vector2 CalcTextSizeA(float size, float max_width, float wrap_width, ReadOnlySpan<char> text_begin)
         {
-            Vector2 __retval;
             byte* native_text_begin;
             int text_begin_byteCount = 0;
                 text_begin_byteCount = Encoding.UTF8.GetByteCount(text_begin);
@@ -62,18 +61,17 @@ namespace ImGuiNET
                 }
                 int native_text_begin_offset = Util.GetUtf8(text_begin, native_text_begin, text_begin_byteCount);
                 native_text_begin[native_text_begin_offset] = 0;
-            byte** remaining = null;
-            ImGuiNative.ImFont_CalcTextSizeA(&__retval, (ImFont*)(NativePtr), size, max_width, wrap_width, native_text_begin, native_text_begin+text_begin_byteCount, remaining);
+            byte** out_remaining = null;
+            Vector2 ret = ImGuiNative.ImFont_CalcTextSizeA((ImFont*)(NativePtr), size, max_width, wrap_width, native_text_begin, native_text_begin+text_begin_byteCount, out_remaining);
             if (text_begin_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text_begin);
             }
-            return __retval;
+            return ret;
         }
 #endif
         public Vector2 CalcTextSizeA(float size, float max_width, float wrap_width, string text_begin)
         {
-            Vector2 __retval;
             byte* native_text_begin;
             int text_begin_byteCount = 0;
                 text_begin_byteCount = Encoding.UTF8.GetByteCount(text_begin);
@@ -88,18 +86,17 @@ namespace ImGuiNET
                 }
                 int native_text_begin_offset = Util.GetUtf8(text_begin, native_text_begin, text_begin_byteCount);
                 native_text_begin[native_text_begin_offset] = 0;
-            byte** remaining = null;
-            ImGuiNative.ImFont_CalcTextSizeA(&__retval, (ImFont*)(NativePtr), size, max_width, wrap_width, native_text_begin, native_text_begin+text_begin_byteCount, remaining);
+            byte** out_remaining = null;
+            Vector2 ret = ImGuiNative.ImFont_CalcTextSizeA((ImFont*)(NativePtr), size, max_width, wrap_width, native_text_begin, native_text_begin+text_begin_byteCount, out_remaining);
             if (text_begin_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text_begin);
             }
-            return __retval;
+            return ret;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public Vector2 CalcTextSizeA(float size, float max_width, float wrap_width, ReadOnlySpan<char> text_begin, ref byte* remaining)
+        public Vector2 CalcTextSizeA(float size, float max_width, float wrap_width, ReadOnlySpan<char> text_begin, out byte* out_remaining)
         {
-            Vector2 __retval;
             byte* native_text_begin;
             int text_begin_byteCount = 0;
                 text_begin_byteCount = Encoding.UTF8.GetByteCount(text_begin);
@@ -114,20 +111,19 @@ namespace ImGuiNET
                 }
                 int native_text_begin_offset = Util.GetUtf8(text_begin, native_text_begin, text_begin_byteCount);
                 native_text_begin[native_text_begin_offset] = 0;
-            fixed (byte** native_remaining = &remaining)
+            fixed (byte** native_out_remaining = &out_remaining)
             {
-                ImGuiNative.ImFont_CalcTextSizeA(&__retval, (ImFont*)(NativePtr), size, max_width, wrap_width, native_text_begin, native_text_begin+text_begin_byteCount, native_remaining);
+                Vector2 ret = ImGuiNative.ImFont_CalcTextSizeA((ImFont*)(NativePtr), size, max_width, wrap_width, native_text_begin, native_text_begin+text_begin_byteCount, native_out_remaining);
                 if (text_begin_byteCount > Util.StackAllocationSizeLimit)
                 {
                     Util.Free(native_text_begin);
                 }
-                return __retval;
+                return ret;
             }
         }
 #endif
-        public Vector2 CalcTextSizeA(float size, float max_width, float wrap_width, string text_begin, ref byte* remaining)
+        public Vector2 CalcTextSizeA(float size, float max_width, float wrap_width, string text_begin, out byte* out_remaining)
         {
-            Vector2 __retval;
             byte* native_text_begin;
             int text_begin_byteCount = 0;
                 text_begin_byteCount = Encoding.UTF8.GetByteCount(text_begin);
@@ -142,14 +138,14 @@ namespace ImGuiNET
                 }
                 int native_text_begin_offset = Util.GetUtf8(text_begin, native_text_begin, text_begin_byteCount);
                 native_text_begin[native_text_begin_offset] = 0;
-            fixed (byte** native_remaining = &remaining)
+            fixed (byte** native_out_remaining = &out_remaining)
             {
-                ImGuiNative.ImFont_CalcTextSizeA(&__retval, (ImFont*)(NativePtr), size, max_width, wrap_width, native_text_begin, native_text_begin+text_begin_byteCount, native_remaining);
+                Vector2 ret = ImGuiNative.ImFont_CalcTextSizeA((ImFont*)(NativePtr), size, max_width, wrap_width, native_text_begin, native_text_begin+text_begin_byteCount, native_out_remaining);
                 if (text_begin_byteCount > Util.StackAllocationSizeLimit)
                 {
                     Util.Free(native_text_begin);
                 }
-                return __retval;
+                return ret;
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
@@ -275,8 +271,8 @@ namespace ImGuiNET
                 int native_text_begin_offset = Util.GetUtf8(text_begin, native_text_begin, text_begin_byteCount);
                 native_text_begin[native_text_begin_offset] = 0;
             float wrap_width = 0.0f;
-            byte cpu_fine_clip = 0;
-            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, cpu_fine_clip);
+            ImDrawTextFlags flags = (ImDrawTextFlags)0;
+            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, flags);
             if (text_begin_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text_begin);
@@ -301,8 +297,8 @@ namespace ImGuiNET
                 int native_text_begin_offset = Util.GetUtf8(text_begin, native_text_begin, text_begin_byteCount);
                 native_text_begin[native_text_begin_offset] = 0;
             float wrap_width = 0.0f;
-            byte cpu_fine_clip = 0;
-            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, cpu_fine_clip);
+            ImDrawTextFlags flags = (ImDrawTextFlags)0;
+            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, flags);
             if (text_begin_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text_begin);
@@ -326,8 +322,8 @@ namespace ImGuiNET
                 }
                 int native_text_begin_offset = Util.GetUtf8(text_begin, native_text_begin, text_begin_byteCount);
                 native_text_begin[native_text_begin_offset] = 0;
-            byte cpu_fine_clip = 0;
-            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, cpu_fine_clip);
+            ImDrawTextFlags flags = (ImDrawTextFlags)0;
+            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, flags);
             if (text_begin_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text_begin);
@@ -351,15 +347,15 @@ namespace ImGuiNET
                 }
                 int native_text_begin_offset = Util.GetUtf8(text_begin, native_text_begin, text_begin_byteCount);
                 native_text_begin[native_text_begin_offset] = 0;
-            byte cpu_fine_clip = 0;
-            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, cpu_fine_clip);
+            ImDrawTextFlags flags = (ImDrawTextFlags)0;
+            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, flags);
             if (text_begin_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text_begin);
             }
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
-        public void RenderText(ImDrawListPtr draw_list, float size, Vector2 pos, uint col, Vector4 clip_rect, ReadOnlySpan<char> text_begin, float wrap_width, bool cpu_fine_clip)
+        public void RenderText(ImDrawListPtr draw_list, float size, Vector2 pos, uint col, Vector4 clip_rect, ReadOnlySpan<char> text_begin, float wrap_width, ImDrawTextFlags flags)
         {
             ImDrawList* native_draw_list = draw_list.NativePtr;
             byte* native_text_begin;
@@ -376,15 +372,14 @@ namespace ImGuiNET
                 }
                 int native_text_begin_offset = Util.GetUtf8(text_begin, native_text_begin, text_begin_byteCount);
                 native_text_begin[native_text_begin_offset] = 0;
-            byte native_cpu_fine_clip = cpu_fine_clip ? (byte)1 : (byte)0;
-            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, native_cpu_fine_clip);
+            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, flags);
             if (text_begin_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text_begin);
             }
         }
 #endif
-        public void RenderText(ImDrawListPtr draw_list, float size, Vector2 pos, uint col, Vector4 clip_rect, string text_begin, float wrap_width, bool cpu_fine_clip)
+        public void RenderText(ImDrawListPtr draw_list, float size, Vector2 pos, uint col, Vector4 clip_rect, string text_begin, float wrap_width, ImDrawTextFlags flags)
         {
             ImDrawList* native_draw_list = draw_list.NativePtr;
             byte* native_text_begin;
@@ -401,8 +396,7 @@ namespace ImGuiNET
                 }
                 int native_text_begin_offset = Util.GetUtf8(text_begin, native_text_begin, text_begin_byteCount);
                 native_text_begin[native_text_begin_offset] = 0;
-            byte native_cpu_fine_clip = cpu_fine_clip ? (byte)1 : (byte)0;
-            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, native_cpu_fine_clip);
+            ImGuiNative.ImFont_RenderText((ImFont*)(NativePtr), native_draw_list, size, pos, col, clip_rect, native_text_begin, native_text_begin+text_begin_byteCount, wrap_width, flags);
             if (text_begin_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text_begin);

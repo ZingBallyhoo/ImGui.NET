@@ -9,8 +9,9 @@ namespace ImGuiNET
         HasSetMousePos = 4,
         RendererHasVtxOffset = 8,
         RendererHasTextures = 16,
-        PlatformHasViewports = 1024,
-        HasMouseHoveredViewport = 2048,
-        RendererHasViewports = 4096,
+        RendererHasViewports = 1024,
+        PlatformHasViewports = 2048,
+        HasMouseHoveredViewport = 4096,
+        HasParentViewport = 8192,
     }
 }

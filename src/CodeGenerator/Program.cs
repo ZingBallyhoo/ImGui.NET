@@ -898,6 +898,12 @@ namespace CodeGenerator
             if (typeName.EndsWith("**")) { pointerLevel = 2; }
             else if (typeName.EndsWith("*")) { pointerLevel = 1; }
 
+            var namePart = typeName.AsSpan(0, typeName.Length - pointerLevel);
+            if (namePart.EndsWith("_c"))
+            {
+                typeName = typeName.Remove(typeName.Length - pointerLevel - 2, 2);
+            }
+
             if (!TypeInfo.WellKnownTypes.TryGetValue(typeName, out string typeStr))
             {
                 if (TypeInfo.WellKnownTypes.TryGetValue(typeName.Substring(0, typeName.Length - pointerLevel), out typeStr))

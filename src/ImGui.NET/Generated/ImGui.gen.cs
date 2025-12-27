@@ -2508,7 +2508,6 @@ namespace ImGuiNET
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static Vector2 CalcTextSize(ReadOnlySpan<char> text)
         {
-            Vector2 __retval;
             byte* native_text;
             int text_byteCount = 0;
             if (text != null)
@@ -2529,17 +2528,16 @@ namespace ImGuiNET
             else { native_text = null; }
             byte hide_text_after_double_hash = 0;
             float wrap_width = -1.0f;
-            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, hide_text_after_double_hash, wrap_width);
+            Vector2 ret = ImGuiNative.igCalcTextSize(native_text, native_text+text_byteCount, hide_text_after_double_hash, wrap_width);
             if (text_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text);
             }
-            return __retval;
+            return ret;
         }
 #endif
         public static Vector2 CalcTextSize(string text)
         {
-            Vector2 __retval;
             byte* native_text;
             int text_byteCount = 0;
             if (text != null)
@@ -2560,17 +2558,16 @@ namespace ImGuiNET
             else { native_text = null; }
             byte hide_text_after_double_hash = 0;
             float wrap_width = -1.0f;
-            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, hide_text_after_double_hash, wrap_width);
+            Vector2 ret = ImGuiNative.igCalcTextSize(native_text, native_text+text_byteCount, hide_text_after_double_hash, wrap_width);
             if (text_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text);
             }
-            return __retval;
+            return ret;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static Vector2 CalcTextSize(ReadOnlySpan<char> text, bool hide_text_after_double_hash)
         {
-            Vector2 __retval;
             byte* native_text;
             int text_byteCount = 0;
             if (text != null)
@@ -2591,17 +2588,16 @@ namespace ImGuiNET
             else { native_text = null; }
             byte native_hide_text_after_double_hash = hide_text_after_double_hash ? (byte)1 : (byte)0;
             float wrap_width = -1.0f;
-            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
+            Vector2 ret = ImGuiNative.igCalcTextSize(native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
             if (text_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text);
             }
-            return __retval;
+            return ret;
         }
 #endif
         public static Vector2 CalcTextSize(string text, bool hide_text_after_double_hash)
         {
-            Vector2 __retval;
             byte* native_text;
             int text_byteCount = 0;
             if (text != null)
@@ -2622,17 +2618,16 @@ namespace ImGuiNET
             else { native_text = null; }
             byte native_hide_text_after_double_hash = hide_text_after_double_hash ? (byte)1 : (byte)0;
             float wrap_width = -1.0f;
-            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
+            Vector2 ret = ImGuiNative.igCalcTextSize(native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
             if (text_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text);
             }
-            return __retval;
+            return ret;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static Vector2 CalcTextSize(ReadOnlySpan<char> text, bool hide_text_after_double_hash, float wrap_width)
         {
-            Vector2 __retval;
             byte* native_text;
             int text_byteCount = 0;
             if (text != null)
@@ -2652,17 +2647,16 @@ namespace ImGuiNET
             }
             else { native_text = null; }
             byte native_hide_text_after_double_hash = hide_text_after_double_hash ? (byte)1 : (byte)0;
-            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
+            Vector2 ret = ImGuiNative.igCalcTextSize(native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
             if (text_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text);
             }
-            return __retval;
+            return ret;
         }
 #endif
         public static Vector2 CalcTextSize(string text, bool hide_text_after_double_hash, float wrap_width)
         {
-            Vector2 __retval;
             byte* native_text;
             int text_byteCount = 0;
             if (text != null)
@@ -2682,12 +2676,12 @@ namespace ImGuiNET
             }
             else { native_text = null; }
             byte native_hide_text_after_double_hash = hide_text_after_double_hash ? (byte)1 : (byte)0;
-            ImGuiNative.igCalcTextSize(&__retval, native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
+            Vector2 ret = ImGuiNative.igCalcTextSize(native_text, native_text+text_byteCount, native_hide_text_after_double_hash, wrap_width);
             if (text_byteCount > Util.StackAllocationSizeLimit)
             {
                 Util.Free(native_text);
             }
-            return __retval;
+            return ret;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static bool Checkbox(ReadOnlySpan<char> label, ref bool v)
@@ -3326,9 +3320,8 @@ namespace ImGuiNET
         }
         public static Vector4 ColorConvertU32ToFloat4(uint @in)
         {
-            Vector4 __retval;
-            ImGuiNative.igColorConvertU32ToFloat4(&__retval, @in);
-            return __retval;
+            Vector4 ret = ImGuiNative.igColorConvertU32ToFloat4(@in);
+            return ret;
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         public static bool ColorEdit3(ReadOnlySpan<char> label, ref Vector3 col)
@@ -12827,9 +12820,9 @@ namespace ImGuiNET
         {
             ImGuiNative.igEndTooltip();
         }
-        public static ImGuiViewportPtr FindViewportByID(uint id)
+        public static ImGuiViewportPtr FindViewportByID(uint viewport_id)
         {
-            ImGuiViewport* ret = ImGuiNative.igFindViewportByID(id);
+            ImGuiViewport* ret = ImGuiNative.igFindViewportByID(viewport_id);
             return new ImGuiViewportPtr(ret);
         }
         public static ImGuiViewportPtr FindViewportByPlatformHandle(IntPtr platform_handle)
@@ -12929,9 +12922,8 @@ namespace ImGuiNET
         }
         public static Vector2 GetContentRegionAvail()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetContentRegionAvail(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetContentRegionAvail();
+            return ret;
         }
         public static IntPtr GetCurrentContext()
         {
@@ -12940,9 +12932,8 @@ namespace ImGuiNET
         }
         public static Vector2 GetCursorPos()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetCursorPos(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetCursorPos();
+            return ret;
         }
         public static float GetCursorPosX()
         {
@@ -12956,15 +12947,13 @@ namespace ImGuiNET
         }
         public static Vector2 GetCursorScreenPos()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetCursorScreenPos(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetCursorScreenPos();
+            return ret;
         }
         public static Vector2 GetCursorStartPos()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetCursorStartPos(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetCursorStartPos();
+            return ret;
         }
         public static ImGuiPayloadPtr GetDragDropPayload()
         {
@@ -12998,9 +12987,8 @@ namespace ImGuiNET
         }
         public static Vector2 GetFontTexUvWhitePixel()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetFontTexUvWhitePixel(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetFontTexUvWhitePixel();
+            return ret;
         }
         public static ImDrawListPtr GetForegroundDrawList()
         {
@@ -13113,21 +13101,18 @@ namespace ImGuiNET
         }
         public static Vector2 GetItemRectMax()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetItemRectMax(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetItemRectMax();
+            return ret;
         }
         public static Vector2 GetItemRectMin()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetItemRectMin(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetItemRectMin();
+            return ret;
         }
         public static Vector2 GetItemRectSize()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetItemRectSize(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetItemRectSize();
+            return ret;
         }
         public static string GetKeyName(ImGuiKey key)
         {
@@ -13156,36 +13141,31 @@ namespace ImGuiNET
         }
         public static Vector2 GetMouseDragDelta()
         {
-            Vector2 __retval;
             ImGuiMouseButton button = (ImGuiMouseButton)0;
             float lock_threshold = -1.0f;
-            ImGuiNative.igGetMouseDragDelta(&__retval, button, lock_threshold);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetMouseDragDelta(button, lock_threshold);
+            return ret;
         }
         public static Vector2 GetMouseDragDelta(ImGuiMouseButton button)
         {
-            Vector2 __retval;
             float lock_threshold = -1.0f;
-            ImGuiNative.igGetMouseDragDelta(&__retval, button, lock_threshold);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetMouseDragDelta(button, lock_threshold);
+            return ret;
         }
         public static Vector2 GetMouseDragDelta(ImGuiMouseButton button, float lock_threshold)
         {
-            Vector2 __retval;
-            ImGuiNative.igGetMouseDragDelta(&__retval, button, lock_threshold);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetMouseDragDelta(button, lock_threshold);
+            return ret;
         }
         public static Vector2 GetMousePos()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetMousePos(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetMousePos();
+            return ret;
         }
         public static Vector2 GetMousePosOnOpeningCurrentPopup()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetMousePosOnOpeningCurrentPopup(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetMousePosOnOpeningCurrentPopup();
+            return ret;
         }
         public static ImGuiPlatformIOPtr GetPlatformIO()
         {
@@ -13279,15 +13259,13 @@ namespace ImGuiNET
         }
         public static Vector2 GetWindowPos()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetWindowPos(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetWindowPos();
+            return ret;
         }
         public static Vector2 GetWindowSize()
         {
-            Vector2 __retval;
-            ImGuiNative.igGetWindowSize(&__retval);
-            return __retval;
+            Vector2 ret = ImGuiNative.igGetWindowSize();
+            return ret;
         }
         public static ImGuiViewportPtr GetWindowViewport()
         {

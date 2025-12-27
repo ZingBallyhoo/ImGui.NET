@@ -27,6 +27,7 @@ namespace ImGuiNET
         public byte ConfigNavCursorVisibleAuto;
         public byte ConfigNavCursorVisibleAlways;
         public byte ConfigDockingNoSplit;
+        public byte ConfigDockingNoDockingOver;
         public byte ConfigDockingWithShift;
         public byte ConfigDockingAlwaysTabBar;
         public byte ConfigDockingTransparentPayload;
@@ -34,6 +35,7 @@ namespace ImGuiNET
         public byte ConfigViewportsNoTaskBarIcon;
         public byte ConfigViewportsNoDecoration;
         public byte ConfigViewportsNoDefaultParent;
+        public byte ConfigViewportsPlatformFocusSetsImGuiFocus;
         public byte ConfigDpiScaleFonts;
         public byte ConfigDpiScaleViewports;
         public byte MouseDrawCursor;
@@ -308,6 +310,7 @@ namespace ImGuiNET
         public ref bool ConfigNavCursorVisibleAuto => ref Unsafe.AsRef<bool>(&NativePtr->ConfigNavCursorVisibleAuto);
         public ref bool ConfigNavCursorVisibleAlways => ref Unsafe.AsRef<bool>(&NativePtr->ConfigNavCursorVisibleAlways);
         public ref bool ConfigDockingNoSplit => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDockingNoSplit);
+        public ref bool ConfigDockingNoDockingOver => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDockingNoDockingOver);
         public ref bool ConfigDockingWithShift => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDockingWithShift);
         public ref bool ConfigDockingAlwaysTabBar => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDockingAlwaysTabBar);
         public ref bool ConfigDockingTransparentPayload => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDockingTransparentPayload);
@@ -315,6 +318,7 @@ namespace ImGuiNET
         public ref bool ConfigViewportsNoTaskBarIcon => ref Unsafe.AsRef<bool>(&NativePtr->ConfigViewportsNoTaskBarIcon);
         public ref bool ConfigViewportsNoDecoration => ref Unsafe.AsRef<bool>(&NativePtr->ConfigViewportsNoDecoration);
         public ref bool ConfigViewportsNoDefaultParent => ref Unsafe.AsRef<bool>(&NativePtr->ConfigViewportsNoDefaultParent);
+        public ref bool ConfigViewportsPlatformFocusSetsImGuiFocus => ref Unsafe.AsRef<bool>(&NativePtr->ConfigViewportsPlatformFocusSetsImGuiFocus);
         public ref bool ConfigDpiScaleFonts => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDpiScaleFonts);
         public ref bool ConfigDpiScaleViewports => ref Unsafe.AsRef<bool>(&NativePtr->ConfigDpiScaleViewports);
         public ref bool MouseDrawCursor => ref Unsafe.AsRef<bool>(&NativePtr->MouseDrawCursor);

@@ -58,10 +58,12 @@ namespace ImGuiNET
         TextSelectedBg = 53,
         TreeLines = 54,
         DragDropTarget = 55,
-        NavCursor = 56,
-        NavWindowingHighlight = 57,
-        NavWindowingDimBg = 58,
-        ModalWindowDimBg = 59,
-        COUNT = 60,
+        DragDropTargetBg = 56,
+        UnsavedMarker = 57,
+        NavCursor = 58,
+        NavWindowingHighlight = 59,
+        NavWindowingDimBg = 60,
+        ModalWindowDimBg = 61,
+        COUNT = 62,
     }
 }

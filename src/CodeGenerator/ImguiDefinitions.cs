@@ -15,7 +15,10 @@ namespace CodeGenerator
         public TypeDefinition[] Types;
         public FunctionDefinition[] Functions;
         public Dictionary<string, MethodVariant> Variants;
-        HashSet<string> _allowedInternalEnums = new HashSet<string>();
+        HashSet<string> _allowedInternalEnums = new HashSet<string>
+        {
+            "ImDrawTextFlags_",
+        };
         HashSet<string> _allowedInternalStructs = new HashSet<string>();
         HashSet<string> _allowedInternalFuncs = new HashSet<string>()
         {

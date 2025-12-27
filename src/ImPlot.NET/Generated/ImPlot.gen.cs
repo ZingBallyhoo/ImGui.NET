@@ -2326,10 +2326,10 @@ namespace ImPlotNET
             ImPlotDragToolFlags flags = (ImPlotDragToolFlags)0;
             byte* out_clicked = null;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x = &x)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, out_clicked, out_hovered, held);
+                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, out_clicked, out_hovered, out_held);
                 return ret != 0;
             }
         }
@@ -2338,10 +2338,10 @@ namespace ImPlotNET
             ImPlotDragToolFlags flags = (ImPlotDragToolFlags)0;
             byte* out_clicked = null;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x = &x)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, out_clicked, out_hovered, held);
+                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, out_clicked, out_hovered, out_held);
                 return ret != 0;
             }
         }
@@ -2349,10 +2349,10 @@ namespace ImPlotNET
         {
             byte* out_clicked = null;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x = &x)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, out_clicked, out_hovered, held);
+                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, out_clicked, out_hovered, out_held);
                 return ret != 0;
             }
         }
@@ -2361,10 +2361,10 @@ namespace ImPlotNET
             byte native_out_clicked_val = out_clicked ? (byte)1 : (byte)0;
             byte* native_out_clicked = &native_out_clicked_val;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x = &x)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, native_out_clicked, out_hovered, held);
+                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, native_out_clicked, out_hovered, out_held);
                 out_clicked = native_out_clicked_val != 0;
                 return ret != 0;
             }
@@ -2375,29 +2375,29 @@ namespace ImPlotNET
             byte* native_out_clicked = &native_out_clicked_val;
             byte native_out_hovered_val = out_hovered ? (byte)1 : (byte)0;
             byte* native_out_hovered = &native_out_hovered_val;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x = &x)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, native_out_clicked, native_out_hovered, held);
+                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, native_out_clicked, native_out_hovered, out_held);
                 out_clicked = native_out_clicked_val != 0;
                 out_hovered = native_out_hovered_val != 0;
                 return ret != 0;
             }
         }
-        public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool out_clicked, ref bool out_hovered, ref bool held)
+        public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool out_clicked, ref bool out_hovered, ref bool out_held)
         {
             byte native_out_clicked_val = out_clicked ? (byte)1 : (byte)0;
             byte* native_out_clicked = &native_out_clicked_val;
             byte native_out_hovered_val = out_hovered ? (byte)1 : (byte)0;
             byte* native_out_hovered = &native_out_hovered_val;
-            byte native_held_val = held ? (byte)1 : (byte)0;
-            byte* native_held = &native_held_val;
+            byte native_out_held_val = out_held ? (byte)1 : (byte)0;
+            byte* native_out_held = &native_out_held_val;
             fixed (double* native_x = &x)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, native_out_clicked, native_out_hovered, native_held);
+                byte ret = ImPlotNative.ImPlot_DragLineX(id, native_x, col, thickness, flags, native_out_clicked, native_out_hovered, native_out_held);
                 out_clicked = native_out_clicked_val != 0;
                 out_hovered = native_out_hovered_val != 0;
-                held = native_held_val != 0;
+                out_held = native_out_held_val != 0;
                 return ret != 0;
             }
         }
@@ -2407,10 +2407,10 @@ namespace ImPlotNET
             ImPlotDragToolFlags flags = (ImPlotDragToolFlags)0;
             byte* out_clicked = null;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_y = &y)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, out_clicked, out_hovered, held);
+                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, out_clicked, out_hovered, out_held);
                 return ret != 0;
             }
         }
@@ -2419,10 +2419,10 @@ namespace ImPlotNET
             ImPlotDragToolFlags flags = (ImPlotDragToolFlags)0;
             byte* out_clicked = null;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_y = &y)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, out_clicked, out_hovered, held);
+                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, out_clicked, out_hovered, out_held);
                 return ret != 0;
             }
         }
@@ -2430,10 +2430,10 @@ namespace ImPlotNET
         {
             byte* out_clicked = null;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_y = &y)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, out_clicked, out_hovered, held);
+                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, out_clicked, out_hovered, out_held);
                 return ret != 0;
             }
         }
@@ -2442,10 +2442,10 @@ namespace ImPlotNET
             byte native_out_clicked_val = out_clicked ? (byte)1 : (byte)0;
             byte* native_out_clicked = &native_out_clicked_val;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_y = &y)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, native_out_clicked, out_hovered, held);
+                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, native_out_clicked, out_hovered, out_held);
                 out_clicked = native_out_clicked_val != 0;
                 return ret != 0;
             }
@@ -2456,29 +2456,29 @@ namespace ImPlotNET
             byte* native_out_clicked = &native_out_clicked_val;
             byte native_out_hovered_val = out_hovered ? (byte)1 : (byte)0;
             byte* native_out_hovered = &native_out_hovered_val;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_y = &y)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, native_out_clicked, native_out_hovered, held);
+                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, native_out_clicked, native_out_hovered, out_held);
                 out_clicked = native_out_clicked_val != 0;
                 out_hovered = native_out_hovered_val != 0;
                 return ret != 0;
             }
         }
-        public static bool DragLineY(int id, ref double y, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool out_clicked, ref bool out_hovered, ref bool held)
+        public static bool DragLineY(int id, ref double y, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool out_clicked, ref bool out_hovered, ref bool out_held)
         {
             byte native_out_clicked_val = out_clicked ? (byte)1 : (byte)0;
             byte* native_out_clicked = &native_out_clicked_val;
             byte native_out_hovered_val = out_hovered ? (byte)1 : (byte)0;
             byte* native_out_hovered = &native_out_hovered_val;
-            byte native_held_val = held ? (byte)1 : (byte)0;
-            byte* native_held = &native_held_val;
+            byte native_out_held_val = out_held ? (byte)1 : (byte)0;
+            byte* native_out_held = &native_out_held_val;
             fixed (double* native_y = &y)
             {
-                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, native_out_clicked, native_out_hovered, native_held);
+                byte ret = ImPlotNative.ImPlot_DragLineY(id, native_y, col, thickness, flags, native_out_clicked, native_out_hovered, native_out_held);
                 out_clicked = native_out_clicked_val != 0;
                 out_hovered = native_out_hovered_val != 0;
-                held = native_held_val != 0;
+                out_held = native_out_held_val != 0;
                 return ret != 0;
             }
         }
@@ -2488,12 +2488,12 @@ namespace ImPlotNET
             ImPlotDragToolFlags flags = (ImPlotDragToolFlags)0;
             byte* out_clicked = null;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x = &x)
             {
                 fixed (double* native_y = &y)
                 {
-                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, out_clicked, out_hovered, held);
+                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, out_clicked, out_hovered, out_held);
                     return ret != 0;
                 }
             }
@@ -2503,12 +2503,12 @@ namespace ImPlotNET
             ImPlotDragToolFlags flags = (ImPlotDragToolFlags)0;
             byte* out_clicked = null;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x = &x)
             {
                 fixed (double* native_y = &y)
                 {
-                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, out_clicked, out_hovered, held);
+                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, out_clicked, out_hovered, out_held);
                     return ret != 0;
                 }
             }
@@ -2517,12 +2517,12 @@ namespace ImPlotNET
         {
             byte* out_clicked = null;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x = &x)
             {
                 fixed (double* native_y = &y)
                 {
-                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, out_clicked, out_hovered, held);
+                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, out_clicked, out_hovered, out_held);
                     return ret != 0;
                 }
             }
@@ -2532,12 +2532,12 @@ namespace ImPlotNET
             byte native_out_clicked_val = out_clicked ? (byte)1 : (byte)0;
             byte* native_out_clicked = &native_out_clicked_val;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x = &x)
             {
                 fixed (double* native_y = &y)
                 {
-                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, native_out_clicked, out_hovered, held);
+                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, native_out_clicked, out_hovered, out_held);
                     out_clicked = native_out_clicked_val != 0;
                     return ret != 0;
                 }
@@ -2549,34 +2549,34 @@ namespace ImPlotNET
             byte* native_out_clicked = &native_out_clicked_val;
             byte native_out_hovered_val = out_hovered ? (byte)1 : (byte)0;
             byte* native_out_hovered = &native_out_hovered_val;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x = &x)
             {
                 fixed (double* native_y = &y)
                 {
-                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, native_out_clicked, native_out_hovered, held);
+                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, native_out_clicked, native_out_hovered, out_held);
                     out_clicked = native_out_clicked_val != 0;
                     out_hovered = native_out_hovered_val != 0;
                     return ret != 0;
                 }
             }
         }
-        public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool out_clicked, ref bool out_hovered, ref bool held)
+        public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool out_clicked, ref bool out_hovered, ref bool out_held)
         {
             byte native_out_clicked_val = out_clicked ? (byte)1 : (byte)0;
             byte* native_out_clicked = &native_out_clicked_val;
             byte native_out_hovered_val = out_hovered ? (byte)1 : (byte)0;
             byte* native_out_hovered = &native_out_hovered_val;
-            byte native_held_val = held ? (byte)1 : (byte)0;
-            byte* native_held = &native_held_val;
+            byte native_out_held_val = out_held ? (byte)1 : (byte)0;
+            byte* native_out_held = &native_out_held_val;
             fixed (double* native_x = &x)
             {
                 fixed (double* native_y = &y)
                 {
-                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, native_out_clicked, native_out_hovered, native_held);
+                    byte ret = ImPlotNative.ImPlot_DragPoint(id, native_x, native_y, col, size, flags, native_out_clicked, native_out_hovered, native_out_held);
                     out_clicked = native_out_clicked_val != 0;
                     out_hovered = native_out_hovered_val != 0;
-                    held = native_held_val != 0;
+                    out_held = native_out_held_val != 0;
                     return ret != 0;
                 }
             }
@@ -2586,7 +2586,7 @@ namespace ImPlotNET
             ImPlotDragToolFlags flags = (ImPlotDragToolFlags)0;
             byte* out_clicked = null;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x1 = &x1)
             {
                 fixed (double* native_y1 = &y1)
@@ -2595,7 +2595,7 @@ namespace ImPlotNET
                     {
                         fixed (double* native_y2 = &y2)
                         {
-                            byte ret = ImPlotNative.ImPlot_DragRect(id, native_x1, native_y1, native_x2, native_y2, col, flags, out_clicked, out_hovered, held);
+                            byte ret = ImPlotNative.ImPlot_DragRect(id, native_x1, native_y1, native_x2, native_y2, col, flags, out_clicked, out_hovered, out_held);
                             return ret != 0;
                         }
                     }
@@ -2606,7 +2606,7 @@ namespace ImPlotNET
         {
             byte* out_clicked = null;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x1 = &x1)
             {
                 fixed (double* native_y1 = &y1)
@@ -2615,7 +2615,7 @@ namespace ImPlotNET
                     {
                         fixed (double* native_y2 = &y2)
                         {
-                            byte ret = ImPlotNative.ImPlot_DragRect(id, native_x1, native_y1, native_x2, native_y2, col, flags, out_clicked, out_hovered, held);
+                            byte ret = ImPlotNative.ImPlot_DragRect(id, native_x1, native_y1, native_x2, native_y2, col, flags, out_clicked, out_hovered, out_held);
                             return ret != 0;
                         }
                     }
@@ -2627,7 +2627,7 @@ namespace ImPlotNET
             byte native_out_clicked_val = out_clicked ? (byte)1 : (byte)0;
             byte* native_out_clicked = &native_out_clicked_val;
             byte* out_hovered = null;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x1 = &x1)
             {
                 fixed (double* native_y1 = &y1)
@@ -2636,7 +2636,7 @@ namespace ImPlotNET
                     {
                         fixed (double* native_y2 = &y2)
                         {
-                            byte ret = ImPlotNative.ImPlot_DragRect(id, native_x1, native_y1, native_x2, native_y2, col, flags, native_out_clicked, out_hovered, held);
+                            byte ret = ImPlotNative.ImPlot_DragRect(id, native_x1, native_y1, native_x2, native_y2, col, flags, native_out_clicked, out_hovered, out_held);
                             out_clicked = native_out_clicked_val != 0;
                             return ret != 0;
                         }
@@ -2650,7 +2650,7 @@ namespace ImPlotNET
             byte* native_out_clicked = &native_out_clicked_val;
             byte native_out_hovered_val = out_hovered ? (byte)1 : (byte)0;
             byte* native_out_hovered = &native_out_hovered_val;
-            byte* held = null;
+            byte* out_held = null;
             fixed (double* native_x1 = &x1)
             {
                 fixed (double* native_y1 = &y1)
@@ -2659,7 +2659,7 @@ namespace ImPlotNET
                     {
                         fixed (double* native_y2 = &y2)
                         {
-                            byte ret = ImPlotNative.ImPlot_DragRect(id, native_x1, native_y1, native_x2, native_y2, col, flags, native_out_clicked, native_out_hovered, held);
+                            byte ret = ImPlotNative.ImPlot_DragRect(id, native_x1, native_y1, native_x2, native_y2, col, flags, native_out_clicked, native_out_hovered, out_held);
                             out_clicked = native_out_clicked_val != 0;
                             out_hovered = native_out_hovered_val != 0;
                             return ret != 0;
@@ -2668,14 +2668,14 @@ namespace ImPlotNET
                 }
             }
         }
-        public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool out_clicked, ref bool out_hovered, ref bool held)
+        public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool out_clicked, ref bool out_hovered, ref bool out_held)
         {
             byte native_out_clicked_val = out_clicked ? (byte)1 : (byte)0;
             byte* native_out_clicked = &native_out_clicked_val;
             byte native_out_hovered_val = out_hovered ? (byte)1 : (byte)0;
             byte* native_out_hovered = &native_out_hovered_val;
-            byte native_held_val = held ? (byte)1 : (byte)0;
-            byte* native_held = &native_held_val;
+            byte native_out_held_val = out_held ? (byte)1 : (byte)0;
+            byte* native_out_held = &native_out_held_val;
             fixed (double* native_x1 = &x1)
             {
                 fixed (double* native_y1 = &y1)
@@ -2684,10 +2684,10 @@ namespace ImPlotNET
                     {
                         fixed (double* native_y2 = &y2)
                         {
-                            byte ret = ImPlotNative.ImPlot_DragRect(id, native_x1, native_y1, native_x2, native_y2, col, flags, native_out_clicked, native_out_hovered, native_held);
+                            byte ret = ImPlotNative.ImPlot_DragRect(id, native_x1, native_y1, native_x2, native_y2, col, flags, native_out_clicked, native_out_hovered, native_out_held);
                             out_clicked = native_out_clicked_val != 0;
                             out_hovered = native_out_hovered_val != 0;
-                            held = native_held_val != 0;
+                            out_held = native_out_held_val != 0;
                             return ret != 0;
                         }
                     }
@@ -2720,16 +2720,14 @@ namespace ImPlotNET
         }
         public static Vector4 GetColormapColor(int idx)
         {
-            Vector4 __retval;
             ImPlotColormap cmap = (ImPlotColormap)(-1);
-            ImPlotNative.ImPlot_GetColormapColor(&__retval, idx, cmap);
-            return __retval;
+            Vector4 ret = ImPlotNative.ImPlot_GetColormapColor(idx, cmap);
+            return ret;
         }
         public static Vector4 GetColormapColor(int idx, ImPlotColormap cmap)
         {
-            Vector4 __retval;
-            ImPlotNative.ImPlot_GetColormapColor(&__retval, idx, cmap);
-            return __retval;
+            Vector4 ret = ImPlotNative.ImPlot_GetColormapColor(idx, cmap);
+            return ret;
         }
         public static int GetColormapCount()
         {
@@ -2820,9 +2818,8 @@ namespace ImPlotNET
         }
         public static Vector4 GetLastItemColor()
         {
-            Vector4 __retval;
-            ImPlotNative.ImPlot_GetLastItemColor(&__retval);
-            return __retval;
+            Vector4 ret = ImPlotNative.ImPlot_GetLastItemColor();
+            return ret;
         }
         public static string GetMarkerName(ImPlotMarker idx)
         {
@@ -2836,78 +2833,67 @@ namespace ImPlotNET
         }
         public static ImPlotRect GetPlotLimits()
         {
-            ImPlotRect __retval;
             ImAxis x_axis = (ImAxis)(-1);
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_GetPlotLimits(&__retval, x_axis, y_axis);
-            return __retval;
+            ImPlotRect ret = ImPlotNative.ImPlot_GetPlotLimits(x_axis, y_axis);
+            return ret;
         }
         public static ImPlotRect GetPlotLimits(ImAxis x_axis)
         {
-            ImPlotRect __retval;
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_GetPlotLimits(&__retval, x_axis, y_axis);
-            return __retval;
+            ImPlotRect ret = ImPlotNative.ImPlot_GetPlotLimits(x_axis, y_axis);
+            return ret;
         }
         public static ImPlotRect GetPlotLimits(ImAxis x_axis, ImAxis y_axis)
         {
-            ImPlotRect __retval;
-            ImPlotNative.ImPlot_GetPlotLimits(&__retval, x_axis, y_axis);
-            return __retval;
+            ImPlotRect ret = ImPlotNative.ImPlot_GetPlotLimits(x_axis, y_axis);
+            return ret;
         }
         public static ImPlotPoint GetPlotMousePos()
         {
-            ImPlotPoint __retval;
             ImAxis x_axis = (ImAxis)(-1);
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_GetPlotMousePos(&__retval, x_axis, y_axis);
-            return __retval;
+            ImPlotPoint ret = ImPlotNative.ImPlot_GetPlotMousePos(x_axis, y_axis);
+            return ret;
         }
         public static ImPlotPoint GetPlotMousePos(ImAxis x_axis)
         {
-            ImPlotPoint __retval;
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_GetPlotMousePos(&__retval, x_axis, y_axis);
-            return __retval;
+            ImPlotPoint ret = ImPlotNative.ImPlot_GetPlotMousePos(x_axis, y_axis);
+            return ret;
         }
         public static ImPlotPoint GetPlotMousePos(ImAxis x_axis, ImAxis y_axis)
         {
-            ImPlotPoint __retval;
-            ImPlotNative.ImPlot_GetPlotMousePos(&__retval, x_axis, y_axis);
-            return __retval;
+            ImPlotPoint ret = ImPlotNative.ImPlot_GetPlotMousePos(x_axis, y_axis);
+            return ret;
         }
         public static Vector2 GetPlotPos()
         {
-            Vector2 __retval;
-            ImPlotNative.ImPlot_GetPlotPos(&__retval);
-            return __retval;
+            Vector2 ret = ImPlotNative.ImPlot_GetPlotPos();
+            return ret;
         }
         public static ImPlotRect GetPlotSelection()
         {
-            ImPlotRect __retval;
             ImAxis x_axis = (ImAxis)(-1);
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_GetPlotSelection(&__retval, x_axis, y_axis);
-            return __retval;
+            ImPlotRect ret = ImPlotNative.ImPlot_GetPlotSelection(x_axis, y_axis);
+            return ret;
         }
         public static ImPlotRect GetPlotSelection(ImAxis x_axis)
         {
-            ImPlotRect __retval;
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_GetPlotSelection(&__retval, x_axis, y_axis);
-            return __retval;
+            ImPlotRect ret = ImPlotNative.ImPlot_GetPlotSelection(x_axis, y_axis);
+            return ret;
         }
         public static ImPlotRect GetPlotSelection(ImAxis x_axis, ImAxis y_axis)
         {
-            ImPlotRect __retval;
-            ImPlotNative.ImPlot_GetPlotSelection(&__retval, x_axis, y_axis);
-            return __retval;
+            ImPlotRect ret = ImPlotNative.ImPlot_GetPlotSelection(x_axis, y_axis);
+            return ret;
         }
         public static Vector2 GetPlotSize()
         {
-            Vector2 __retval;
-            ImPlotNative.ImPlot_GetPlotSize(&__retval);
-            return __retval;
+            Vector2 ret = ImPlotNative.ImPlot_GetPlotSize();
+            return ret;
         }
         public static ImPlotStylePtr GetStyle()
         {
@@ -3042,51 +3028,44 @@ namespace ImPlotNET
         }
         public static Vector4 NextColormapColor()
         {
-            Vector4 __retval;
-            ImPlotNative.ImPlot_NextColormapColor(&__retval);
-            return __retval;
+            Vector4 ret = ImPlotNative.ImPlot_NextColormapColor();
+            return ret;
         }
         public static ImPlotPoint PixelsToPlot(Vector2 pix)
         {
-            ImPlotPoint __retval;
             ImAxis x_axis = (ImAxis)(-1);
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_PixelsToPlot_Vec2(&__retval, pix, x_axis, y_axis);
-            return __retval;
+            ImPlotPoint ret = ImPlotNative.ImPlot_PixelsToPlot_Vec2(pix, x_axis, y_axis);
+            return ret;
         }
         public static ImPlotPoint PixelsToPlot(Vector2 pix, ImAxis x_axis)
         {
-            ImPlotPoint __retval;
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_PixelsToPlot_Vec2(&__retval, pix, x_axis, y_axis);
-            return __retval;
+            ImPlotPoint ret = ImPlotNative.ImPlot_PixelsToPlot_Vec2(pix, x_axis, y_axis);
+            return ret;
         }
         public static ImPlotPoint PixelsToPlot(Vector2 pix, ImAxis x_axis, ImAxis y_axis)
         {
-            ImPlotPoint __retval;
-            ImPlotNative.ImPlot_PixelsToPlot_Vec2(&__retval, pix, x_axis, y_axis);
-            return __retval;
+            ImPlotPoint ret = ImPlotNative.ImPlot_PixelsToPlot_Vec2(pix, x_axis, y_axis);
+            return ret;
         }
         public static ImPlotPoint PixelsToPlot(float x, float y)
         {
-            ImPlotPoint __retval;
             ImAxis x_axis = (ImAxis)(-1);
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_PixelsToPlot_Float(&__retval, x, y, x_axis, y_axis);
-            return __retval;
+            ImPlotPoint ret = ImPlotNative.ImPlot_PixelsToPlot_Float(x, y, x_axis, y_axis);
+            return ret;
         }
         public static ImPlotPoint PixelsToPlot(float x, float y, ImAxis x_axis)
         {
-            ImPlotPoint __retval;
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_PixelsToPlot_Float(&__retval, x, y, x_axis, y_axis);
-            return __retval;
+            ImPlotPoint ret = ImPlotNative.ImPlot_PixelsToPlot_Float(x, y, x_axis, y_axis);
+            return ret;
         }
         public static ImPlotPoint PixelsToPlot(float x, float y, ImAxis x_axis, ImAxis y_axis)
         {
-            ImPlotPoint __retval;
-            ImPlotNative.ImPlot_PixelsToPlot_Float(&__retval, x, y, x_axis, y_axis);
-            return __retval;
+            ImPlotPoint ret = ImPlotNative.ImPlot_PixelsToPlot_Float(x, y, x_axis, y_axis);
+            return ret;
         }
         public static void PlotBarGroups(string[] label_ids, ref float values, int item_count, int group_count)
         {
@@ -82336,45 +82315,39 @@ namespace ImPlotNET
         }
         public static Vector2 PlotToPixels(ImPlotPoint plt)
         {
-            Vector2 __retval;
             ImAxis x_axis = (ImAxis)(-1);
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_PlotToPixels_PlotPoInt(&__retval, plt, x_axis, y_axis);
-            return __retval;
+            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_PlotPoInt(plt, x_axis, y_axis);
+            return ret;
         }
         public static Vector2 PlotToPixels(ImPlotPoint plt, ImAxis x_axis)
         {
-            Vector2 __retval;
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_PlotToPixels_PlotPoInt(&__retval, plt, x_axis, y_axis);
-            return __retval;
+            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_PlotPoInt(plt, x_axis, y_axis);
+            return ret;
         }
         public static Vector2 PlotToPixels(ImPlotPoint plt, ImAxis x_axis, ImAxis y_axis)
         {
-            Vector2 __retval;
-            ImPlotNative.ImPlot_PlotToPixels_PlotPoInt(&__retval, plt, x_axis, y_axis);
-            return __retval;
+            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_PlotPoInt(plt, x_axis, y_axis);
+            return ret;
         }
         public static Vector2 PlotToPixels(double x, double y)
         {
-            Vector2 __retval;
             ImAxis x_axis = (ImAxis)(-1);
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_PlotToPixels_double(&__retval, x, y, x_axis, y_axis);
-            return __retval;
+            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_double(x, y, x_axis, y_axis);
+            return ret;
         }
         public static Vector2 PlotToPixels(double x, double y, ImAxis x_axis)
         {
-            Vector2 __retval;
             ImAxis y_axis = (ImAxis)(-1);
-            ImPlotNative.ImPlot_PlotToPixels_double(&__retval, x, y, x_axis, y_axis);
-            return __retval;
+            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_double(x, y, x_axis, y_axis);
+            return ret;
         }
         public static Vector2 PlotToPixels(double x, double y, ImAxis x_axis, ImAxis y_axis)
         {
-            Vector2 __retval;
-            ImPlotNative.ImPlot_PlotToPixels_double(&__retval, x, y, x_axis, y_axis);
-            return __retval;
+            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_double(x, y, x_axis, y_axis);
+            return ret;
         }
         public static void PopColormap()
         {
@@ -82496,16 +82469,14 @@ namespace ImPlotNET
         }
         public static Vector4 SampleColormap(float t)
         {
-            Vector4 __retval;
             ImPlotColormap cmap = (ImPlotColormap)(-1);
-            ImPlotNative.ImPlot_SampleColormap(&__retval, t, cmap);
-            return __retval;
+            Vector4 ret = ImPlotNative.ImPlot_SampleColormap(t, cmap);
+            return ret;
         }
         public static Vector4 SampleColormap(float t, ImPlotColormap cmap)
         {
-            Vector4 __retval;
-            ImPlotNative.ImPlot_SampleColormap(&__retval, t, cmap);
-            return __retval;
+            Vector4 ret = ImPlotNative.ImPlot_SampleColormap(t, cmap);
+            return ret;
         }
         public static void SetAxes(ImAxis x_axis, ImAxis y_axis)
         {

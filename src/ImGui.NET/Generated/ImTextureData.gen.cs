@@ -87,9 +87,8 @@ namespace ImGuiNET
         }
         public ImTextureRef GetTexRef()
         {
-            ImTextureRef __retval;
-            ImGuiNative.ImTextureData_GetTexRef(&__retval, (ImTextureData*)(NativePtr));
-            return __retval;
+            ImTextureRef ret = ImGuiNative.ImTextureData_GetTexRef((ImTextureData*)(NativePtr));
+            return ret;
         }
         public void SetStatus(ImTextureStatus status)
         {

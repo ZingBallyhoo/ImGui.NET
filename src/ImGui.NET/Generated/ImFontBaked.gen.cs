@@ -18,10 +18,11 @@ namespace ImGuiNET
         public float Descent;
         public uint MetricsTotalSurface;
         public uint WantDestroy;
-        public uint LockLoadingFallback;
+        public uint LoadNoFallback;
+        public uint LoadNoRenderOnLayout;
         public int LastUsedFrame;
         public uint BakedId;
-        public ImFont* ContainerFont;
+        public ImFont* OwnerFont;
         public void* FontLoaderDatas;
     }
     public unsafe partial struct ImFontBakedPtr
@@ -43,10 +44,11 @@ namespace ImGuiNET
         public ref float Descent => ref Unsafe.AsRef<float>(&NativePtr->Descent);
         public ref uint MetricsTotalSurface => ref Unsafe.AsRef<uint>(&NativePtr->MetricsTotalSurface);
         public ref uint WantDestroy => ref Unsafe.AsRef<uint>(&NativePtr->WantDestroy);
-        public ref uint LockLoadingFallback => ref Unsafe.AsRef<uint>(&NativePtr->LockLoadingFallback);
+        public ref uint LoadNoFallback => ref Unsafe.AsRef<uint>(&NativePtr->LoadNoFallback);
+        public ref uint LoadNoRenderOnLayout => ref Unsafe.AsRef<uint>(&NativePtr->LoadNoRenderOnLayout);
         public ref int LastUsedFrame => ref Unsafe.AsRef<int>(&NativePtr->LastUsedFrame);
         public ref uint BakedId => ref Unsafe.AsRef<uint>(&NativePtr->BakedId);
-        public ImFontPtr ContainerFont => new ImFontPtr(NativePtr->ContainerFont);
+        public ImFontPtr OwnerFont => new ImFontPtr(NativePtr->OwnerFont);
         public IntPtr FontLoaderDatas { get => (IntPtr)NativePtr->FontLoaderDatas; set => NativePtr->FontLoaderDatas = (void*)value; }
         public void ClearOutputData()
         {

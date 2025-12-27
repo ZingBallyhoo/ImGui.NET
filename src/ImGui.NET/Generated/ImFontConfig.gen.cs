@@ -14,9 +14,9 @@ namespace ImGuiNET
         public byte MergeMode;
         public byte PixelSnapH;
         public byte PixelSnapV;
-        public sbyte FontNo;
         public sbyte OversampleH;
         public sbyte OversampleV;
+        public ushort EllipsisChar;
         public float SizePixels;
         public ushort* GlyphRanges;
         public ushort* GlyphExcludeRanges;
@@ -24,10 +24,10 @@ namespace ImGuiNET
         public float GlyphMinAdvanceX;
         public float GlyphMaxAdvanceX;
         public float GlyphExtraAdvanceX;
+        public uint FontNo;
         public uint FontLoaderFlags;
         public float RasterizerMultiply;
         public float RasterizerDensity;
-        public ushort EllipsisChar;
         public ImFontFlags Flags;
         public ImFont* DstFont;
         public IntPtr FontLoader;
@@ -48,9 +48,9 @@ namespace ImGuiNET
         public ref bool MergeMode => ref Unsafe.AsRef<bool>(&NativePtr->MergeMode);
         public ref bool PixelSnapH => ref Unsafe.AsRef<bool>(&NativePtr->PixelSnapH);
         public ref bool PixelSnapV => ref Unsafe.AsRef<bool>(&NativePtr->PixelSnapV);
-        public ref sbyte FontNo => ref Unsafe.AsRef<sbyte>(&NativePtr->FontNo);
         public ref sbyte OversampleH => ref Unsafe.AsRef<sbyte>(&NativePtr->OversampleH);
         public ref sbyte OversampleV => ref Unsafe.AsRef<sbyte>(&NativePtr->OversampleV);
+        public ref ushort EllipsisChar => ref Unsafe.AsRef<ushort>(&NativePtr->EllipsisChar);
         public ref float SizePixels => ref Unsafe.AsRef<float>(&NativePtr->SizePixels);
         public IntPtr GlyphRanges { get => (IntPtr)NativePtr->GlyphRanges; set => NativePtr->GlyphRanges = (ushort*)value; }
         public IntPtr GlyphExcludeRanges { get => (IntPtr)NativePtr->GlyphExcludeRanges; set => NativePtr->GlyphExcludeRanges = (ushort*)value; }
@@ -58,10 +58,10 @@ namespace ImGuiNET
         public ref float GlyphMinAdvanceX => ref Unsafe.AsRef<float>(&NativePtr->GlyphMinAdvanceX);
         public ref float GlyphMaxAdvanceX => ref Unsafe.AsRef<float>(&NativePtr->GlyphMaxAdvanceX);
         public ref float GlyphExtraAdvanceX => ref Unsafe.AsRef<float>(&NativePtr->GlyphExtraAdvanceX);
+        public ref uint FontNo => ref Unsafe.AsRef<uint>(&NativePtr->FontNo);
         public ref uint FontLoaderFlags => ref Unsafe.AsRef<uint>(&NativePtr->FontLoaderFlags);
         public ref float RasterizerMultiply => ref Unsafe.AsRef<float>(&NativePtr->RasterizerMultiply);
         public ref float RasterizerDensity => ref Unsafe.AsRef<float>(&NativePtr->RasterizerDensity);
-        public ref ushort EllipsisChar => ref Unsafe.AsRef<ushort>(&NativePtr->EllipsisChar);
         public ref ImFontFlags Flags => ref Unsafe.AsRef<ImFontFlags>(&NativePtr->Flags);
         public ImFontPtr DstFont => new ImFontPtr(NativePtr->DstFont);
         public ref IntPtr FontLoader => ref Unsafe.AsRef<IntPtr>(&NativePtr->FontLoader);
