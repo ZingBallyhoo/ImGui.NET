@@ -1241,7 +1241,7 @@ namespace ImGuiNET
         public static bool BeginPopupContextItem()
         {
             byte* native_str_id = null;
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             byte ret = ImGuiNative.igBeginPopupContextItem(native_str_id, popup_flags);
             return ret != 0;
         }
@@ -1266,7 +1266,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             byte ret = ImGuiNative.igBeginPopupContextItem(native_str_id, popup_flags);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
@@ -1295,7 +1295,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             byte ret = ImGuiNative.igBeginPopupContextItem(native_str_id, popup_flags);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
@@ -1362,7 +1362,7 @@ namespace ImGuiNET
         public static bool BeginPopupContextVoid()
         {
             byte* native_str_id = null;
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             byte ret = ImGuiNative.igBeginPopupContextVoid(native_str_id, popup_flags);
             return ret != 0;
         }
@@ -1387,7 +1387,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             byte ret = ImGuiNative.igBeginPopupContextVoid(native_str_id, popup_flags);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
@@ -1416,7 +1416,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             byte ret = ImGuiNative.igBeginPopupContextVoid(native_str_id, popup_flags);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
@@ -1483,7 +1483,7 @@ namespace ImGuiNET
         public static bool BeginPopupContextWindow()
         {
             byte* native_str_id = null;
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             byte ret = ImGuiNative.igBeginPopupContextWindow(native_str_id, popup_flags);
             return ret != 0;
         }
@@ -1508,7 +1508,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             byte ret = ImGuiNative.igBeginPopupContextWindow(native_str_id, popup_flags);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
@@ -1537,7 +1537,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             byte ret = ImGuiNative.igBeginPopupContextWindow(native_str_id, popup_flags);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
@@ -13094,6 +13094,11 @@ namespace ImGuiNET
             ImGuiIO* ret = ImGuiNative.igGetIO_Nil();
             return new ImGuiIOPtr(ret);
         }
+        public static ImGuiItemFlags GetItemFlags()
+        {
+            ImGuiItemFlags ret = ImGuiNative.igGetItemFlags();
+            return ret;
+        }
         public static uint GetItemID()
         {
             uint ret = ImGuiNative.igGetItemID();
@@ -18892,7 +18897,7 @@ namespace ImGuiNET
         public static void OpenPopupOnItemClick()
         {
             byte* native_str_id = null;
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             ImGuiNative.igOpenPopupOnItemClick(native_str_id, popup_flags);
         }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
@@ -18916,7 +18921,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             ImGuiNative.igOpenPopupOnItemClick(native_str_id, popup_flags);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
@@ -18944,7 +18949,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)1;
+            ImGuiPopupFlags popup_flags = (ImGuiPopupFlags)0;
             ImGuiNative.igOpenPopupOnItemClick(native_str_id, popup_flags);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {

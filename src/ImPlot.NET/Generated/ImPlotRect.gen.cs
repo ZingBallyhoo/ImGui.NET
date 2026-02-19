@@ -23,7 +23,7 @@ namespace ImPlotNET
         public ref ImPlotRange Y => ref Unsafe.AsRef<ImPlotRange>(&NativePtr->Y);
         public ImPlotPoint Clamp(ImPlotPoint p)
         {
-            ImPlotPoint ret = ImPlotNative.ImPlotRect_Clamp_PlotPoInt((ImPlotRect*)(NativePtr), p);
+            ImPlotPoint ret = ImPlotNative.ImPlotRect_Clamp_PlotPoint((ImPlotRect*)(NativePtr), p);
             return ret;
         }
         public ImPlotPoint Clamp(double x, double y)
@@ -33,7 +33,7 @@ namespace ImPlotNET
         }
         public bool Contains(ImPlotPoint p)
         {
-            byte ret = ImPlotNative.ImPlotRect_Contains_PlotPoInt((ImPlotRect*)(NativePtr), p);
+            byte ret = ImPlotNative.ImPlotRect_Contains_PlotPoint((ImPlotRect*)(NativePtr), p);
             return ret != 0;
         }
         public bool Contains(double x, double y)

@@ -82317,18 +82317,18 @@ namespace ImPlotNET
         {
             ImAxis x_axis = (ImAxis)(-1);
             ImAxis y_axis = (ImAxis)(-1);
-            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_PlotPoInt(plt, x_axis, y_axis);
+            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_PlotPoint(plt, x_axis, y_axis);
             return ret;
         }
         public static Vector2 PlotToPixels(ImPlotPoint plt, ImAxis x_axis)
         {
             ImAxis y_axis = (ImAxis)(-1);
-            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_PlotPoInt(plt, x_axis, y_axis);
+            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_PlotPoint(plt, x_axis, y_axis);
             return ret;
         }
         public static Vector2 PlotToPixels(ImPlotPoint plt, ImAxis x_axis, ImAxis y_axis)
         {
-            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_PlotPoInt(plt, x_axis, y_axis);
+            Vector2 ret = ImPlotNative.ImPlot_PlotToPixels_PlotPoint(plt, x_axis, y_axis);
             return ret;
         }
         public static Vector2 PlotToPixels(double x, double y)

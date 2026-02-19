@@ -40,7 +40,7 @@ namespace imnodesNET
         [DllImport("cimnodes", CallingConvention = CallingConvention.Cdecl)]
         public static extern void imnodes_EditorContextFree(ImNodesEditorContext* noname1);
         [DllImport("cimnodes", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void imnodes_EditorContextGetPanning(Vector2* pOut);
+        public static extern Vector2 imnodes_EditorContextGetPanning();
         [DllImport("cimnodes", CallingConvention = CallingConvention.Cdecl)]
         public static extern void imnodes_EditorContextMoveToNode(int node_id);
         [DllImport("cimnodes", CallingConvention = CallingConvention.Cdecl)]
@@ -64,13 +64,13 @@ namespace imnodesNET
         [DllImport("cimnodes", CallingConvention = CallingConvention.Cdecl)]
         public static extern ImNodesIO* imnodes_GetIO();
         [DllImport("cimnodes", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void imnodes_GetNodeDimensions(Vector2* pOut, int id);
+        public static extern Vector2 imnodes_GetNodeDimensions(int id);
         [DllImport("cimnodes", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void imnodes_GetNodeEditorSpacePos(Vector2* pOut, int node_id);
+        public static extern Vector2 imnodes_GetNodeEditorSpacePos(int node_id);
         [DllImport("cimnodes", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void imnodes_GetNodeGridSpacePos(Vector2* pOut, int node_id);
+        public static extern Vector2 imnodes_GetNodeGridSpacePos(int node_id);
         [DllImport("cimnodes", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void imnodes_GetNodeScreenSpacePos(Vector2* pOut, int node_id);
+        public static extern Vector2 imnodes_GetNodeScreenSpacePos(int node_id);
         [DllImport("cimnodes", CallingConvention = CallingConvention.Cdecl)]
         public static extern void imnodes_GetSelectedLinks(int* link_ids);
         [DllImport("cimnodes", CallingConvention = CallingConvention.Cdecl)]

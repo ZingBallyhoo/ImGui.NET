@@ -610,7 +610,7 @@ namespace ImPlotNET
         [DllImport("cimplot", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ImPlot_PlotText(byte* text, double x, double y, Vector2 pix_offset, ImPlotTextFlags flags);
         [DllImport("cimplot", CallingConvention = CallingConvention.Cdecl)]
-        public static extern Vector2 ImPlot_PlotToPixels_PlotPoInt(ImPlotPoint plt, ImAxis x_axis, ImAxis y_axis);
+        public static extern Vector2 ImPlot_PlotToPixels_PlotPoint(ImPlotPoint plt, ImAxis x_axis, ImAxis y_axis);
         [DllImport("cimplot", CallingConvention = CallingConvention.Cdecl)]
         public static extern Vector2 ImPlot_PlotToPixels_double(double x, double y, ImAxis x_axis, ImAxis y_axis);
         [DllImport("cimplot", CallingConvention = CallingConvention.Cdecl)]
@@ -752,11 +752,11 @@ namespace ImPlotNET
         [DllImport("cimplot", CallingConvention = CallingConvention.Cdecl)]
         public static extern double ImPlotRange_Size(ImPlotRange* self);
         [DllImport("cimplot", CallingConvention = CallingConvention.Cdecl)]
-        public static extern ImPlotPoint ImPlotRect_Clamp_PlotPoInt(ImPlotRect* self, ImPlotPoint p);
+        public static extern ImPlotPoint ImPlotRect_Clamp_PlotPoint(ImPlotRect* self, ImPlotPoint p);
         [DllImport("cimplot", CallingConvention = CallingConvention.Cdecl)]
         public static extern ImPlotPoint ImPlotRect_Clamp_double(ImPlotRect* self, double x, double y);
         [DllImport("cimplot", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ImPlotRect_Contains_PlotPoInt(ImPlotRect* self, ImPlotPoint p);
+        public static extern byte ImPlotRect_Contains_PlotPoint(ImPlotRect* self, ImPlotPoint p);
         [DllImport("cimplot", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ImPlotRect_Contains_double(ImPlotRect* self, double x, double y);
         [DllImport("cimplot", CallingConvention = CallingConvention.Cdecl)]

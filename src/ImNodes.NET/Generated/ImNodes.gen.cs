@@ -85,9 +85,8 @@ namespace imnodesNET
         }
         public static Vector2 EditorContextGetPanning()
         {
-            Vector2 __retval;
-            imnodesNative.imnodes_EditorContextGetPanning(&__retval);
-            return __retval;
+            Vector2 ret = imnodesNative.imnodes_EditorContextGetPanning();
+            return ret;
         }
         public static void EditorContextMoveToNode(int node_id)
         {
@@ -138,27 +137,23 @@ namespace imnodesNET
         }
         public static Vector2 GetNodeDimensions(int id)
         {
-            Vector2 __retval;
-            imnodesNative.imnodes_GetNodeDimensions(&__retval, id);
-            return __retval;
+            Vector2 ret = imnodesNative.imnodes_GetNodeDimensions(id);
+            return ret;
         }
         public static Vector2 GetNodeEditorSpacePos(int node_id)
         {
-            Vector2 __retval;
-            imnodesNative.imnodes_GetNodeEditorSpacePos(&__retval, node_id);
-            return __retval;
+            Vector2 ret = imnodesNative.imnodes_GetNodeEditorSpacePos(node_id);
+            return ret;
         }
         public static Vector2 GetNodeGridSpacePos(int node_id)
         {
-            Vector2 __retval;
-            imnodesNative.imnodes_GetNodeGridSpacePos(&__retval, node_id);
-            return __retval;
+            Vector2 ret = imnodesNative.imnodes_GetNodeGridSpacePos(node_id);
+            return ret;
         }
         public static Vector2 GetNodeScreenSpacePos(int node_id)
         {
-            Vector2 __retval;
-            imnodesNative.imnodes_GetNodeScreenSpacePos(&__retval, node_id);
-            return __retval;
+            Vector2 ret = imnodesNative.imnodes_GetNodeScreenSpacePos(node_id);
+            return ret;
         }
         public static void GetSelectedLinks(ref int link_ids)
         {

@@ -38,6 +38,7 @@ namespace ImGuiNET
         public float GrabMinSize;
         public float GrabRounding;
         public float LogSliderDeadzone;
+        public float ImageRounding;
         public float ImageBorderSize;
         public float TabRounding;
         public float TabBorderSize;
@@ -55,6 +56,7 @@ namespace ImGuiNET
         public float DragDropTargetRounding;
         public float DragDropTargetBorderSize;
         public float DragDropTargetPadding;
+        public float ColorMarkerSize;
         public ImGuiDir ColorButtonPosition;
         public Vector2 ButtonTextAlign;
         public Vector2 SelectableTextAlign;
@@ -180,6 +182,7 @@ namespace ImGuiNET
         public ref float GrabMinSize => ref Unsafe.AsRef<float>(&NativePtr->GrabMinSize);
         public ref float GrabRounding => ref Unsafe.AsRef<float>(&NativePtr->GrabRounding);
         public ref float LogSliderDeadzone => ref Unsafe.AsRef<float>(&NativePtr->LogSliderDeadzone);
+        public ref float ImageRounding => ref Unsafe.AsRef<float>(&NativePtr->ImageRounding);
         public ref float ImageBorderSize => ref Unsafe.AsRef<float>(&NativePtr->ImageBorderSize);
         public ref float TabRounding => ref Unsafe.AsRef<float>(&NativePtr->TabRounding);
         public ref float TabBorderSize => ref Unsafe.AsRef<float>(&NativePtr->TabBorderSize);
@@ -197,6 +200,7 @@ namespace ImGuiNET
         public ref float DragDropTargetRounding => ref Unsafe.AsRef<float>(&NativePtr->DragDropTargetRounding);
         public ref float DragDropTargetBorderSize => ref Unsafe.AsRef<float>(&NativePtr->DragDropTargetBorderSize);
         public ref float DragDropTargetPadding => ref Unsafe.AsRef<float>(&NativePtr->DragDropTargetPadding);
+        public ref float ColorMarkerSize => ref Unsafe.AsRef<float>(&NativePtr->ColorMarkerSize);
         public ref ImGuiDir ColorButtonPosition => ref Unsafe.AsRef<ImGuiDir>(&NativePtr->ColorButtonPosition);
         public ref Vector2 ButtonTextAlign => ref Unsafe.AsRef<Vector2>(&NativePtr->ButtonTextAlign);
         public ref Vector2 SelectableTextAlign => ref Unsafe.AsRef<Vector2>(&NativePtr->SelectableTextAlign);
